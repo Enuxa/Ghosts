@@ -2,6 +2,8 @@
 
 Projet de POO
 
+**_Attention :_** Penser à générer la doc avec javadoc -d Documentation **-charset utf8** *.java
+
 ## Répartition
 
 ### Clara
