@@ -17,20 +17,12 @@ Projet de POO
 1. `RuleBook`
 2. `Board`
 3. `Square`
+4. `Rule` et sous-classes
+5. `Interface`
 
 ### Ensemble
 
-#### Classes abstraites
-
-1. `Rule`
-2. `MovementRule`
-3. `CaptureRule`
-4. `InitializationRule`
-5. `GameEndRule`
-6. `Extension`
-
-#### Classes concrètes
-
-1. Règles de base
-2. Fantômes de base
-3. Extensions
+1. Interfaces
+2. Règles de base
+3. Fantômes de base
+4. Extensions
