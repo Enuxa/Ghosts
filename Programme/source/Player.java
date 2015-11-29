@@ -5,7 +5,7 @@ import java.util.*;
 */
 public class Player{
 	private String name;
-	private ArrayList<Ghost> ghosts;
+	private Collection<Ghost> ghosts;
 	/**
 	*	@param	name	Nom du joueur
 	*/
@@ -16,7 +16,7 @@ public class Player{
 	*	Récupère l'ensemble des fantômes du joueur
 	*	@return	L'ensemble des fantômes du joueur
 	*/
-	public ArrayList<Ghost> getGhosts (){
+	public Collection<Ghost> getGhosts (){
 		return this.ghosts;
 	}
 	/**
@@ -24,8 +24,8 @@ public class Player{
 	*	@param	good	<code>true</code> si on demande les bons fantômes, <code>false</code> sinon
 	*	@return	L'ensemble des bons (ou mauvais) fantômes du joueur
 	*/
-	public ArrayList<Ghost> getGhosts (boolean good){
-		ArrayList<Ghost> g = new ArrayList<Ghost> ();
+	public Collection<Ghost> getGhosts (boolean good){
+		Collection<Ghost> g = new ArrayList<Ghost> ();
 		Iterator i = this.ghosts.iterator ();
 		while (i.hasNext()) {
 			Ghost x = ((Ghost)i.next());
