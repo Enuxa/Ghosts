@@ -26,9 +26,21 @@ public abstract class Rule implements Comparable<Rule>{
 	}
 	/**
 	 * Récupère la différence de priorité entre ces règles.
-	 * @param	rule	La règle à comparer
+	 * @param rule La règle à comparer
 	 */
 	public int compareTo (Rule rule){
 		return this.priority - rule.priority;
+	}
+
+	public static class IncompatibleRulesException extends Exception{
+		private static final long serialVersionUID = 1L;
+		/**
+		 * @param msg Précision sur l'incompatibilité.
+		 * @param r1 Règle incompatible avec <code>r2</code>.
+		 * @param r2 Règle incompatible avec <code>r1</code>.
+		 */
+		public IncompatibleRulesException (String msg, Rule r1, Rule r2){
+			super ("Règles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
+		}
 	}
 }

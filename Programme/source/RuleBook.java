@@ -72,20 +72,21 @@ public class RuleBook{
 	}
 	/**
 	 * Récupère le gagnant de la partie.
-	 * @return Intance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
+	 * @return Instance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
 	 * @throws Exception Si on a deux gagnants différents
 	 */
 	public Player getWinner () throws Exception{
 		Player player = null;
+		GameEndRule r = null;
 		SortedSet<Rule> top = getTopRules (this.gameEndRules);
 		for (Rule rule : top){
-			Player p = ((GameEndRule)rule).getWinner();
-			if (p != null){
-				if (player != null){
-					if (p != player)
-						throw new Exception ("Règles incompatibles : Deux gagnants différents.");
-				}else
-					player = p;
+			GameEndRule ger = (GameEndRule)rule;
+			if (ger.isGameOver()){
+				Player p = ger.getWinner();
+				if (p != null && p != player)
+					throw new Rule.IncompatibleRulesException("Deux gagnants différents.", r, ger);
+				player = p;
+				r = ger;
 			}
 		}
 		
@@ -99,5 +100,4 @@ public class RuleBook{
 	private SortedSet<Rule> getTopRules (SortedSet<Rule> rules){
 		return rules.tailSet(rules.last());
 	}
-
 }
