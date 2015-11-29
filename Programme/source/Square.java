@@ -11,7 +11,7 @@ public class Square{
 		this.coordinates = coordinates;
 	}
 	/**
-	 * Récupère le fantôme présent sur ctte case
+	 * Récupère le fantôme présent sur cette case
 	 * @return Le fantôme sur cette case, ou <code>null</code> s'il n'y a aucun fantôme sur cette case.
 	 */
 	public Ghost getGhost (){

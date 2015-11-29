@@ -33,7 +33,7 @@ public class Game{
 	}
 	/**
 	*	Indique si la partie est terminée
-	*	@return	<code>true</code> si le jeu est fini, <code>false</code> sinon.
+	*	@return	<code>true</code> si le jeu est fini, <code>false</code> sinon
 	*/
 	private boolean isGameOver (){
 		throw new UnsupportedOperationException ("Pas implementé");
@@ -53,22 +53,22 @@ public class Game{
 	}
 	/**
 	*	Récupère le joueur demandé
-	*	@param	id	<code>0</code> pour le premier joueur, <code>1</code> pour le second.
+	*	@param	id	<code>0</code> pour le premier joueur, <code>1</code> pour le second
 	*	@return	Le joueur demandé
 	*/
 	public Player getPlayer (int id){
 		throw new UnsupportedOperationException ("Pas implementé");
 	}
 	/**
-	*	Récupère l'interface choisie pour la partie en cours.
-	*	@return	L'interface utilisée.
+	*	Récupère l'interface choisie pour la partie en cours
+	*	@return	L'interface utilisée
 	*/
 	public Interface getInterface (){
 		throw new UnsupportedOperationException ("Pas implementé");
 	}
 	/**
-	*	Récupère le livre de règles de la partie en cours.
-	*	@return	Le livre de règles.
+	*	Récupère le livre de règles de la partie en cours
+	*	@return	Le livre de règles
 	*/
 	public RuleBook getRuleBook (){
 		throw new UnsupportedOperationException ("Pas implementé");
