@@ -1,6 +1,5 @@
 public class Ghost implements Cloneable{
 	private boolean isGood;
-	
 	/**
 	*	@param	isGood	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon
 	*/
@@ -9,18 +8,19 @@ public class Ghost implements Cloneable{
 	}
 	/**
 	*	Indique si ce fantôme est gentil ou non
-	*	@return	<code>true</code> si ce fantôme est gentil, <code>false</false> sinon
+	*	@return	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon
 	*/
 	public boolean isGood (){
 		return this.isGood;
 	}
-	
 	/**
 	*	Déplace ce fantôme
 	*	@param	coordinates	Nouvelle position du fantôme
 	*/
 	public void move (String coordinates){
-		throw new UnsupportedOperationException ("Pas implémenté");
+		String position = Game.getCurrent().getBoard().getPosition(this);
+		Game.getCurrent().getBoard().getSquare(position).removeGhost();
+		Game.getCurrent().getBoard().getSquare(coordinates).putGhost(this);
 	}
 	/**
 	*	Clone le fantôme (prévu pour cloner les modèles)
