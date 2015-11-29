@@ -5,7 +5,6 @@ public abstract class GameEndRule extends Rule {
 	*/
 	public GameEndRule(int priority) {
 		super(priority);
-		throw new UnsupportedOperationException ("Pas encore implémenté");
 	}
 	/**
 	*	Indique si la partie est terminée ou non.

@@ -5,7 +5,6 @@ public abstract class MovementRule extends Rule {
 	*/
 	public MovementRule(int priority) {
 		super(priority);
-		throw new UnsupportedOperationException ("Pas encore implémenté");
 	}
 	/**
 	*	Indique si un déplacement est légal ou non selon cette règle.

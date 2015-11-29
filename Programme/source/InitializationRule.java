@@ -4,7 +4,6 @@ public abstract class InitializationRule extends Rule {
 	*/
 	public InitializationRule(int priority) {
 		super(priority);
-		throw new UnsupportedOperationException ("Pas encore implémenté");
 	}
 	/**
 	*	Indique si le placement initial d'un fantôme donné est légal ou non selon cette règle.

@@ -40,10 +40,10 @@ public class Board{
 	 * @return La position du fantôme passé en argument.
 	 */
 	public String getPosition (Ghost ghost){
-		Collection<String> positions = this.squares.keySet();
-		for (String s : positions)
-			if ((this.getSquare (s)).getGhost () == ghost)
-				return s;
+		Collection<Square> squareCollection = this.squares.values();
+		for (Square s : squareCollection)
+			if (s.getGhost () == ghost)
+				return s.toString();
 		return null;
 	}
 }
