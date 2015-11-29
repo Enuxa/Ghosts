@@ -29,7 +29,7 @@ public class Ghost implements Cloneable{
 	*	@return	Copie du fantôme
 	*/
 	public Ghost clone (){
-		Ghost g = this;
+		Ghost g = new Ghost (this.isGood);
 		return g;
 	}
 }
