@@ -1,5 +1,3 @@
-import java.util.*;
-
 public class Ghost implements Cloneable{
 	private boolean isGood;
 	

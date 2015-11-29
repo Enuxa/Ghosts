@@ -1,4 +1,5 @@
-import java.util.*;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
 *	Classe correspondant au livre de règles.
