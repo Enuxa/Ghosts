@@ -28,9 +28,7 @@ public class Player{
 	*/
 	public Collection<Ghost> getGhosts (boolean good){
 		Collection<Ghost> g = new ArrayList<Ghost> ();
-		Iterator i = this.ghosts.iterator ();
-		while (i.hasNext()) {
-			Ghost x = ((Ghost)i.next());
+		for (Ghost x : this.ghosts) {
 			if (x.isGood () == good)
 				g.add (x);
 		}
