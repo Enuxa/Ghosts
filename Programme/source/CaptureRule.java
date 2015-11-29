@@ -5,7 +5,6 @@ public abstract class CaptureRule extends Rule {
 	*/
 	public CaptureRule(int priority) {
 		super(priority);
-		throw new UnsupportedOperationException ("Pas encore implémenté");
 	}
 	/**
 	 * Indique si une capture est autorisée
