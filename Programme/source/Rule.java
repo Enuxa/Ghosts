@@ -2,10 +2,10 @@
 *	Classe correspondant à une règle.
 */
 public abstract class Rule implements Comparable<Rule>{
+	private int priority;
 	/**
 	*	@param	priority	Niveau de priorité de la règle.
 	*/
-	private int priority;
 	public Rule (int priority){
 		this.priority = priority;
 	}
@@ -18,7 +18,7 @@ public abstract class Rule implements Comparable<Rule>{
 	}
 	/**
 	*	Indique si cette règle annule une règle donnée.
-	*	@param	La règle à tester.
+	*	@param	rule La règle à tester.
 	*	@return	<code>true</code> si cette règle est prioritaire par rapport à celle passée en argument.
 	*/
 	public boolean prevailsOver (Rule rule){

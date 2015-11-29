@@ -6,11 +6,11 @@ import java.util.Map;
  * Classe correspondant au plateau
  */
 public class Board{
+	private int size;
+	private Map<String, Square> squares;
 	/**
 	 * @param size Nombre de cases sur le côté.
 	 */
-	private int size;
-	private Map<String, Square> squares;
 	public Board (int size){
 		this.size = size;
 		this.squares = new HashMap <String, Square> ();
