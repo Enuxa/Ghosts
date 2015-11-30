@@ -18,4 +18,9 @@ public abstract class InitializationRule extends Rule {
 	* @return Un plateau si elle est la règle de priorité maximale supposée générer le plateau, <code>null</code> sinon
 	*/
 	public abstract Board getBoard ();
+	/**
+	 * Indique si un joueur est prêt à jouer
+	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
+	 */
+	public abstract boolean isReady ();
 }

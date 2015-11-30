@@ -82,7 +82,10 @@ public class Game{
 	/**
 	*	Prépare le jeu
 	*/
-	private void initialize (){ // appeler la règle d'initialisation priorité supérieure
+	private void initialize (){
+		//	Charger le contenu des extensions
+		//	Récupérer le plateau
+		//	Initialiser les positions des joueurs
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 	/**
@@ -90,6 +93,7 @@ public class Game{
 	*	@param	player	Joueur devant placer ses fantômes
 	*/
 	private void initialize (Player player){
+		//	Tant que le joueur n'est pas prêt à jouer selon le livre de règles : on le laisse soumettre des demandes d'initialisation au livre de règles.
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 }
