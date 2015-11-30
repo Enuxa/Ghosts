@@ -34,4 +34,16 @@ public class Player{
 		}
 		return g;
 	}
+	/*
+	*	Mange un fantôme
+	*/
+	public void addGhost () {
+		throw new UnsupportedOperationException ("Pas implémenté");
+	}
+	/*
+	*	Se fait manger un fantôme
+	*/
+	public void removeGhost () {
+		throw new UnsupportedOperationException ("Pas implémenté");
+	}
 }

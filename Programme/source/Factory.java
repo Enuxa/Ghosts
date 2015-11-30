@@ -12,7 +12,9 @@ public class Factory {
 	*	@return	Le fantôme souhaité.
 	*/
 	public static Ghost createGhost (String ghostType, boolean isGood){
-		throw new UnsupportedOperationException ("Pas implémenté");
+		Ghost ghost = templates.get(ghostType);
+		ghost.isGood (isGood);
+		return ghost;
 	}
 	/**
 	*	Ajoute un nouveau type de fantôme aux modèles de fantômes autorisés
@@ -27,6 +29,6 @@ public class Factory {
 	*	@return Ensemble des noms de modèles de fantômes
 	*/
 	public static Collection<String> getTypes (){
-		throw new UnsupportedOperationException ("Pas implémenté");
+		return templates.keySet();
 	}
 }

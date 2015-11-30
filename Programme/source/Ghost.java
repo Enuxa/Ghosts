@@ -1,10 +1,13 @@
-public class Ghost implements Cloneable{
+public class Ghost {
 	private boolean isGood;
+	private String type;
+	private Factory factory;
 	/**
 	*	@param	isGood	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon
 	*/
-	public Ghost (boolean isGood){
+	public Ghost (boolean isGood, String type){
 		this.isGood = isGood;
+		this.type = type;
 	}
 	/**
 	*	Indique si ce fantôme est gentil ou non
@@ -12,6 +15,9 @@ public class Ghost implements Cloneable{
 	*/
 	public boolean isGood (){
 		return this.isGood;
+	}
+	public void isGood (boolean isGood) {
+		this.isGood = isGood;
 	}
 	/**
 	*	Déplace ce fantôme
@@ -26,8 +32,8 @@ public class Ghost implements Cloneable{
 	*	Clone le fantôme (prévu pour cloner les modèles)
 	*	@return	Copie du fantôme
 	*/
-	public Ghost clone (){
-		Ghost g = new Ghost (this.isGood);
-		return g;
+	public Ghost clone (boolean isGood){
+		Ghost ghost = this.factory.createGhost (this.type, isGood);
+		return ghost;
 	}
 }
