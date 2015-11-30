@@ -90,7 +90,6 @@ public class RuleBook{
 				r = ger;
 			}
 		}
-		
 		return player;
 	}
 	/**
@@ -100,5 +99,37 @@ public class RuleBook{
 	 */
 	private SortedSet<Rule> getTopRules (SortedSet<Rule> rules){
 		return rules.tailSet(rules.last());
+	}
+	public SortedSet getTopInitializationRules () {
+		return this.getTopRules (this.initializationRules);
+	}
+	public SortedSet getTopMovementRules () {
+		return this.getTopRules (this.movementRules);
+	}
+	public SortedSet getTopCaptureRules () {
+		return this.getTopRules (this.captureRules);
+	}
+	public SortedSet getTopGameEndRules () {
+		return this.getTopRules (this.gameEndRules);
+	}
+	/**
+	* Renvoie un plateau
+	* @return Le plateau de la partie
+	*/
+	public Board getBoard () throws Exception {
+		Board board = null;
+		InitializationRule r = null;
+		SortedSet<Rule> top = getTopInitializationRules ();
+		for (Rule rule : top){
+			InitializationRule ir = (InitializationRule)rule;
+			Board b = ir.getBoard();
+			if (b != null) {
+				if (board != null)
+					throw new Rule.IncompatibleRulesException ("Deux plateaux créés.", r, ir);
+				board = b;
+				r = ir;
+			}
+		}
+		return board;
 	}
 }
