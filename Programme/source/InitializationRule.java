@@ -13,4 +13,9 @@ public abstract class InitializationRule extends Rule {
 	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
 	*/
 	public abstract boolean requestInitialization (Player player, Ghost ghost, String position);
+	/**
+	* Peut renvoyer un plateau
+	* @return Un plateau si elle est la règle de priorité maximale supposée générer le plateau, <code>null</code> sinon
+	*/
+	public abstract Board getBoard ();
 }

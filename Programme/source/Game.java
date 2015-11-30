@@ -8,6 +8,7 @@ public class Game{
 	private Board board;
 	private RuleBook ruleBook;
 	private Player player1, player2;
+	private static Game current;
 	/**
 	*	Instancie le jeu
 	*	@param	inter	L'interface choisie pour cette partie
@@ -18,10 +19,11 @@ public class Game{
 		this.inter = inter;
 		this.cheatMode = cheatMode;
 		this.extensions = extensions;
-		this.board = new Board (6);
+		this.board = null;
 		this.ruleBook = new RuleBook();
 		this.player1 = new Player (nom1);
 		this.player2 = new Player (nom2);
+		current = this;
 	}
 	public Board getBoard () {
 		return this.board;
@@ -51,16 +53,16 @@ public class Game{
 		return this.ruleBook;
 	}
 	/**
-	*	Démarre la partie
-	*/
-	public void run (){
-		throw new UnsupportedOperationException ("Pas implémenté");
-	}
-	/**
 	*	Récupère l'instance de Game correspondant à la partie en cours
 	*	@return L'instance courante de Game
 	*/ 
 	public static Game getCurrent (){
+		return current;
+	}
+	/**
+	*	Démarre la partie
+	*/
+	public void run (){
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 	/**
@@ -80,7 +82,7 @@ public class Game{
 	/**
 	*	Prépare le jeu
 	*/
-	private void initialize (){
+	private void initialize (){ // appeler la règle d'initialisation priorité supérieure
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 	/**
