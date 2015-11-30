@@ -1,13 +1,10 @@
 public class Ghost {
 	private boolean isGood;
-	private String type;
-	private Factory factory;
 	/**
-	*	@param	isGood	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon
+	*	@param	isGood	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon.
 	*/
-	public Ghost (boolean isGood, String type){
+	public Ghost (boolean isGood){
 		this.isGood = isGood;
-		this.type = type;
 	}
 	/**
 	*	Indique si ce fantôme est gentil ou non
@@ -15,9 +12,6 @@ public class Ghost {
 	*/
 	public boolean isGood (){
 		return this.isGood;
-	}
-	public void isGood (boolean isGood) {
-		this.isGood = isGood;
 	}
 	/**
 	*	Déplace ce fantôme
@@ -33,7 +27,6 @@ public class Ghost {
 	*	@return	Copie du fantôme
 	*/
 	public Ghost clone (boolean isGood){
-		Ghost ghost = this.factory.createGhost (this.type, isGood);
-		return ghost;
+		return new Ghost (this.isGood);
 	}
 }

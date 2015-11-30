@@ -13,8 +13,7 @@ public class Factory {
 	*/
 	public static Ghost createGhost (String ghostType, boolean isGood){
 		Ghost ghost = templates.get(ghostType);
-		ghost.isGood (isGood);
-		return ghost;
+		return ghost.clone(isGood);
 	}
 	/**
 	*	Ajoute un nouveau type de fantôme aux modèles de fantômes autorisés
