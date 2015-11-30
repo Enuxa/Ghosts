@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class Factory {
+public class GhostFactory {
 	/**
 	*	L'ensemble des modèles de fantômes autorisés dans cette partie
 	*/

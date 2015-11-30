@@ -15,15 +15,15 @@ public class Game{
 	*	@param	cheatMode	Mode triche activé ou non
 	*	@param	extensions	Ensemble des extensions choisies pour cette partie
 	*/
-	public Game (Interface inter, boolean cheatMode, Extension[] extensions, String nom1, String nom2){
+	public Game (Interface inter, boolean cheatMode, Extension[] extensions){
 		this.inter = inter;
 		this.cheatMode = cheatMode;
 		this.extensions = extensions;
 		this.board = null;
 		this.ruleBook = new RuleBook();
-		this.player1 = new Player (nom1);
-		this.player2 = new Player (nom2);
-		current = this;
+		this.player1 = null;
+		this.player2 = null;
+		Game.current = this;
 	}
 	public Board getBoard () {
 		return this.board;
@@ -57,19 +57,12 @@ public class Game{
 	*	@return L'instance courante de Game
 	*/ 
 	public static Game getCurrent (){
-		return current;
+		return Game.current;
 	}
 	/**
 	*	Démarre la partie
 	*/
 	public void run (){
-		throw new UnsupportedOperationException ("Pas implémenté");
-	}
-	/**
-	*	Fait passer un tour
-	*	@param	player	Le joueur dont c'est le tour
-	*/
-	private void turn (Player player){
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 	/**
@@ -85,15 +78,8 @@ public class Game{
 	private void initialize (){
 		//	Charger le contenu des extensions
 		//	Récupérer le plateau
+		//	Choisir la nature des joueurs (IA vs. humain, Auto vs. humain, IA vs. Auto...)
 		//	Initialiser les positions des joueurs
-		throw new UnsupportedOperationException ("Pas implémenté");
-	}
-	/**
-	*	Prépare les fantômes du joueur indiqué
-	*	@param	player	Joueur devant placer ses fantômes
-	*/
-	private void initialize (Player player){
-		//	Tant que le joueur n'est pas prêt à jouer selon le livre de règles : on le laisse soumettre des demandes d'initialisation au livre de règles.
 		throw new UnsupportedOperationException ("Pas implémenté");
 	}
 }
