@@ -5,7 +5,6 @@ public class Factory {
 	*	L'ensemble des modèles de fantômes autorisés dans cette partie
 	*/
 	private static Map<String, Ghost> templates;
-	
 	/**
 	*	Créé une nouvelle instance d'un certain type de fantôme
 	*	@param	ghostType	Type de fantôme souhaité
