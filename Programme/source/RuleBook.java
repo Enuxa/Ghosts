@@ -133,4 +133,16 @@ public class RuleBook{
 		}
 		return board;
 	}
+
+	/**
+	 * Indique si un joueur est prêt à jouer
+	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
+	 */
+	public boolean isReady (Player player){
+		SortedSet<Rule> rules = this.getTopInitializationRules();
+		boolean b = true;
+		for (Rule r : rules)
+			b &= ((InitializationRule)r).isReady(player);
+		return b;
+	}
 }

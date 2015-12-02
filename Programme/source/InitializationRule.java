@@ -22,5 +22,5 @@ public abstract class InitializationRule extends Rule {
 	 * Indique si un joueur est prêt à jouer
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 */
-	public abstract boolean isReady ();
+	public abstract boolean isReady (Player player);
 }
