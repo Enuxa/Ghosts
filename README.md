@@ -12,6 +12,8 @@ Projet de POO
 
 1. `Game`
 2. `Ghost`
+3. Initialisation de base
+4. Règle de capture
 
 #### Classes abstraites
 
@@ -29,6 +31,8 @@ Projet de POO
 
 1. `Player`
 2. `RuleBook`
+3. Règle de mouvement
+4. Règle de fin de jeu
 
 ### Ensemble
 
