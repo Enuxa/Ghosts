@@ -9,6 +9,7 @@ public class Square{
 	 */
 	public Square (String coordinates){
 		this.coordinates = coordinates;
+		this.ghost = null;
 	}
 	/**
 	 * Récupère le fantôme présent sur cette case
@@ -20,8 +21,11 @@ public class Square{
 	/**
 	 * Place un fantôme sur cette case.
 	 * @param ghost Le fantôme à placer.
+	 * @throws RuntimeException si un fantôme se trouve déjà sur cette case.
 	 */
-	public void putGhost (Ghost ghost){
+	public void putGhost (Ghost ghost) throws RuntimeException{
+		if (this.ghost != null)
+			throw new RuntimeException ("Un fantôme se trouve déjà à la position " + this);
 		this.ghost = ghost;
 	}
 	/**
