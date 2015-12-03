@@ -12,7 +12,7 @@ Projet de POO
 
 1. `Game`
 2. `Ghost`
-3. Initialisation de base
+3. Règle d'initialisation de base
 4. Règle de capture
 
 #### Classes abstraites
@@ -37,6 +37,4 @@ Projet de POO
 ### Ensemble
 
 1. Interfaces
-2. Règles de base
-3. Fantômes de base
-4. Extensions
+2. Extensions
