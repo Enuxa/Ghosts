@@ -8,21 +8,33 @@ Projet de POO
 
 ### Clara
 
+#### Classes concrètes
+
 1. `Game`
-2. `Player`
-3. `Ghost`
+2. `Ghost`
+3. Règle d'initialisation de base
+4. Règle de capture
+
+#### Classes abstraites
+
+1. `Board`
+2. `Square`
 
 ### Pierre
 
-1. `RuleBook`
-2. `Board`
-3. `Square`
-4. `Rule` et sous-classes
-5. `Interface`
+#### Classes abstraites
+
+1. `Rule` et sous-classes
+2. `Interface`
+
+#### Classes concrètes
+
+1. `Player`
+2. `RuleBook`
+3. Règle de mouvement
+4. Règle de fin de jeu
 
 ### Ensemble
 
 1. Interfaces
-2. Règles de base
-3. Fantômes de base
-4. Extensions
+2. Extensions
