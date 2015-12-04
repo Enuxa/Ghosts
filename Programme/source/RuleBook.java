@@ -76,7 +76,7 @@ public class RuleBook{
 	 * @return Instance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
 	 * @throws Rule.IncompatibleRulesException Si on a deux gagnants différents
 	 */
-	public Player getWinner () throws Exception{
+	public Player getWinner () throws Rule.IncompatibleRulesException{
 		Player player = null;
 		GameEndRule r = null;
 		SortedSet<Rule> top = getTopRules (this.gameEndRules);
@@ -117,7 +117,7 @@ public class RuleBook{
 	* @return Le plateau de la partie
 	* @throws Rule.IncompatibleRulesException Si on génère deux plateaux
 	*/
-	public Board getBoard () throws Exception {
+	public Board getBoard () throws Rule.IncompatibleRulesException {
 		Board board = null;
 		InitializationRule r = null;
 		SortedSet<Rule> top = getTopInitializationRules ();

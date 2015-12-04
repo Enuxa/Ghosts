@@ -42,7 +42,7 @@ public class Player{
 	 * Retire un fantôme (par exemple si ce fantôme est sorti ou s'il s'est fait manger)
 	 */
 	public void removeGhost (Ghost ghost) {
-		if (this.ghosts.contains(ghosts))
+		if (this.hasGhost(ghost))
 			this.ghosts.remove(ghost);
 	}
 	/**
@@ -121,7 +121,7 @@ public class Player{
 		return false;
 	}
 	/**
-	 * Fait passer un tour pour ce joueur.
+	 * Fait jouer un tour à ce joueur.
 	 */
 	public void turn (){
 		boolean hasPlayed = false;

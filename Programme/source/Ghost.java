@@ -16,11 +16,19 @@ public class Ghost {
 	/**
 	*	Déplace ce fantôme
 	*	@param	coordinates	Nouvelle position du fantôme
+	*	@throws	RuntimeException si la position n'appartient pas au plateau.
 	*/
-	public void move (String coordinates){
+	public void move (String coordinates) throws RuntimeException{
 		String position = Game.getCurrent().getBoard().getPosition(this);
-		Game.getCurrent().getBoard().getSquare(position).removeGhost();
-		Game.getCurrent().getBoard().getSquare(coordinates).putGhost(this);
+		Board board = Game.getCurrent().getBoard();
+		Square square0 = board.getSquare(position);
+		if (square0 != null)
+			square0.removeGhost();
+		Square square1 = board.getSquare(coordinates);
+		if (square1 != null)
+			board.getSquare(coordinates).putGhost(this);
+		else
+			throw new RuntimeException ("La position " + coordinates + "n'est pas sur le plateau.");
 	}
 	/**
 	*	Clone le fantôme (prévu pour cloner les modèles)

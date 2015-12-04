@@ -1,13 +1,15 @@
+import java.util.*;
+
 /**
 *	Classe principale
 */
 public class Game{
 	private Interface inter;
 	private boolean cheatMode;
-	private Extension[] extensions;
+	private Collection<Extension> extensions;
 	private Board board;
 	private RuleBook ruleBook;
-	private Player player1, player2;
+	private Player[] players;
 	private static Game current;
 	/**
 	*	Instancie le jeu
@@ -15,14 +17,13 @@ public class Game{
 	*	@param	cheatMode	Mode triche activé ou non
 	*	@param	extensions	Ensemble des extensions choisies pour cette partie
 	*/
-	public Game (Interface inter, boolean cheatMode, Extension[] extensions){
+	public Game (Interface inter, boolean cheatMode, Collection<Extension> extensions){
 		this.inter = inter;
 		this.cheatMode = cheatMode;
 		this.extensions = extensions;
 		this.board = null;
 		this.ruleBook = new RuleBook();
-		this.player1 = null;
-		this.player2 = null;
+		this.players = new Player[2];
 		Game.current = this;
 	}
 	public Board getBoard () {
@@ -34,9 +35,7 @@ public class Game{
 	*	@return	Le joueur demandé
 	*/
 	public Player getPlayer (int id){
-		if (id == 0)
-			return player1;
-		return player2;
+		return this.players[id];
 	}
 	/**
 	*	Récupère l'interface choisie pour la partie en cours
@@ -63,23 +62,62 @@ public class Game{
 	*	Démarre la partie
 	*/
 	public void run (){
-		throw new UnsupportedOperationException ("Pas implémenté");
+		this.initialize();
+		while (!this.isGameOver()) {
+			for (Player p : this.players){
+				this.inter.updateDisplay(this.cheatMode ? null : p);
+				p.turn();
+				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
+			}
+		}
 	}
 	/**
 	*	Indique si la partie est terminée
 	*	@return	<code>true</code> si le jeu est fini, <code>false</code> sinon
 	*/
 	private boolean isGameOver (){
-		throw new UnsupportedOperationException ("Pas implémenté");
+		return this.ruleBook.isGameOver();
 	}
 	/**
 	*	Prépare le jeu
 	*/
 	private void initialize (){
-		//	Charger le contenu des extensions
-		//	Récupérer le plateau
-		//	Choisir la nature des joueurs (IA vs. humain, Auto vs. humain, IA vs. Auto...)
 		//	Initialiser les positions des joueurs
-		throw new UnsupportedOperationException ("Pas implémenté");
+		for (Extension e : this.extensions)
+			e.load();
+		
+		try{
+			this.board = this.ruleBook.getBoard();
+		}catch (Rule.IncompatibleRulesException e){
+			System.out.println ("Le programme a rencontré une erreur : " + e.getMessage () + "\nIl est impossible de définir le plateau de jeu.");
+			System.exit (-1);
+		}
+		
+		this.initializePlayers ();
+	}
+	private void initializePlayers () {
+		for (int i = 0; i < 2; i++)
+			this.players[i] = this.initializePlayer ();
+		
+		for (Player p : this.players)
+			p.initialize ();
+	}
+	private Player initializePlayer (){
+		Collection<String> choicePlayer = Arrays.asList (new String[] {"Humain"});
+
+		String nature = null;
+		while (nature == null)
+			nature = this.inter.readSelection(choicePlayer, "Quelle est la nature de ce joueur ?");
+		String name = null;
+		while (name == null)
+			name = this.inter.readText("Comment ce joueur s'appelle-t-il ?");
+		
+		switch (nature){
+			case "Humain" : 
+				return new Player (name);
+			//	default n'arrivant jamais
+			default :
+				return null;
+		}
 	}
 }

@@ -23,6 +23,12 @@ public abstract class Interface{
 	 */
 	public abstract void printText (String message);
 	/**
+	 * Transmet un message à l'utilisateur et attend une interaction pour continuer
+	 * @param message1 Le message à transmettre.
+	 * @param message2 Le message d'attente (<code>null</code> pour le message par défaut)
+	 */
+	public abstract void printText (String message1, String message2);
+	/**
 	 * Récupère une position saisie par l'utilisateur.
 	 * @param message message adressé à l'utilisateur
 	 * @return La position saisie par l'utilisateur (<code>null</code> si aucune position n'a été saisie).
