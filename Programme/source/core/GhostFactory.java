@@ -1,3 +1,4 @@
+package core;
 import java.util.*;
 
 public class GhostFactory {
@@ -8,7 +9,7 @@ public class GhostFactory {
 	/**
 	*	Créé une nouvelle instance d'un certain type de fantôme
 	*	@param	ghostType	Type de fantôme souhaité
-	*	@param	isGood	<code>true</code> Si le nouveau fantôme doit être bon, <code>false</code> sinon
+	*	@param	isGood	<code>true</code> Si le nouveau fantôme doit être bon, <code>false</code> sinon.
 	*	@return	Le fantôme souhaité.
 	*/
 	public static Ghost createGhost (String ghostType, boolean isGood){
@@ -29,5 +30,17 @@ public class GhostFactory {
 	*/
 	public static Collection<String> getTypes (){
 		return templates.keySet();
+	}
+	/**
+	 * Récupère le type d'un fantôme.
+	 * @param ghost Le fantôme dont on veut connaître le type.
+	 * @return Le type du fantôme.
+	 */
+	public static String getType (Ghost ghost){
+		Collection<String> types = getTypes ();
+		for (String type : types)
+			if (templates.get (type).getClass().equals(ghost.getClass()))
+				return type;
+		return null;
 	}
 }

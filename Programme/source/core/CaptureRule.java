@@ -1,3 +1,4 @@
+package core;
 
 public abstract class CaptureRule extends Rule {
 	/**

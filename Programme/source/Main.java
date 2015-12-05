@@ -1,7 +1,9 @@
-public class Main {
+import java.util.*;
 
+public class Main {
 	public static void main(String[] args) {
-		System.out.println ("Test");
+		core.Interface inter = new base.UnixTextBasedInterface ();
+		System.out.println("\u001B[31m" + "Bonjour");
 	}
 
 }

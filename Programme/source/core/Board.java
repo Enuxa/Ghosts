@@ -1,3 +1,4 @@
+package core;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,14 +17,23 @@ public class Board{
 		this.squares = new HashMap <String, Square> ();
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){
-				String coordinates = Character.toString ((char)('a' + i)) + (j + 1);
+				String coordinates = toCoordinates (i, j);
 				this.squares.put (coordinates, new Square (coordinates));
 			}
 		}
 	}
 	/**
+	 * Transforme un couple d'entiers en coordonnées alphanumériques "informatiques" (c'est-à-dire en comptant à partir de 0).
+	 * @param i L'abscisse.
+	 * @param j L'ordonnée.
+	 * @return Les coordonnées alphanumériques.
+	 */
+	public static String toCoordinates (int i, int j){
+		return Character.toString ((char)('A' + i)) + (j + 1);
+	}
+	/**
 	 * Récupère une case
-	 * @param coordinates Les coordonnées aphanumériques de la case souhaitée.
+	 * @param coordinates Les coordonnées alphanumériques de la case souhaitée.
 	 * @return La case demandée.
 	 */
 	public Square getSquare (String coordinates){

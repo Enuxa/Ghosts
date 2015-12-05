@@ -1,3 +1,5 @@
 *.class
 *.*~
 *.autosave
+.project
+Documentation

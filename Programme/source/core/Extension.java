@@ -1,3 +1,4 @@
+package core;
 public abstract class Extension{
 	private String name;
 	/**

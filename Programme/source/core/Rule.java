@@ -1,3 +1,4 @@
+package core;
 /**
 *	Classe correspondant à une règle.
 */

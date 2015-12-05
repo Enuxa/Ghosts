@@ -1,3 +1,4 @@
+package core;
 import java.util.SortedSet;
 import java.util.TreeSet;
 
@@ -136,6 +137,7 @@ public class RuleBook{
 
 	/**
 	 * Indique si un joueur est prêt à jouer
+	 * @param player Le joueur
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 */
 	public boolean isReady (Player player){

@@ -1,3 +1,4 @@
+package core;
 import java.util.*;
 
 /**
@@ -34,12 +35,14 @@ public class Player{
 	}
 	/**
 	 * Ajoute un fantôme
+	 * @param ghost Le fantôme à ajouter.
 	 */
 	public void addGhost (Ghost ghost) {
 		this.ghosts.add(ghost);
 	}
 	/**
 	 * Retire un fantôme (par exemple si ce fantôme est sorti ou s'il s'est fait manger)
+	 * @param ghost le fantôme à retirer.
 	 */
 	public void removeGhost (Ghost ghost) {
 		if (this.hasGhost(ghost))

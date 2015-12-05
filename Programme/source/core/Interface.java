@@ -1,3 +1,4 @@
+package core;
 import java.util.*;
 
 public abstract class Interface{
@@ -47,7 +48,7 @@ public abstract class Interface{
 	 * @param max Nombre maximum de réponses à fournir.
 	 * @return Une liste ordonnées de réponses : pour tout <i>i</i>, l'utilisateur à sélectionné la <i>i</i>-ème réponse si la <i>i</i>-ème valeur de la liste renvoyée vaut <code>true</code> (<code>null</code> si la sélection a été annulée).
 	 */
-	public abstract List<Boolean> readSelection (List<String> choice, String message, int min, int max);
+	public abstract Collection<String> readSelection (Collection<String> choice, String message, int min, int max);
 	/**
 	 * Récupère la sélection de l'utilisateur parmi un choix de réponse.
 	 * @param choice Liste ordonnée de réponses possibles
@@ -55,7 +56,7 @@ public abstract class Interface{
 	 * @param max Nombre maximum de réponses à fournir.
 	 * @return Une liste ordonnées de réponses : pour tout <i>i</i>, l'utilisateur à sélectionné la <i>i</i>-ème réponse si la <i>i</i>-ème valeur de la liste renvoyée vaut <code>true</code> (<code>null</code> si la sélection a été annulée).
 	 */
-	public abstract List<Boolean> readSelection (List<String> choice, int min, int max);
+	public abstract Collection<String> readSelection (Collection<String> choice, int min, int max);
 	/**
 	 * Récupère l'unique sélection de l'utilisateur parmi un choix de réponse.
 	 * @param choice Ensemble de réponses possibles

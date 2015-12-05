@@ -1,3 +1,4 @@
+package core;
 public class Ghost {
 	private boolean isGood;
 	/**
@@ -32,6 +33,7 @@ public class Ghost {
 	}
 	/**
 	*	Clone le fantôme (prévu pour cloner les modèles)
+	* @param isGood <code>true</code> si le fantôme est gentil, <code>false</code> sinon.
 	*	@return	Copie du fantôme
 	*/
 	public Ghost clone (boolean isGood){

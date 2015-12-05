@@ -1,3 +1,4 @@
+package core;
 import java.util.*;
 
 /**
@@ -115,9 +116,8 @@ public class Game{
 		switch (nature){
 			case "Humain" : 
 				return new Player (name);
-			//	default n'arrivant jamais
-			default :
-				return null;
 		}
+		
+		return null;
 	}
 }
