@@ -177,6 +177,9 @@ public class UnixTextBasedInterface extends Interface {
 	public String readSelection(Collection<String> choice) {
 		Collection<String> c = this.readSelection(choice, 1, 1);
 
+		if (c == null)
+			return null;
+		
 		String a = null;
 		for (String s : c)
 			a = s;
