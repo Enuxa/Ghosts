@@ -7,16 +7,15 @@ import core.*;
 
 public class UnixTextBasedInterface extends Interface {
 	private Scanner sc;
-	private Map<String, String> colorKeys;
+	private String RED, BLUE, YELLOW, GREEN, PURPLE, DEFAULT;
 	public UnixTextBasedInterface () {
 		this.sc = new Scanner (System.in);
-		this.colorKeys = new HashMap <String, String> ();
-		this.colorKeys.put("red", "\u001B[31m");
-		this.colorKeys.put("blue", "\u001B[36m");
-		this.colorKeys.put("yellow", "\u001B[33m");
-		this.colorKeys.put("green", "\u001B[32m");
-		this.colorKeys.put("purple", "\u001B[35m");
-		this.colorKeys.put("default", "\u001B[0m");
+		this.RED = "\u001B[31m";
+		this.BLUE = "\u001B[36m";
+		this.YELLOW = "\u001B[33m";
+		this.GREEN = "\u001B[32m";
+		this.PURPLE = "\u001B[35m";
+		this.DEFAULT = "\u001B[0m";
 	}
 	
 	@Override
@@ -35,9 +34,9 @@ public class UnixTextBasedInterface extends Interface {
 
 	@Override
 	public void updateDisplay(Player player) {
-		Collection<String> ghostTypes = GhostFactory.getTypes();
-		int ghostTypesNumber = ghostTypes.size();
 		Game game = Game.getCurrent();
+		Collection<String> ghostTypes = game.getFactory().getTypes();
+		int ghostTypesNumber = ghostTypes.size();
 		Board board = game.getBoard();
 		int size = board.getSize();
 		for (int i = 0; i < size; i++) {
@@ -68,7 +67,7 @@ public class UnixTextBasedInterface extends Interface {
 	}
 	
 	private char hashGhostType (Ghost ghost, int ghostTypesNumber){
-		return hashGhostType (GhostFactory.getType(ghost), ghostTypesNumber);
+		return hashGhostType (Game.getCurrent().getFactory().getType(ghost), ghostTypesNumber);
 	}
 	
 	private void displayGhost (int ghostTypesNumber, Game game, Ghost ghost, Player player){
@@ -79,14 +78,14 @@ public class UnixTextBasedInterface extends Interface {
 		//	Vert minuscule : bon, rouge majuscule : mauvais
 		if (!ghost.isGood()){
 			ghostType = ghostType.toUpperCase();
-			colorCode = this.colorKeys.get("red");
+			colorCode = this.RED;
 		}else
-			colorCode = this.colorKeys.get("green");
+			colorCode = this.GREEN;
 		
 		//	X majuscule jaune : joueur caché
 		if (player != null && !player.hasGhost(ghost)){
 			ghostType = "X";
-			colorCode = this.colorKeys.get("yellow");
+			colorCode = this.YELLOW;
 		}
 		
 		//	Si le on est en mode triche, [.] : joueur 1, (.) : joueur 2
@@ -97,7 +96,7 @@ public class UnixTextBasedInterface extends Interface {
 				ghostType = "(" + ghostType + ")";
 		}
 		
-		System.out.print(colorCode + ghostType + this.colorKeys.get ("default"));
+		System.out.print(colorCode + ghostType + this.DEFAULT);
 	}
 	@Override
 	public void printText(String message) {
@@ -122,6 +121,8 @@ public class UnixTextBasedInterface extends Interface {
 	@Override
 	public String readPosition() {
 		String s = this.readText();
+		if (s == null)
+			return null;
 		if (Pattern.matches("^[a-zA-Z]\\d{1,}?$", s))
 			return s.toUpperCase();
 		return null;

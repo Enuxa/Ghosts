@@ -11,6 +11,7 @@ public class Game{
 	private Board board;
 	private RuleBook ruleBook;
 	private Player[] players;
+	private GhostFactory factory;
 	private static Game current;
 	/**
 	*	Instancie le jeu
@@ -26,7 +27,19 @@ public class Game{
 		this.ruleBook = new RuleBook();
 		this.players = new Player[2];
 		Game.current = this;
+		this.factory = new GhostFactory ();
 	}
+	/**
+	 * Récupère la fabrique de fantômes
+	 * @return La fabrique de fantômes
+	 */
+	public GhostFactory getFactory (){
+		return this.factory;
+	}
+	/**
+	 * Récupère le plateau
+	 * @return Le plateau
+	 */
 	public Board getBoard () {
 		return this.board;
 	}

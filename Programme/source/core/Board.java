@@ -58,4 +58,20 @@ public class Board{
 				return s.toString();
 		return null;
 	}
+	/**
+	 * Récupère la coordonnée alphabétique d'une position
+	 * @param position
+	 * @return La coordonnée alphabétique
+	 */
+	public static char toX (String position) {
+		return position.charAt(0);
+	}
+	/**
+	 * Récupère la coordonnée numérique d'une position
+	 * @param position
+	 * @return La coordonnée numérique
+	 */
+	public static int toY (String position) {
+		return Integer.parseInt(position.substring(1));
+	}
 }

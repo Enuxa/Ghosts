@@ -6,12 +6,16 @@ import java.util.*;
 */
 public class Player{
 	private String name;
-	private Set<Ghost> ghosts;
+	private Set<Ghost> ghosts, exited;
+	private int ghostInitialQuantity;
 	/**
 	*	@param	name	Nom du joueur
 	*/
 	public Player (String name){
 		this.name = name;
+		this.ghosts = new HashSet<Ghost> ();
+		this.exited = new HashSet<Ghost> ();
+		this.ghostInitialQuantity = 0;
 	}
 	/**
 	*	Récupère l'ensemble des fantômes du joueur
@@ -19,6 +23,13 @@ public class Player{
 	*/
 	public Collection<Ghost> getGhosts (){
 		return this.ghosts;
+	}
+	/**
+	 * Récupère les fantômes qui ont réussi à sortir
+	 * @return Les fantômes sortis
+	 */
+	public Collection<Ghost> getExited (){
+		return this.exited;
 	}
 	/**
 	*	Récupère seulement les bons (ou mauvais) fantômes du joueur
@@ -39,6 +50,14 @@ public class Player{
 	 */
 	public void addGhost (Ghost ghost) {
 		this.ghosts.add(ghost);
+		this.ghostInitialQuantity++;
+	}
+	/**
+	 * Le nombre initial de fantômes de ce joueur
+	 * @return Le nombre initial de fantômes
+	 */
+	public int getGhostInitialGhostQuantity (){
+		return this.ghostInitialQuantity;
 	}
 	/**
 	 * Retire un fantôme (par exemple si ce fantôme est sorti ou s'il s'est fait manger)
@@ -62,7 +81,7 @@ public class Player{
 	public void initialize (){
 		RuleBook book = Game.getCurrent().getRuleBook();
 		Interface inter = Game.getCurrent().getInterface();
-		Collection<String> ghostTypes = GhostFactory.getTypes();
+		Collection<String> ghostTypes = Game.getCurrent().getFactory().getTypes();
 		Board board = Game.getCurrent().getBoard();
 		boolean sure = false;
 		
@@ -86,7 +105,7 @@ public class Player{
 				if (type != null){//	Si le joueur a séléctionné un type
 					String isGoodStr = inter.readSelection(Arrays.asList(new String[] {"Bon", "Mauvais"}), "Le fantôme est il bon ou mauvais ?");
 					if (isGoodStr != null){//	Si le joueur a choisi si son fantôme était bon ou mauvais
-						Ghost ghost = GhostFactory.createGhost(type, isGoodStr.equals("Bon"));
+						Ghost ghost = Game.getCurrent().getFactory().createGhost(type, isGoodStr.equals("Bon"));
 						if (book.requestInitialization(this, ghost, position)){
 							ghost.move(position);
 							this.addGhost(ghost);

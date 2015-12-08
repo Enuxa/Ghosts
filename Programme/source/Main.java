@@ -1,5 +1,6 @@
 import core.*;
 import java.util.*;
+import base.*;
 
 public class Main {
 	public static void main(String[] args) {
@@ -54,15 +55,18 @@ public class Main {
 	
 	private static Collection<Extension> readExtensions (Interface defaultInterface){
 		Map<String, Extension> extensions = new HashMap<String, Extension> ();
+		
+		if (extensions.size () == 0){
+			return Arrays.asList(new Extension[] {new BaseExtension ()});
+		}
 		Collection<Extension> choice = null;
-		//	TODO : ajouter extensions de base
 		//extensions.add (new base.defaultExtension ());
 		while (choice == null){
 			Collection<String> ans = defaultInterface.readSelection(extensions.keySet(), "Avec quelles extensions souhaitez-vous jouer ?", 1, extensions.size());
 			if (ans == null)
 				defaultInterface.printText("Incorrect");
 			else{
-				choice = new ArrayList<Extension> ();
+				choice = new ArrayList <Extension> ();
 				for (String key : ans)
 					choice.add(extensions.get (key));
 			}

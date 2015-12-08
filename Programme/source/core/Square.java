@@ -41,4 +41,18 @@ public class Square{
 	public String toString (){
 		return this.coordinates;
 	}
+	/**
+	 * Récupère la coordonnée alphabétique de la position
+	 * @return La coordonnée alphabétique
+	 */
+	public char getX () {
+		return Board.toX(this.coordinates);
+	}
+	/**
+	 * Récupère la coordonnée numérique de la position
+	 * @return La coordonnée numérique
+	 */
+	public int getY () {
+		return Board.toY(this.coordinates);
+	}
 }

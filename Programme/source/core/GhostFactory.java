@@ -5,14 +5,20 @@ public class GhostFactory {
 	/**
 	*	L'ensemble des modèles de fantômes autorisés dans cette partie
 	*/
-	private static Map<String, Ghost> templates;
+	private Map<String, Ghost> templates;
+	/**
+	 * Initialise la fabrique
+	 */
+	public GhostFactory (){
+		templates = new HashMap<String, Ghost> ();
+	}
 	/**
 	*	Créé une nouvelle instance d'un certain type de fantôme
 	*	@param	ghostType	Type de fantôme souhaité
 	*	@param	isGood	<code>true</code> Si le nouveau fantôme doit être bon, <code>false</code> sinon.
 	*	@return	Le fantôme souhaité.
 	*/
-	public static Ghost createGhost (String ghostType, boolean isGood){
+	public Ghost createGhost (String ghostType, boolean isGood){
 		Ghost ghost = templates.get(ghostType);
 		return ghost.clone(isGood);
 	}
@@ -21,14 +27,14 @@ public class GhostFactory {
 	*	@param	template	Modèle de fantôme
 	*	@param	ghostType	Nom du modèle
 	*/
-	public static void addGhostType (String ghostType, Ghost template){
+	public void addGhostType (String ghostType, Ghost template){
 		templates.put (ghostType, template);
 	}
 	/**
 	*	Récupère les noms des types de fantômes autorisés
 	*	@return Ensemble des noms de modèles de fantômes
 	*/
-	public static Collection<String> getTypes (){
+	public Collection<String> getTypes (){
 		return templates.keySet();
 	}
 	/**
@@ -36,7 +42,7 @@ public class GhostFactory {
 	 * @param ghost Le fantôme dont on veut connaître le type.
 	 * @return Le type du fantôme.
 	 */
-	public static String getType (Ghost ghost){
+	public String getType (Ghost ghost){
 		Collection<String> types = getTypes ();
 		for (String type : types)
 			if (templates.get (type).getClass().equals(ghost.getClass()))
