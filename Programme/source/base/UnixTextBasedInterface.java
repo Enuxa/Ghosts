@@ -40,12 +40,17 @@ public class UnixTextBasedInterface extends Interface {
 		Board board = game.getBoard();
 		int size = board.getSize();
 		for (int i = 0; i < size; i++) {
+			System.out.print("| ");
 			for (int j = 0; j < size; j++){
 				Square s = board.getSquare(Board.toCoordinates(i, j));
 				Ghost g = s.getGhost();
-				this.displayGhost(ghostTypesNumber, game, g, player);
+				if (g != null)
+					this.displayGhost(ghostTypesNumber, game, g, player);
+				else
+					System.out.print(" ");
+				System.out.print(" |");
 				if (j < size - 1)
-					System.out.print(" | ");
+					System.out.print(" ");
 			}
 			System.out.println();
 		}

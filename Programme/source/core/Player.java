@@ -6,8 +6,7 @@ import java.util.*;
 */
 public class Player{
 	private String name;
-	private Set<Ghost> ghosts, exited;
-	private int ghostInitialQuantity;
+	private Set<Ghost> ghosts, exited, captured;
 	/**
 	*	@param	name	Nom du joueur
 	*/
@@ -15,10 +14,10 @@ public class Player{
 		this.name = name;
 		this.ghosts = new HashSet<Ghost> ();
 		this.exited = new HashSet<Ghost> ();
-		this.ghostInitialQuantity = 0;
+		this.captured= new HashSet<Ghost> ();
 	}
 	/**
-	*	Récupère l'ensemble des fantômes du joueur
+	*	Récupère l'ensemble des fantômes restant du joueur
 	*	@return	L'ensemble des fantômes du joueur
 	*/
 	public Collection<Ghost> getGhosts (){
@@ -32,7 +31,7 @@ public class Player{
 		return this.exited;
 	}
 	/**
-	*	Récupère seulement les bons (ou mauvais) fantômes du joueur
+	*	Récupère seulement les bons (ou mauvais) fantômes du joueur qu'il avait au début de la partie
 	*	@param	good	<code>true</code> si on demande les bons fantômes, <code>false</code> sinon
 	*	@return	L'ensemble des bons (ou mauvais) fantômes du joueur
 	*/
@@ -50,22 +49,31 @@ public class Player{
 	 */
 	public void addGhost (Ghost ghost) {
 		this.ghosts.add(ghost);
-		this.ghostInitialQuantity++;
 	}
 	/**
 	 * Le nombre initial de fantômes de ce joueur
 	 * @return Le nombre initial de fantômes
 	 */
-	public int getGhostInitialGhostQuantity (){
-		return this.ghostInitialQuantity;
+	public Set<Ghost> getCaptured (){
+		return this.captured;
 	}
 	/**
-	 * Retire un fantôme (par exemple si ce fantôme est sorti ou s'il s'est fait manger)
-	 * @param ghost le fantôme à retirer.
+	 * Fait sortir un fantôme
+	 * @param ghost Le fantôme à faire sortir.
 	 */
-	public void removeGhost (Ghost ghost) {
-		if (this.hasGhost(ghost))
-			this.ghosts.remove(ghost);
+	public void exitGhost (Ghost ghost) {
+		if (this.hasGhost(ghost)){
+			this.captured.add(ghost);
+		}
+	}
+	/**
+	 * Indique qu'un fantôme a été capturé
+	 * @param ghost le fantôme à capturer
+	 */
+	public void captureGhost (Ghost ghost) {
+		if (this.hasGhost(ghost)){
+			this.captured.add(ghost);
+		}
 	}
 	/**
 	 * Indique si un fantôme appartient à ce joueur.
@@ -99,6 +107,7 @@ public class Player{
 	 */
 	private void initializeGhosts (Board board, RuleBook book, Interface inter, Collection<String> ghostTypes){
 		while (!book.isReady(this)){//	Tant que le joueur n'est pas prêt selon les règles
+			inter.updateDisplay(this);
 			String position = inter.readPosition("Veuillez saisir la position du prochain fantôme.");
 			if (position != null){//	Si le joueur a saisi une position
 				String type = inter.readSelection(ghostTypes, "Veuillez choisir le type de fantôme");
@@ -134,7 +143,7 @@ public class Player{
 					if (position != null && board.getSquare(position) != null){
 						Ghost g = board.getSquare(position).getGhost();
 						if (g != null && this.hasGhost(g))//	Si ce fantôme (s'il existe) appartient au joueur.
-							this.removeGhost(g);
+							this.ghosts.remove(g);
 					}
 				}
 			}
@@ -156,9 +165,13 @@ public class Player{
 			if (p0 != null && board.getSquare(p0) != null && board.getSquare(p0).getGhost() != null){
 				String p1 = inter.readPosition("Où souhaitez-vous déplacer votre fantôme ?");
 				if (p1 != null && board.getSquare(p1) != null){
-					if (book.requestMovement(this, p0, p1))
+					if (book.requestMovement(this, p0, p1)){
+						Ghost ghost = board.getSquare(p0).getGhost();
 						hasPlayed = true;
-					else
+						ghost.move(p1);
+						if (board.canExit(p1, ghost))
+							this.exitGhost(ghost);
+					}else
 						inter.printText("Ce déplacement est interdit !");
 				}
 			}

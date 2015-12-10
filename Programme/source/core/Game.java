@@ -81,6 +81,7 @@ public class Game{
 			for (Player p : this.players){
 				this.inter.updateDisplay(this.cheatMode ? null : p);
 				p.turn();
+				
 				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
 			}
 		}

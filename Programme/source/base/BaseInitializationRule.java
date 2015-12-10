@@ -1,5 +1,7 @@
 package base;
 
+import java.util.Arrays;
+
 import core.*;
 
 public class BaseInitializationRule extends InitializationRule {
@@ -29,8 +31,7 @@ public class BaseInitializationRule extends InitializationRule {
 
 	@Override
 	public Board getBoard() {
-		Board board = new Board (6);
-		return board;
+		return new Board (6, Arrays.asList(new String[]{"a6", "f6"}), Arrays.asList(new String[]{"a1", "f1"}));
 	}
 
 	@Override

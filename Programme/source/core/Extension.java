@@ -11,4 +11,7 @@ public abstract class Extension{
 	 * Charge le contenu de l'extension en mémoire.
 	 */
 	public abstract void load ();
+	public String toString (){
+		return this.name;
+	}
 }

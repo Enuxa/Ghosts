@@ -44,9 +44,12 @@ public class GhostFactory {
 	 */
 	public String getType (Ghost ghost){
 		Collection<String> types = getTypes ();
-		for (String type : types)
-			if (templates.get (type).getClass().equals(ghost.getClass()))
+		for (String type : types){
+			Class<? extends Ghost> c1 = templates.get (type).getClass();
+			Class<? extends Ghost> c2 = ghost.getClass();
+			if (c1.equals(c2))
 				return type;
+		}
 		return null;
 	}
 }

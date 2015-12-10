@@ -1,7 +1,5 @@
 package core;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Classe correspondant au plateau
@@ -9,11 +7,16 @@ import java.util.Map;
 public class Board{
 	private int size;
 	private Map<String, Square> squares;
+	private Collection<String> exits0, exits1;
 	/**
-	 * @param size Nombre de cases sur le côté.
+	 * @param size Taille d'un côté du plateau
+	 * @param exits0 Sortie pour le premier joueur.
+	 * @param exits1 Sortie pour le second joueur.
 	 */
-	public Board (int size){
+	public Board (int size, Collection<String> exits0, Collection<String> exits1){
 		this.size = size;
+		this.exits0 = exits0;
+		this.exits0 = exits0;
 		this.squares = new HashMap <String, Square> ();
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){
@@ -73,5 +76,17 @@ public class Board{
 	 */
 	public static int toY (String position) {
 		return Integer.parseInt(position.substring(1));
+	}
+	/**
+	 * Indique si un fantôme peut sortir par une certaine position.
+	 * @param position La position considérée
+	 * @param ghost Le fantôme considéré
+	 * @return <code>true</code> si cette position est celle d'une sortie, <code>false</code> sinon.
+	 */
+	public boolean canExit (String position, Ghost ghost){
+		if (!ghost.isGood())
+			return false;
+		return (Game.getCurrent().getPlayer(0).hasGhost(ghost) && this.exits0.contains(position))
+				|| (Game.getCurrent().getPlayer(1).hasGhost(ghost) && this.exits1.contains(position));
 	}
 }

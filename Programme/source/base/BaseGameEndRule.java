@@ -12,10 +12,11 @@ public class BaseGameEndRule extends GameEndRule {
 	}
 	private boolean hasWon (int id){
 		Game g = Game.getCurrent();
+		Player op = g.getPlayer (id + 1 % 2);
 		Player p = g.getPlayer(id);
-		return (p.getGhosts(false).size() == 0
-				|| g.getPlayer(id + 1 % 2).getGhosts().size() == 0
-				|| p.getGhostInitialGhostQuantity() == p.getExited().size());
+		return (p.getGhosts(false).size() == 0								//	Si tous ses mauvais fantômes ont été capturés
+				|| op.getCaptured().containsAll(op.getGhosts(true))			//	Si tous les bons fantômes adverses ont été capturés
+				|| p.getExited().size() != 1);								//	Si un des (bons) fantômes est sorti
 	}
 
 	@Override
