@@ -37,6 +37,6 @@ public class Ghost {
 	*	@return	Copie du fantôme
 	*/
 	public Ghost clone (boolean isGood){
-		return new Ghost (this.isGood);
+		return new Ghost (isGood);
 	}
 }

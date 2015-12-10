@@ -6,9 +6,10 @@ import java.util.regex.Pattern;
 import core.*;
 
 public class UnixTextBasedInterface extends Interface {
+	private boolean useColor;
 	private Scanner sc;
 	private String RED, BLUE, YELLOW, GREEN, PURPLE, DEFAULT;
-	public UnixTextBasedInterface () {
+	protected UnixTextBasedInterface (boolean useColor) {
 		this.sc = new Scanner (System.in);
 		this.RED = "\u001B[31m";
 		this.BLUE = "\u001B[36m";
@@ -16,6 +17,10 @@ public class UnixTextBasedInterface extends Interface {
 		this.GREEN = "\u001B[32m";
 		this.PURPLE = "\u001B[35m";
 		this.DEFAULT = "\u001B[0m";
+		this.useColor = useColor;
+	}
+	public UnixTextBasedInterface (){
+		this (true);
 	}
 	
 	@Override
@@ -44,10 +49,8 @@ public class UnixTextBasedInterface extends Interface {
 			for (int j = 0; j < size; j++){
 				Square s = board.getSquare(Board.toCoordinates(i, j));
 				Ghost g = s.getGhost();
-				if (g != null)
-					this.displayGhost(ghostTypesNumber, game, g, player);
-				else
-					System.out.print(" ");
+				this.displayGhost(ghostTypesNumber, game, g, player);
+				
 				System.out.print(" |");
 				if (j < size - 1)
 					System.out.print(" ");
@@ -76,6 +79,11 @@ public class UnixTextBasedInterface extends Interface {
 	}
 	
 	private void displayGhost (int ghostTypesNumber, Game game, Ghost ghost, Player player){
+		if (ghost == null){
+			System.out.print(" ");
+			return;
+		}
+		
 		String ghostType = Character.toString(this.hashGhostType(ghost, ghostTypesNumber));
 		
 		String colorCode = null;
@@ -100,8 +108,10 @@ public class UnixTextBasedInterface extends Interface {
 			else
 				ghostType = "(" + ghostType + ")";
 		}
-		
-		System.out.print(colorCode + ghostType + this.DEFAULT);
+		String str =  ghostType;
+		if (this.useColor)
+			str = colorCode + str + this.DEFAULT;
+		System.out.print(str);
 	}
 	@Override
 	public void printText(String message) {

@@ -134,6 +134,7 @@ public class Player{
 	 */
 	private boolean isSureOfInitialization (Board board, RuleBook book, Interface inter){
 		while (book.isReady(this)){
+			inter.updateDisplay(this);
 			String ans = inter.readSelection(Arrays.asList(new String[] {"Oui", "Non"}), "Êtes vous sûr de votre configuration ?");
 			if (ans != null){//	Si le joueur est sûr de sa cnfiguration.
 				if (ans.equals("Oui"))
@@ -142,8 +143,10 @@ public class Player{
 					String position = inter.readPosition("Quel fantôme souhaitez vous modifier ?");
 					if (position != null && board.getSquare(position) != null){
 						Ghost g = board.getSquare(position).getGhost();
-						if (g != null && this.hasGhost(g))//	Si ce fantôme (s'il existe) appartient au joueur.
+						if (g != null && this.hasGhost(g)){//	Si ce fantôme (s'il existe) appartient au joueur.
 							this.ghosts.remove(g);
+							board.getSquare(position).removeGhost();
+						}
 					}
 				}
 			}
