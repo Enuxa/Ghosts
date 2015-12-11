@@ -9,7 +9,7 @@ public class BaseInitializationRule extends InitializationRule {
 		super (priority);
 	}
 	@Override
-	public boolean requestInitialization(Player player, Ghost ghost, String position) {
+	public boolean requestInitialization(Player player, String position) {
 		if (this.isReady(player))//	I le joueur est déjà prêt à jouer, il ne doit pas placer plus de pions
 			return false;
 		
@@ -27,6 +27,13 @@ public class BaseInitializationRule extends InitializationRule {
 		int i = Board.toY(position);
 		
 		return (c > 'A' && c < 'F') && (i == l || i == l+1);
+	}
+
+	@Override
+	public boolean requestInitialization(Player player, Ghost ghost, String position) {
+		if (!this.requestInitialization(player, position))
+			return false;
+		return player.getGhosts(ghost.isGood()).size() < 4;
 	}
 
 	@Override

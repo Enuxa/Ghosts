@@ -4,7 +4,7 @@ import base.*;
 
 public class Main {
 	public static void main(String[] args) {
-		Interface defaultInterface = new base.TextBasedInterface ();
+		Interface defaultInterface = new base.WindowsTextBasedInterface ();
 		Interface inter = null;
 		Game game = null;
 		Boolean cheatMode = null;
@@ -25,7 +25,7 @@ public class Main {
 	private static Interface readInterface (Interface defaultInterface){
 		Map<String,Interface> interfaceMap = new HashMap <String, Interface> ();
 		interfaceMap.put ("Interface textuelle Unix", new base.UnixTextBasedInterface ());
-		interfaceMap.put ("Interface textuelle générale", new base.TextBasedInterface ());
+		interfaceMap.put ("Interface textuelle générale", new base.WindowsTextBasedInterface ());
 		Interface inter = null;
 		
 		while (inter == null){

@@ -8,7 +8,7 @@ import core.*;
 public class UnixTextBasedInterface extends Interface {
 	private boolean useColor;
 	private Scanner sc;
-	private String RED, BLUE, YELLOW, GREEN, PURPLE, DEFAULT;
+	private String RED, BLUE, YELLOW, GREEN, PURPLE, BOLD, DEFAULT;
 	protected UnixTextBasedInterface (boolean useColor) {
 		this.sc = new Scanner (System.in);
 		this.RED = "\u001B[31m";
@@ -44,22 +44,30 @@ public class UnixTextBasedInterface extends Interface {
 		int ghostTypesNumber = ghostTypes.size();
 		Board board = game.getBoard();
 		int size = board.getSize();
-		for (int i = 0; i < size; i++) {
-			System.out.print("| ");
-			for (int j = 0; j < size; j++){
+		
+		System.out.println();
+		
+		if (player != null)
+			System.out.println("Joueur : " + player);
+		System.out.print("\t");
+		for (int k = 0; k < size; k++)
+			System.out.print("  " + (char)('A' + k) + " ");
+		System.out.println();
+		for (int j = size - 1; j >= 0; j--) {
+			System.out.print((j+1) + "\t|");
+			for (int i = 0; i < size; i++){
 				Square s = board.getSquare(Board.toCoordinates(i, j));
 				Ghost g = s.getGhost();
 				this.displayGhost(ghostTypesNumber, game, g, player);
 				
-				System.out.print(" |");
-				if (j < size - 1)
-					System.out.print(" ");
+				System.out.print("|");
 			}
 			System.out.println();
 		}
 		
 		//	Explications de la représentation des fantômes
-		System.out.println("\nMinuscules : bon fantômes, majuscules : mauvais fantômes.");
+		if (!this.useColor)
+			System.out.println("\nMinuscules : bon fantômes, majuscules : mauvais fantômes.");
 		for (String type : ghostTypes)
 			System.out.println(hashGhostType (type, ghostTypesNumber) + " : " + type);
 	}
@@ -80,7 +88,7 @@ public class UnixTextBasedInterface extends Interface {
 	
 	private void displayGhost (int ghostTypesNumber, Game game, Ghost ghost, Player player){
 		if (ghost == null){
-			System.out.print(" ");
+			System.out.print("   ");
 			return;
 		}
 		
@@ -97,11 +105,11 @@ public class UnixTextBasedInterface extends Interface {
 		
 		//	X majuscule jaune : joueur caché
 		if (player != null && !player.hasGhost(ghost)){
-			ghostType = "X";
+			ghostType = " X ";
 			colorCode = this.YELLOW;
 		}
 		
-		//	Si le on est en mode triche, [.] : joueur 1, (.) : joueur 2
+		//	Si on est en mode triche, [.] : joueur 1, (.) : joueur 2
 		if (player == null){
 			if (Game.getCurrent().getPlayer(0).hasGhost(ghost))
 				ghostType = "[" + ghostType + "]";

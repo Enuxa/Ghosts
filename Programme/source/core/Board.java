@@ -16,7 +16,7 @@ public class Board{
 	public Board (int size, Collection<String> exits0, Collection<String> exits1){
 		this.size = size;
 		this.exits0 = exits0;
-		this.exits0 = exits0;
+		this.exits1 = exits1;
 		this.squares = new HashMap <String, Square> ();
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){
@@ -27,12 +27,12 @@ public class Board{
 	}
 	/**
 	 * Transforme un couple d'entiers en coordonnées alphanumériques "informatiques" (c'est-à-dire en comptant à partir de 0).
-	 * @param i L'abscisse.
-	 * @param j L'ordonnée.
+	 * @param j La colonne.
+	 * @param i La ligne.
 	 * @return Les coordonnées alphanumériques.
 	 */
-	public static String toCoordinates (int i, int j){
-		return Character.toString ((char)('A' + i)) + (j + 1);
+	public static String toCoordinates (int j, int i){
+		return Character.toString ((char)('A' + j)) + (i + 1);
 	}
 	/**
 	 * Récupère une case
@@ -88,5 +88,35 @@ public class Board{
 			return false;
 		return (Game.getCurrent().getPlayer(0).hasGhost(ghost) && this.exits0.contains(position))
 				|| (Game.getCurrent().getPlayer(1).hasGhost(ghost) && this.exits1.contains(position));
+	}
+	/**
+	 * Fait sortir un fantôme
+	 * @param ghost Le fantôme à faire sortir
+	 */
+	public void exit(Ghost ghost){
+		for (int i = 0; i < 2; i++){
+			Player p = Game.getCurrent().getPlayer(i);
+			if (p.hasGhost(ghost)){
+				p.exitGhost(ghost);
+				String position = this.getPosition(ghost);
+				this.getSquare(position).removeGhost();
+				return;
+			}
+		}
+	}
+	/**
+	 * Capture un fantôme
+	 * @param ghost Le fantôme à capturer
+	 */
+	public void capture(Ghost ghost){
+		for (int i = 0; i < 2; i++){
+			Player p = Game.getCurrent().getPlayer(i);
+			if (p.hasGhost(ghost)){
+				p.captureGhost(ghost);
+				String position = this.getPosition(ghost);
+				this.getSquare(position).removeGhost();
+				return;
+			}
+		}
 	}
 }

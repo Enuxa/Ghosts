@@ -29,7 +29,7 @@ public class Ghost {
 		if (square1 != null)
 			board.getSquare(coordinates).putGhost(this);
 		else
-			throw new RuntimeException ("La position " + coordinates + "n'est pas sur le plateau.");
+			throw new RuntimeException ("La position " + coordinates + " n'est pas sur le plateau.");
 	}
 	/**
 	*	Clone le fantôme (prévu pour cloner les modèles)

@@ -39,11 +39,24 @@ public class RuleBook{
 	*/
 	public boolean requestInitialization (Player player, Ghost ghost, String position){
 		SortedSet<Rule> top = getTopRules (this.initializationRules);
-		boolean b = true;
 		for (Rule rule : top)
-			b &= ((InitializationRule)rule).requestInitialization(player, ghost, position);
-		
-		return b;
+			if (!((InitializationRule)rule).requestInitialization(player, ghost, position))
+				return false;
+		return true;
+	}
+
+	/**
+	*	Indique si le placement initial d'un fantôme donné est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	position	La position à laquelle le joueur souhaite placer son fantôme.
+	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
+	*/
+	public boolean requestInitialization (Player player, String position){
+		SortedSet<Rule> top = getTopRules (this.initializationRules);
+		for (Rule rule : top)
+			if (!((InitializationRule)rule).requestInitialization(player, position))
+				return false;
+		return true;
 	}
 	/**
 	*	Indique si un déplacement est légal ou non selon les règles choisies pour cette partie.

@@ -1,6 +1,7 @@
 package base;
 
 import core.*;
+import java.util.*;
 
 public class BaseGameEndRule extends GameEndRule {
 	public BaseGameEndRule (int priority){
@@ -12,20 +13,27 @@ public class BaseGameEndRule extends GameEndRule {
 	}
 	private boolean hasWon (int id){
 		Game g = Game.getCurrent();
-		Player op = g.getPlayer (id + 1 % 2);
+		Player op = g.getPlayer ((id + 1) % 2);
 		Player p = g.getPlayer(id);
-		return (p.getGhosts(false).size() == 0								//	Si tous ses mauvais fantômes ont été capturés
-				|| op.getCaptured().containsAll(op.getGhosts(true))			//	Si tous les bons fantômes adverses ont été capturés
-				|| p.getExited().size() != 1);								//	Si un des (bons) fantômes est sorti
+
+		Collection<Ghost> gBad = p.getGhosts(false);
+		Collection<Ghost> gGood = p.getGhosts(true);
+		Collection<Ghost> gEx = p.getExited();
+		
+		boolean b1 = gBad.size() == 0;						//	Si tous ses mauvais fantômes ont été capturés
+		boolean b2 = op.getCaptured().containsAll(gGood);	//	Si tous les bons fantômes adverses ont été capturés
+		boolean b3 = gEx.size() == 1;						//	Si un des (bons) fantômes est sorti
+		
+		return b1 || b2 || b3;
 	}
 
 	@Override
 	public Player getWinner() {
 		Game g = Game.getCurrent();
-		if (this.hasWon(0))
-			return g.getPlayer(0);
-		if (this.hasWon(1))
-			return g.getPlayer(1);
+		for (int i = 0; i < 2; i++){
+			if (this.hasWon(i))
+				return g.getPlayer(i);
+		}
 		return null;
 	}
 

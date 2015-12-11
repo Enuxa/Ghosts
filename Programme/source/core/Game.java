@@ -73,6 +73,21 @@ public class Game{
 		return Game.current;
 	}
 	/**
+	 * ATTENTION : Cette fonction n'est là qu'à des fins de tests
+	 */
+	public void run (Player p0, Player p1){
+		this.players[0] = p0;
+		this.players[1] = p1;
+		while (!this.isGameOver()) {
+			for (Player p : this.players){
+				this.inter.updateDisplay(this.cheatMode ? null : p);
+				p.turn();
+				
+				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
+			}
+		}
+	}
+	/**
 	*	Démarre la partie
 	*/
 	public void run (){
@@ -110,22 +125,37 @@ public class Game{
 		
 		this.initializePlayers ();
 	}
+	/**
+	 * ATTENTION : Cette fonction n'est là qu'à des fins de tests
+	 */
+	public void initialize_test (){
+		//	Initialiser les positions des joueurs
+		for (Extension e : this.extensions)
+			e.load();
+		
+		try{
+			this.board = this.ruleBook.getBoard();
+		}catch (Rule.IncompatibleRulesException e){
+			System.out.println ("Le programme a rencontré une erreur : " + e.getMessage () + "\nIl est impossible de définir le plateau de jeu.");
+			System.exit (-1);
+		}
+	}
 	private void initializePlayers () {
 		for (int i = 0; i < 2; i++)
 			this.players[i] = this.initializePlayer ();
 		
 		for (Player p : this.players)
-			p.initialize ();
+			p.initialize (this.cheatMode);
 	}
 	private Player initializePlayer (){
 		Collection<String> choicePlayer = Arrays.asList (new String[] {"Humain"});
-
+		this.inter.printText("Nouveau joueur : ");
 		String nature = null;
 		while (nature == null)
 			nature = this.inter.readSelection(choicePlayer, "Quelle est la nature de ce joueur ?");
 		String name = null;
 		while (name == null)
-			name = this.inter.readText("Comment ce joueur s'appelle-t-il ?");
+			name = this.inter.readText("Comment ce joueur s'appelle-t-il ? ");
 		
 		switch (nature){
 			case "Humain" : 
