@@ -10,16 +10,16 @@ public class BaseInitializationRule extends InitializationRule {
 	}
 	@Override
 	public boolean requestInitialization(Player player, String position) {
-		if (this.isReady(player))//	I le joueur est dÃ©jÃ  prÃªt Ã  jouer, il ne doit pas placer plus de pions
+		if (this.isReady(player))	// I le joueur est déjà prêt à jouer, il ne doit pas placer plus de pions
 			return false;
 		
-		int l = 1;//Ligne la plus en bas autorisÃ©e pour ce joueur
+		int l = 1;	// Ligne la plus en bas autorisée pour ce joueur
 		if (player != Game.getCurrent().getPlayer(0))
 			l = 5;
 		
 		Square s = Game.getCurrent().getBoard().getSquare(position);
 		
-		//	S'il y a dÃ©jÃ  un fantÃ´me Ã  cette position
+		//	S'il y a déjà un fantôme à cette position
 		if (s == null || s.getGhost() != null)
 			return false;
 		
@@ -45,5 +45,4 @@ public class BaseInitializationRule extends InitializationRule {
 	public boolean isReady(Player player) {
 		return player.getGhosts().size() == 8;
 	}
-
 }

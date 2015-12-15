@@ -17,23 +17,23 @@ public class Player{
 		this.captured= new HashSet<Ghost> ();
 	}
 	/**
-	*	RÃ©cupÃ¨re l'ensemble des fantÃ´mes restant du joueur
-	*	@return	L'ensemble des fantÃ´mes du joueur
+	*	Récupère l'ensemble des fantômes restant du joueur
+	*	@return	L'ensemble des fantômes du joueur
 	*/
 	public Collection<Ghost> getGhosts (){
 		return this.ghosts;
 	}
 	/**
-	 * RÃ©cupÃ¨re les fantÃ´mes qui ont rÃ©ussi Ã  sortir
-	 * @return Les fantÃ´mes sortis
+	 * Récupère les fantômes qui ont réussi à sortir
+	 * @return Les fantômes sortis
 	 */
 	public Collection<Ghost> getExited (){
 		return this.exited;
 	}
 	/**
-	*	RÃ©cupÃ¨re seulement les bons (ou mauvais) fantÃ´mes du joueur qu'il avait au dÃ©but de la partie
-	*	@param	good	<code>true</code> si on demande les bons fantÃ´mes, <code>false</code> sinon
-	*	@return	L'ensemble des bons (ou mauvais) fantÃ´mes du joueur
+	*	Récupère seulement les bons (ou mauvais) fantômes du joueur qu'il avait au début de la partie
+	*	@param	good	<code>true</code> si on demande les bons fantômes, <code>false</code> sinon
+	*	@return	L'ensemble des bons (ou mauvais) fantômes du joueur
 	*/
 	public Collection<Ghost> getGhosts (boolean good){
 		Collection<Ghost> g = new ArrayList<Ghost> ();
@@ -44,22 +44,22 @@ public class Player{
 		return g;
 	}
 	/**
-	 * Ajoute un fantÃ´me
-	 * @param ghost Le fantÃ´me Ã  ajouter.
+	 * Ajoute un fantôme
+	 * @param ghost Le fantôme à ajouter.
 	 */
 	public void addGhost (Ghost ghost) {
 		this.ghosts.add(ghost);
 	}
 	/**
-	 * Le nombre initial de fantÃ´mes de ce joueur
-	 * @return Le nombre initial de fantÃ´mes
+	 * Le nombre initial de fantômes de ce joueur
+	 * @return Le nombre initial de fantômes
 	 */
 	public Set<Ghost> getCaptured (){
 		return this.captured;
 	}
 	/**
-	 * Fait sortir un fantÃ´me
-	 * @param ghost Le fantÃ´me Ã  faire sortir.
+	 * Fait sortir un fantôme
+	 * @param ghost Le fantôme à faire sortir.
 	 */
 	public void exitGhost (Ghost ghost) {
 		if (this.hasGhost(ghost)){
@@ -67,8 +67,8 @@ public class Player{
 		}
 	}
 	/**
-	 * Indique qu'un fantÃ´me a Ã©tÃ© capturÃ©
-	 * @param ghost le fantÃ´me Ã  capturer
+	 * Indique qu'un fantôme a été capturé
+	 * @param ghost Le fantôme à capturer
 	 */
 	public void captureGhost (Ghost ghost) {
 		if (this.hasGhost(ghost)){
@@ -76,16 +76,16 @@ public class Player{
 		}
 	}
 	/**
-	 * Indique si un fantÃ´me appartient Ã  ce joueur.
-	 * @param ghost Le fantÃ´me Ã  tester.
-	 * @return <code>true</code> si ce fantÃ´me appartient Ã  ce joueur, <code>false</code> sinon.
+	 * Indique si un fantôme appartient à ce joueur.
+	 * @param ghost Le fantôme à tester.
+	 * @return <code>true</code> si ce fantôme appartient à ce joueur, <code>false</code> sinon.
 	 */
 	public boolean hasGhost (Ghost ghost){
 		return this.ghosts.contains(ghost);
 	}
 	/**
-	*	PrÃ©pare les fantÃ´mes du joueur indiquÃ©
-	 * @param cheatMode <code>true</code> si le mode triche est activÃ©.
+	*	Prépare les fantômes du joueur indiqué
+	 * @param cheatMode <code>true</code> si le mode triche est activé
 	*/
 	public void initialize (boolean cheatMode){
 		RuleBook book = Game.getCurrent().getRuleBook();
@@ -100,41 +100,41 @@ public class Player{
 		}
 	}
 	/**
-	 * Fait dÃ©poser les fantÃ´mes un Ã  un au joueur jusqu'Ã  ce que sa configuration soit correcte.
+	 * Fait déposer les fantômes un à un au joueur jusqu'à ce que sa configuration soit correcte.
 	 * @param board Le plateau de jeu
-	 * @param book Le livre de rÃ¨gles
-	 * @param inter L'interface utilisÃ©e
-	 * @param ghostTypes Les types de fantÃ´mes autorisÃ©s
-	 * @param cheatMode <code>true</code> si le mode triche est activÃ©.
+	 * @param book Le livre de règles
+	 * @param inter L'interface utilisée
+	 * @param ghostTypes Les types de fantômes autorisés
+	 * @param cheatMode <code>true</code> si le mode triche est activé
 	 */
 	private void initializeGhosts (Board board, RuleBook book, Interface inter, Collection<String> ghostTypes, boolean cheatMode){
-		while (!book.isReady(this)){//	Tant que le joueur n'est pas prÃªt selon les rÃ¨gles
+		while (!book.isReady(this)){//	Tant que le joueur n'est pas prêt selon les règles
 			inter.updateDisplay(cheatMode ? null : this);
-			String position = inter.readPosition("Veuillez saisir la position du prochain fantÃ´me : ");
-			if (position != null && book.requestInitialization(this, position)){//	Si le joueur a saisi une position et qu'elle est autorisÃ©e
-				String type = inter.readSelection(ghostTypes, "Veuillez choisir le type de fantÃ´me : ");
-				if (type != null){//	Si le joueur a sÃ©lectionnÃ© un type
-					String isGoodStr = inter.readSelection(Arrays.asList(new String[] {"Bon", "Mauvais"}), "Le fantÃ´me est-il bon ou mauvais ? ");
-					if (isGoodStr != null){//	Si le joueur a choisi si son fantÃ´me Ã©tait bon ou mauvais
+			String position = inter.readPosition("Veuillez saisir la position du prochain fantôme : ");
+			if (position != null && book.requestInitialization(this, position)){//	Si le joueur a saisi une position et qu'elle est autorisée
+				String type = inter.readSelection(ghostTypes, "Veuillez choisir le type de fantôme : ");
+				if (type != null){//	Si le joueur a sélectionné un type
+					String isGoodStr = inter.readSelection(Arrays.asList(new String[] {"Bon", "Mauvais"}), "Le fantôme est-il bon ou mauvais ? ");
+					if (isGoodStr != null){//	Si le joueur a choisi si son fantôme était bon ou mauvais
 						Ghost ghost = Game.getCurrent().getFactory().createGhost(type, isGoodStr.equals("Bon"));
 						if (book.requestInitialization(this, ghost, position)){
 							ghost.move(position);
 							this.addGhost(ghost);
 						}else
-							inter.printText("Vous ne pouvez pas placer ce fantÃ´me ! (du moins, pas ici)");
+							inter.printText("Vous ne pouvez pas placer ce fantôme ! (du moins, pas ici)");
 					}
 				}
 			}else
-				inter.printText("Cette position n'est pas autorisÃ©e !");
+				inter.printText("Cette position n'est pas autorisée !");
 		}
 	}
 	/**
-	 * VÃ©rifie si le joueur est sÃ»r (et certain) de sa configuration.
+	 * Vérifie si le joueur est sûr (et certain) de sa configuration.
 	 * @param board Le plateau de jeu
-	 * @param book Le livre de rÃ¨gles
-	 * @param inter L'interface utilisÃ©e
-	 * @return <code>true</code> si le joueur est sÃ»r de sa configuration, <code>false</code> sinon.
-	 * @param cheatMode <code>true</code> si le mode triche est activÃ©.
+	 * @param book Le livre de règles
+	 * @param inter L'interface utilisée
+	 * @return <code>true</code> si le joueur est sûr de sa configuration, <code>false</code> sinon.
+	 * @param cheatMode <code>true</code> si le mode triche est activé.
 	 */
 	private boolean isSureOfInitialization (Board board, RuleBook book, Interface inter, boolean cheatMode){
 		while (book.isReady(this)){

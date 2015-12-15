@@ -3,3 +3,4 @@
 *.autosave
 .project
 Documentation
+/bin/

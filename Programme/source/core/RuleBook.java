@@ -3,7 +3,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 /**
-*	Classe correspondant au livre de rÃ¨gles.
+*	Classe correspondant au livre de règles.
 */
 public class RuleBook{
 	private SortedSet<Rule> initializationRules;
@@ -17,8 +17,8 @@ public class RuleBook{
 		this.captureRules = new TreeSet<Rule> ();
 	}
 	/**
-	*	Ajoute une rÃ¨gle au livre de rÃ¨gles.
-	*	@param	rule La rÃ¨gle Ã  ajouter.
+	*	Ajoute une règle au livre de règles.
+	*	@param	rule La règle à ajouter.
 	*/
 	public void addRule (Rule rule){
 		if (rule instanceof InitializationRule)
@@ -31,11 +31,11 @@ public class RuleBook{
 			this.captureRules.add((CaptureRule)rule);
 	}
 	/**
-	*	Indique si le placement initial d'un fantÃ´me donnÃ© est lÃ©gal ou non selon les rÃ¨gles choisies pour cette partie.
-	*	@param	player	Le joueur plaÃ§ant ses fantÃ´mes.
-	*	@param	ghost	Le fantÃ´me Ã  placer.
-	*	@param	position	La position Ã  laquelle le joueur souhaite placer son fantÃ´me.
-	*	@return	<code>true</code> si ce placement est autorisÃ©, <code>false</code> sinon.
+	*	Indique si le placement initial d'un fantôme donné est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	ghost	Le fantôme à placer.
+	*	@param	position	La position à laquelle le joueur souhaite placer son fantôme.
+	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestInitialization (Player player, Ghost ghost, String position){
 		SortedSet<Rule> top = getTopRules (this.initializationRules);
@@ -46,10 +46,10 @@ public class RuleBook{
 	}
 
 	/**
-	*	Indique si le placement initial d'un fantÃ´me donnÃ© est lÃ©gal ou non selon les rÃ¨gles choisies pour cette partie.
-	*	@param	player	Le joueur plaÃ§ant ses fantÃ´mes.
-	*	@param	position	La position Ã  laquelle le joueur souhaite placer son fantÃ´me.
-	*	@return	<code>true</code> si ce placement est autorisÃ©, <code>false</code> sinon.
+	*	Indique si le placement initial d'un fantôme donné est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	position	La position à laquelle le joueur souhaite placer son fantôme.
+	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestInitialization (Player player, String position){
 		SortedSet<Rule> top = getTopRules (this.initializationRules);
@@ -59,11 +59,11 @@ public class RuleBook{
 		return true;
 	}
 	/**
-	*	Indique si un dÃ©placement est lÃ©gal ou non selon les rÃ¨gles choisies pour cette partie.
-	*	@param	player	Le joueur plaÃ§ant ses fantÃ´mes.
-	*	@param	squareA	La position du fantÃ´me a dÃ©placer.
-	*	@param	squareB	La position Ã  laquelle placer le fantÃ´me.
-	*	@return	<code>true</code> si ce dÃ©placement est autorisÃ©, <code>false</code> sinon.
+	*	Indique si un déplacement est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	squareA	La position du fantôme a déplacer.
+	*	@param	squareB	La position à laquelle placer le fantôme.
+	*	@return	<code>true</code> si ce déplacement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestMovement (Player player, String squareA, String squareB){
 		SortedSet<Rule> top = getTopRules (this.movementRules);
@@ -74,7 +74,7 @@ public class RuleBook{
 		return b;
 	}
 	/**
-	*	Indique si la partie est terminÃ©e ou non.
+	*	Indique si la partie est terminée ou non.
 	*	@return	<code>true</code> si la partie est finie, <code>false</code> sinon.
 	*/
 	public boolean isGameOver (){
@@ -86,9 +86,9 @@ public class RuleBook{
 		return b;
 	}
 	/**
-	 * RÃ©cupÃ¨re le gagnant de la partie.
+	 * Récupère le gagnant de la partie.
 	 * @return Instance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
-	 * @throws Rule.IncompatibleRulesException Si on a deux gagnants diffÃ©rents
+	 * @throws Rule.IncompatibleRulesException Si on a deux gagnants différents
 	 */
 	public Player getWinner () throws Rule.IncompatibleRulesException{
 		Player player = null;
@@ -99,7 +99,7 @@ public class RuleBook{
 			if (ger.isGameOver()){
 				Player p = ger.getWinner();
 				if (p != player)
-					throw new Rule.IncompatibleRulesException("Deux gagnants diffÃ©rents.", r, ger);
+					throw new Rule.IncompatibleRulesException("Deux gagnants différents.", r, ger);
 				player = p;
 				r = ger;
 			}
@@ -107,9 +107,9 @@ public class RuleBook{
 		return player;
 	}
 	/**
-	 * RÃ©cupÃ¨re les rÃ¨gles de prioritÃ© maximale d'une famille de rÃ¨gle
-	 * @param rules L'ensemble de rÃ¨gles de dÃ©part
-	 * @return L'ensemble des rÃ¨gles de prioritÃ© maximale
+	 * Récupère les règles de priorité maximale d'une famille de règles
+	 * @param rules L'ensemble de règles de départ
+	 * @return L'ensemble des règles de priorité maximale
 	 */
 	private SortedSet<Rule> getTopRules (SortedSet<Rule> rules){
 		return rules.tailSet(rules.last());
@@ -129,7 +129,7 @@ public class RuleBook{
 	/**
 	* Renvoie un plateau
 	* @return Le plateau de la partie
-	* @throws Rule.IncompatibleRulesException Si on gÃ©nÃ¨re deux plateaux
+	* @throws Rule.IncompatibleRulesException Si on génère deux plateaux
 	*/
 	public Board getBoard () throws Rule.IncompatibleRulesException {
 		Board board = null;
@@ -140,7 +140,7 @@ public class RuleBook{
 			Board b = ir.getBoard();
 			if (b != null) {
 				if (board != null)
-					throw new Rule.IncompatibleRulesException ("Deux plateaux crÃ©Ã©s.", r, ir);
+					throw new Rule.IncompatibleRulesException ("Deux plateaux créés.", r, ir);
 				board = b;
 				r = ir;
 			}
@@ -149,7 +149,7 @@ public class RuleBook{
 	}
 
 	/**
-	 * Indique si un joueur est prÃªt Ã  jouer
+	 * Indique si un joueur est prêt à jouer
 	 * @param player Le joueur
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 */

@@ -1,33 +1,33 @@
 package core;
 /**
-*	Classe correspondant √† une r√®gle.
+*	Classe correspondant ‡ une rËgle.
 */
 public abstract class Rule implements Comparable<Rule>{
 	private int priority;
 	/**
-	*	@param	priority	Niveau de priorit√© de la r√®gle.
+	*	@param	priority	Niveau de prioritÈ de la rËgle.
 	*/
 	public Rule (int priority){
 		this.priority = priority;
 	}
 	/**
-	*	R√©cup√®re le niveau de priorit√© de cette r√®gle.
-	*	@return	Le niveau de priorit√© de cette r√®gle.
+	*	RÈcupËre le niveau de prioritÈ de cette rËgle.
+	*	@return	Le niveau de prioritÈ de cette rËgle.
 	*/
 	public int getPriority (){
 		return this.priority;
 	}
 	/**
-	*	Indique si cette r√®gle annule une r√®gle donn√©e.
-	*	@param	rule La r√®gle √† tester.
-	*	@return	<code>true</code> si cette r√®gle est prioritaire par rapport √† celle pass√©e en argument.
+	*	Indique si cette rËgle annule une rËgle donnÈe.
+	*	@param	rule La rËgle ‡ tester.
+	*	@return	<code>true</code> si cette rËgle est prioritaire par rapport ‡ celle passÈe en argument.
 	*/
 	public boolean prevailsOver (Rule rule){
 		return this.compareTo(rule) >= 0;
 	}
 	/**
-	 * R√©cup√®re la diff√©rence de priorit√© entre ces r√®gles.
-	 * @param rule La r√®gle √† comparer
+	 * RÈcupËre la diff√©rence de prioritÈ entre ces rËgles.
+	 * @param rule La rËgle ‡ comparer
 	 */
 	public int compareTo (Rule rule){
 		return this.priority - rule.priority;
@@ -36,12 +36,12 @@ public abstract class Rule implements Comparable<Rule>{
 	public static class IncompatibleRulesException extends Exception{
 		private static final long serialVersionUID = 1L;
 		/**
-		 * @param msg Pr√©cision sur l'incompatibilit√©.
-		 * @param r1 R√®gle incompatible avec <code>r2</code>.
-		 * @param r2 R√®gle incompatible avec <code>r1</code>.
+		 * @param msg PrÈcision sur l'incompatibilitÈ.
+		 * @param r1 RËgle incompatible avec <code>r2</code>.
+		 * @param r2 RËgle incompatible avec <code>r1</code>.
 		 */
 		public IncompatibleRulesException (String msg, Rule r1, Rule r2){
-			super ("R√®gles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
+			super ("RËgles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
 		}
 	}
 }

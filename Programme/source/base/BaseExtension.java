@@ -15,5 +15,4 @@ public class BaseExtension extends Extension {
 		r.addRule(new BaseCaptureRule (0));
 		Game.getCurrent().getFactory().addGhostType("Basique", new Ghost (true));
 	}
-
 }
