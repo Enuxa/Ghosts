@@ -12,6 +12,7 @@ public class Game{
 	private RuleBook ruleBook;
 	private Player[] players;
 	private GhostFactory factory;
+	private Collection<Ghost> onExits;
 	private static Game current;
 	/**
 	*	Instancie le jeu
@@ -28,6 +29,7 @@ public class Game{
 		this.players = new Player[2];
 		Game.current = this;
 		this.factory = new GhostFactory ();
+		this.onExits = new ArrayList<Ghost> ();
 	}
 	/**
 	 * Récupère la fabrique de fantômes
@@ -75,7 +77,7 @@ public class Game{
 	/**
 	 * ATTENTION : Cette fonction n'est là qu'à des fins de tests
 	 */
-	public void run (Player p0, Player p1){
+	public void run_test (Player p0, Player p1){
 		this.players[0] = p0;
 		this.players[1] = p1;
 		while (!this.isGameOver()) {
@@ -85,6 +87,8 @@ public class Game{
 				
 				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
 			}
+			
+			this.updateExits();
 		}
 	}
 	/**
@@ -98,6 +102,31 @@ public class Game{
 				p.turn();
 				
 				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
+			}
+			
+			this.updateExits();
+		}
+	}
+	/**
+	 * Fait sortir les fantômes positionnés sur une sortie et ayant survécu un tour.
+	 */
+	private void updateExits (){
+		//	Sortie des fantômes
+		for (Ghost g : this.onExits){
+			int i = 0;
+			if (this.players[0].hasGhost(g))
+				i = 0;
+			else
+				i = 1;
+			this.players[i].exitGhost(g);
+		}
+		//	Ajout des fantômes qui sont sur des sorties
+		for (int i = 0; i < 2; i++){
+			Player p = this.players[i];
+			for (Ghost g : p.getPlayingGhosts()){
+				String position = this.board.getPosition(g);
+				if (this.board.canExit(position, g))
+					this.onExits.add(g);
 			}
 		}
 	}

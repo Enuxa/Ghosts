@@ -44,6 +44,19 @@ public class Player{
 		return g;
 	}
 	/**
+	 * Récupère les fantômes encore en jeu
+	 * @return Les fantômes encore en jeu
+	 */
+	public Collection<Ghost> getPlayingGhosts (){
+		Collection<Ghost> c = new ArrayList<Ghost> ();
+		for (Ghost g : this.ghosts){
+			if (!this.exited.contains(g) && !(this.captured.contains(g)))
+				c.add(g);
+		}
+		
+		return c;
+	}
+	/**
 	 * Ajoute un fantôme
 	 * @param ghost Le fantôme à ajouter.
 	 */
@@ -54,7 +67,7 @@ public class Player{
 	 * Le nombre initial de fantômes de ce joueur
 	 * @return Le nombre initial de fantômes
 	 */
-	public Set<Ghost> getCaptured (){
+	public Collection<Ghost> getCaptured (){
 		return this.captured;
 	}
 	/**
@@ -176,25 +189,28 @@ public class Player{
 		RuleBook book = Game.getCurrent().getRuleBook();
 		
 		inter.printText("Joueur : " + this);
-		
+
 		while (!hasPlayed){
 			String p0 = inter.readPosition("Quel fantôme souhaitez-vous déplacer ? ");
 			if (p0 != null && board.getSquare(p0) != null && board.getSquare(p0).getGhost() != null){
-				String p1 = inter.readPosition("Où souhaitez-vous déplacer votre fantôme ? ");
-				if (p1 != null && board.getSquare(p1) != null){
-					if (book.requestMovement(this, p0, p1)){
-						Ghost ghost = board.getSquare(p0).getGhost();
-						Square s2 = board.getSquare(p1);
-						Ghost g2 = s2.getGhost();
-						if (g2 != null)
-							board.capture(g2);
-						hasPlayed = true;
-						ghost.move(p1);
-						if (board.canExit(p1, ghost))
-							this.exitGhost(ghost);
-					}else
-						inter.printText("Ce déplacement est interdit !");
-				}
+				Ghost ghost = board.getSquare(p0).getGhost();
+				if (this.hasGhost(ghost)){
+					String p1 = inter.readPosition("Où souhaitez-vous déplacer votre fantôme ? ");
+					if (p1 != null && board.getSquare(p1) != null){
+						if (book.requestMovement(this, p0, p1)){
+							Square s2 = board.getSquare(p1);
+							Ghost g2 = s2.getGhost();
+							if (g2 != null)
+								board.capture(g2);
+							hasPlayed = true;
+							ghost.move(p1);
+							if (board.canExit(p1, ghost))
+								this.exitGhost(ghost);
+						}else
+							inter.printText("Ce déplacement est interdit !");
+					}
+				}else
+					inter.printText("Ce fantôme ne vous appartient pas !");
 			}
 		}
 	}

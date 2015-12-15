@@ -1,6 +1,6 @@
 import core.*;
 
-import java.util.Arrays;
+import java.util.*;
 
 import base.*;
 
@@ -15,7 +15,10 @@ public class Test {
 		for (int k = 0; k < 2; k++){
 			for (int i = 0; i < 4; i++){
 				Ghost g = new Ghost (k == 0);
-				g.move(Board.toCoordinates(1 + i, k));
+				if (i == 0 && k == 0){
+					g.move("A5");
+				}else
+					g.move(Board.toCoordinates(1 + i, k));
 				p0.addGhost(g);
 				g = new Ghost (k == 0);
 				g.move(Board.toCoordinates(1 + i, 4 + k));
@@ -23,6 +26,6 @@ public class Test {
 			}
 		}
 		
-		game.run(p0, p1);
+		game.run_test(p0, p1);
 	}
 }
