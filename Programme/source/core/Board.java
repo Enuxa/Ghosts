@@ -15,8 +15,12 @@ public class Board{
 	 */
 	public Board (int size, Collection<String> exits0, Collection<String> exits1){
 		this.size = size;
-		this.exits0 = exits0;
-		this.exits1 = exits1;
+		this.exits0 = new ArrayList<String> ();
+			for (String s : exits0)
+				this.exits0.add(s.toUpperCase());
+		this.exits1 = new ArrayList<String> ();
+		for (String s : exits1)
+			this.exits1.add(s.toUpperCase());
 		this.squares = new HashMap <String, Square> ();
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){

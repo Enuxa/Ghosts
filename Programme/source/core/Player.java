@@ -17,23 +17,23 @@ public class Player{
 		this.captured= new HashSet<Ghost> ();
 	}
 	/**
-	*	RÈcupËre l'ensemble des fantÙmes restant du joueur
-	*	@return	L'ensemble des fantÙmes du joueur
+	*	R√©cup√®re l'ensemble des fant√¥mes restant du joueur
+	*	@return	L'ensemble des fant√¥mes du joueur
 	*/
 	public Collection<Ghost> getGhosts (){
 		return this.ghosts;
 	}
 	/**
-	 * RÈcupËre les fantÙmes qui ont rÈussi ‡ sortir
-	 * @return Les fantÙmes sortis
+	 * R√©cup√®re les fant√¥mes qui ont r√©ussi √† sortir
+	 * @return Les fant√¥mes sortis
 	 */
 	public Collection<Ghost> getExited (){
 		return this.exited;
 	}
 	/**
-	*	RÈcupËre seulement les bons (ou mauvais) fantÙmes du joueur qu'il avait au dÈbut de la partie
-	*	@param	good	<code>true</code> si on demande les bons fantÙmes, <code>false</code> sinon
-	*	@return	L'ensemble des bons (ou mauvais) fantÙmes du joueur
+	*	R√©cup√®re seulement les bons (ou mauvais) fant√¥mes du joueur qu'il avait au d√©but de la partie
+	*	@param	good	<code>true</code> si on demande les bons fant√¥mes, <code>false</code> sinon
+	*	@return	L'ensemble des bons (ou mauvais) fant√¥mes du joueur
 	*/
 	public Collection<Ghost> getGhosts (boolean good){
 		Collection<Ghost> g = new ArrayList<Ghost> ();
@@ -44,22 +44,35 @@ public class Player{
 		return g;
 	}
 	/**
-	 * Ajoute un fantÙme
-	 * @param ghost Le fantÙme ‡ ajouter.
+	 * R√©cup√®re les fant√¥mes encore en jeu
+	 * @return Les fant√¥mes encore en jeu
+	 */
+	public Collection<Ghost> getPlayingGhosts (){
+		Collection<Ghost> c = new ArrayList<Ghost> ();
+		for (Ghost g : this.ghosts){
+			if (!this.exited.contains(g) && !(this.captured.contains(g)))
+				c.add(g);
+		}
+		
+		return c;
+	}
+	/**
+	 * Ajoute un fant√¥me
+	 * @param ghost Le fant√¥me √† ajouter.
 	 */
 	public void addGhost (Ghost ghost) {
 		this.ghosts.add(ghost);
 	}
 	/**
-	 * Le nombre initial de fantÙmes de ce joueur
-	 * @return Le nombre initial de fantÙmes
+	 * Le nombre initial de fant√¥mes de ce joueur
+	 * @return Le nombre initial de fant√¥mes
 	 */
-	public Set<Ghost> getCaptured (){
+	public Collection<Ghost> getCaptured (){
 		return this.captured;
 	}
 	/**
-	 * Fait sortir un fantÙme
-	 * @param ghost Le fantÙme ‡ faire sortir.
+	 * Fait sortir un fant√¥me
+	 * @param ghost Le fant√¥me √† faire sortir.
 	 */
 	public void exitGhost (Ghost ghost) {
 		if (this.hasGhost(ghost)){
@@ -67,8 +80,8 @@ public class Player{
 		}
 	}
 	/**
-	 * Indique qu'un fantÙme a ÈtÈ capturÈ
-	 * @param ghost Le fantÙme ‡ capturer
+	 * Indique qu'un fant√¥me a √©t√© captur√©
+	 * @param ghost Le fant√¥me √† capturer
 	 */
 	public void captureGhost (Ghost ghost) {
 		if (this.hasGhost(ghost)){
@@ -76,16 +89,16 @@ public class Player{
 		}
 	}
 	/**
-	 * Indique si un fantÙme appartient ‡ ce joueur.
-	 * @param ghost Le fantÙme ‡ tester.
-	 * @return <code>true</code> si ce fantÙme appartient ‡ ce joueur, <code>false</code> sinon.
+	 * Indique si un fant√¥me appartient √† ce joueur.
+	 * @param ghost Le fant√¥me √† tester.
+	 * @return <code>true</code> si ce fant√¥me appartient √† ce joueur, <code>false</code> sinon.
 	 */
 	public boolean hasGhost (Ghost ghost){
 		return this.ghosts.contains(ghost);
 	}
 	/**
-	*	PrÈpare les fantÙmes du joueur indiquÈ
-	 * @param cheatMode <code>true</code> si le mode triche est activÈ
+	*	Pr√©pare les fant√¥mes du joueur indiqu√©
+	 * @param cheatMode <code>true</code> si le mode triche est activ√©
 	*/
 	public void initialize (boolean cheatMode){
 		RuleBook book = Game.getCurrent().getRuleBook();
@@ -100,41 +113,41 @@ public class Player{
 		}
 	}
 	/**
-	 * Fait dÈposer les fantÙmes un ‡ un au joueur jusqu'‡ ce que sa configuration soit correcte.
+	 * Fait d√©poser les fant√¥mes un √† un au joueur jusqu'√† ce que sa configuration soit correcte.
 	 * @param board Le plateau de jeu
-	 * @param book Le livre de rËgles
-	 * @param inter L'interface utilisÈe
-	 * @param ghostTypes Les types de fantÙmes autorisÈs
-	 * @param cheatMode <code>true</code> si le mode triche est activÈ
+	 * @param book Le livre de r√®gles
+	 * @param inter L'interface utilis√©e
+	 * @param ghostTypes Les types de fant√¥mes autoris√©s
+	 * @param cheatMode <code>true</code> si le mode triche est activ√©
 	 */
 	private void initializeGhosts (Board board, RuleBook book, Interface inter, Collection<String> ghostTypes, boolean cheatMode){
-		while (!book.isReady(this)){//	Tant que le joueur n'est pas prÍt selon les rËgles
+		while (!book.isReady(this)){//	Tant que le joueur n'est pas pr√™t selon les r√®gles
 			inter.updateDisplay(cheatMode ? null : this);
-			String position = inter.readPosition("Veuillez saisir la position du prochain fantÙme : ");
-			if (position != null && book.requestInitialization(this, position)){//	Si le joueur a saisi une position et qu'elle est autorisÈe
-				String type = inter.readSelection(ghostTypes, "Veuillez choisir le type de fantÙme : ");
-				if (type != null){//	Si le joueur a sÈlectionnÈ un type
-					String isGoodStr = inter.readSelection(Arrays.asList(new String[] {"Bon", "Mauvais"}), "Le fantÙme est-il bon ou mauvais ? ");
-					if (isGoodStr != null){//	Si le joueur a choisi si son fantÙme Ètait bon ou mauvais
+			String position = inter.readPosition("Veuillez saisir la position du prochain fant√¥me : ");
+			if (position != null && book.requestInitialization(this, position)){//	Si le joueur a saisi une position et qu'elle est autoris√©e
+				String type = inter.readSelection(ghostTypes, "Veuillez choisir le type de fant√¥me : ");
+				if (type != null){//	Si le joueur a s√©lectionn√© un type
+					String isGoodStr = inter.readSelection(Arrays.asList(new String[] {"Bon", "Mauvais"}), "Le fant√¥me est-il bon ou mauvais ? ");
+					if (isGoodStr != null){//	Si le joueur a choisi si son fant√¥me √©tait bon ou mauvais
 						Ghost ghost = Game.getCurrent().getFactory().createGhost(type, isGoodStr.equals("Bon"));
 						if (book.requestInitialization(this, ghost, position)){
 							ghost.move(position);
 							this.addGhost(ghost);
 						}else
-							inter.printText("Vous ne pouvez pas placer ce fantÙme ! (du moins, pas ici)");
+							inter.printText("Vous ne pouvez pas placer ce fant√¥me ! (du moins, pas ici)");
 					}
 				}
 			}else
-				inter.printText("Cette position n'est pas autorisÈe !");
+				inter.printText("Cette position n'est pas autoris√©e !");
 		}
 	}
 	/**
-	 * VÈrifie si le joueur est s˚r (et certain) de sa configuration.
+	 * V√©rifie si le joueur est s√ªr (et certain) de sa configuration.
 	 * @param board Le plateau de jeu
-	 * @param book Le livre de rËgles
-	 * @param inter L'interface utilisÈe
-	 * @return <code>true</code> si le joueur est s˚r de sa configuration, <code>false</code> sinon.
-	 * @param cheatMode <code>true</code> si le mode triche est activÈ.
+	 * @param book Le livre de r√®gles
+	 * @param inter L'interface utilis√©e
+	 * @return <code>true</code> si le joueur est s√ªr de sa configuration, <code>false</code> sinon.
+	 * @param cheatMode <code>true</code> si le mode triche est activ√©.
 	 */
 	private boolean isSureOfInitialization (Board board, RuleBook book, Interface inter, boolean cheatMode){
 		while (book.isReady(this)){
@@ -176,25 +189,28 @@ public class Player{
 		RuleBook book = Game.getCurrent().getRuleBook();
 		
 		inter.printText("Joueur : " + this);
-		
+
 		while (!hasPlayed){
 			String p0 = inter.readPosition("Quel fant√¥me souhaitez-vous d√©placer ? ");
 			if (p0 != null && board.getSquare(p0) != null && board.getSquare(p0).getGhost() != null){
-				String p1 = inter.readPosition("O√π souhaitez-vous d√©placer votre fant√¥me ? ");
-				if (p1 != null && board.getSquare(p1) != null){
-					if (book.requestMovement(this, p0, p1)){
-						Ghost ghost = board.getSquare(p0).getGhost();
-						Square s2 = board.getSquare(p1);
-						Ghost g2 = s2.getGhost();
-						if (g2 != null)
-							board.capture(g2);
-						hasPlayed = true;
-						ghost.move(p1);
-						if (board.canExit(p1, ghost))
-							this.exitGhost(ghost);
-					}else
-						inter.printText("Ce d√©placement est interdit !");
-				}
+				Ghost ghost = board.getSquare(p0).getGhost();
+				if (this.hasGhost(ghost)){
+					String p1 = inter.readPosition("O√π souhaitez-vous d√©placer votre fant√¥me ? ");
+					if (p1 != null && board.getSquare(p1) != null){
+						if (book.requestMovement(this, p0, p1)){
+							Square s2 = board.getSquare(p1);
+							Ghost g2 = s2.getGhost();
+							if (g2 != null)
+								board.capture(g2);
+							hasPlayed = true;
+							ghost.move(p1);
+							if (board.canExit(p1, ghost))
+								this.exitGhost(ghost);
+						}else
+							inter.printText("Ce d√©placement est interdit !");
+					}
+				}else
+					inter.printText("Ce fant√¥me ne vous appartient pas !");
 			}
 		}
 	}
