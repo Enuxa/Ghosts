@@ -9,13 +9,13 @@ public class Main {
 		Game game = null;
 		Boolean cheatMode = null;
 
-		// Sélection de l'interface
+		// Sï¿½lection de l'interface
 		inter = readInterface(defaultInterface);
 
-		// Sélection de l'interface
+		// Sï¿½lection de l'interface
 		cheatMode = readCheatMode(defaultInterface);
 
-		// Sélection des extensions
+		// Sï¿½lection des extensions
 		Collection<Extension> extensions = readExtensions(defaultInterface);
 
 		game = new Game(inter, cheatMode, extensions);
@@ -25,7 +25,7 @@ public class Main {
 	private static Interface readInterface(Interface defaultInterface) {
 		Map<String, Interface> interfaceMap = new HashMap<String, Interface>();
 		interfaceMap.put("Interface textuelle Unix", new base.UnixTextBasedInterface());
-		interfaceMap.put("Interface textuelle générale", new base.WindowsTextBasedInterface());
+		interfaceMap.put("Interface textuelle gÃ©nÃ©rale", new base.WindowsTextBasedInterface());
 		Interface inter = null;
 
 		while (inter == null) {

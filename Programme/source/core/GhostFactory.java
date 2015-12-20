@@ -16,11 +16,12 @@ public class GhostFactory {
 	*	Créé une nouvelle instance d'un certain type de fantôme
 	*	@param	ghostType	Type de fantôme souhaité
 	*	@param	isGood	<code>true</code> Si le nouveau fantôme doit être bon, <code>false</code> sinon.
+	*	@param player Le joueur auquel appartient le fantôme.
 	*	@return	Le fantôme souhaité.
 	*/
-	public Ghost createGhost (String ghostType, boolean isGood){
+	public Ghost createGhost (String ghostType, boolean isGood, Player player){
 		Ghost ghost = templates.get(ghostType);
-		return ghost.clone(isGood);
+		return ghost.clone(isGood, player);
 	}
 	/**
 	*	Ajoute un nouveau type de fantôme aux modèles de fantômes autorisés
@@ -45,9 +46,9 @@ public class GhostFactory {
 	public String getType (Ghost ghost){
 		Collection<String> types = getTypes ();
 		for (String type : types){
-			Class<? extends Ghost> c1 = templates.get (type).getClass();
-			Class<? extends Ghost> c2 = ghost.getClass();
-			if (c1.equals(c2))
+			Class<? extends Ghost> c1 = templates.get (type).getClass();//	Classe du modèle (de ce tour de boucle)
+			Class<? extends Ghost> c2 = ghost.getClass();				//	Classe du fantôme passé en argument
+			if (c1.equals(c2))	//	Si ce sont les mêmes classes, on renvoie le type du modèle
 				return type;
 		}
 		return null;

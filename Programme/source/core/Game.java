@@ -85,10 +85,11 @@ public class Game{
 				this.inter.updateDisplay(this.cheatMode ? null : p);
 				p.turn();
 				
-				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
+				this.updateExits(p);
+				
+				if (!this.isGameOver())
+					this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
 			}
-			
-			this.updateExits();
 		}
 	}
 	/**
@@ -101,33 +102,35 @@ public class Game{
 				this.inter.updateDisplay(this.cheatMode ? null : p);
 				p.turn();
 				
-				this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
+				this.updateExits(p);
+
+				if (!this.isGameOver())
+					this.inter.printText("Au joueur suivant ! Le dernier joueur est prié de quitter la pièce, ou de se bander les yeux !", null);
 			}
-			
-			this.updateExits();
 		}
 	}
 	/**
-	 * Fait sortir les fantômes positionnés sur une sortie et ayant survécu un tour.
+	 * Fait sortir les fantômes d'un joueur
+	 * @param p Le joueur
 	 */
-	private void updateExits (){
+	private void makeGhostsExit (Player p){
 		//	Sortie des fantômes
 		for (Ghost g : this.onExits){
-			int i = 0;
-			if (this.players[0].hasGhost(g))
-				i = 0;
-			else
-				i = 1;
-			this.players[i].exitGhost(g);
+			if (g.getPlayer() == p)
+				p.exitGhost(g);
 		}
+	}
+	/**
+	 * Fait sortir les fantômes positionnés sur une sortie et ayant survécu un tour et met en attente les nouveaux fantômes sur les sorties.
+	 */
+	private void updateExits (Player p){
+		this.makeGhostsExit(p);
+		
 		//	Ajout des fantômes qui sont sur des sorties
-		for (int i = 0; i < 2; i++){
-			Player p = this.players[i];
-			for (Ghost g : p.getPlayingGhosts()){
-				String position = this.board.getPosition(g);
-				if (this.board.canExit(position, g))
-					this.onExits.add(g);
-			}
+		for (Ghost g : p.getPlayingGhosts()){
+			String position = this.board.getPosition(g);
+			if (this.board.canExit(position, g))
+				this.onExits.add(g);
 		}
 	}
 	/**
@@ -171,18 +174,21 @@ public class Game{
 	}
 	private void initializePlayers () {
 		for (int i = 0; i < 2; i++)
-			this.players[i] = this.initializePlayer ();
+			this.players[i] = this.createPlayer ();
 		
 		for (Player p : this.players)
 			p.initialize (this.cheatMode);
 	}
-	private Player initializePlayer (){
+	private Player createPlayer (){
 		Collection<String> choicePlayer = Arrays.asList (new String[] {"Humain"});
 		this.inter.printText("Nouveau joueur : ");
-		String nature = null;
+		String nature = null, name = null;
+		
+		//	Récupération de la nature du joueur
 		while (nature == null)
 			nature = this.inter.readSelection(choicePlayer, "Quelle est la nature de ce joueur ?");
-		String name = null;
+
+		//	Récupération du nom du joueur
 		while (name == null)
 			name = this.inter.readText("Comment ce joueur s'appelle-t-il ? ");
 		

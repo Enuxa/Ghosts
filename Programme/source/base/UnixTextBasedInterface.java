@@ -65,18 +65,18 @@ public class UnixTextBasedInterface extends Interface {
 			System.out.println();
 		}
 		
-		//	Explications de la représentation des fantômes
+		//	Explications de la reprï¿½sentation des fantï¿½mes
 		if (!this.useColor)
-			System.out.println("\nMinuscules : bon fantômes, majuscules : mauvais fantômes.");
+			System.out.println("\nMinuscules : bon fantÃ´mes, majuscules : mauvais fantÃ´mes.");
 		for (String type : ghostTypes)
 			System.out.println(hashGhostType (type, ghostTypesNumber) + " : " + type);
 	}
 
 	/**
-	 * Donne le caractère représentant un fantôme d'un type donné
-	 * @param ghostType Le type du fantôme
-	 * @param ghostTypesNumber Le nombre de type de fantômes.
-	 * @return Le caractère représentant le fantôme.
+	 * Donne le caractï¿½re reprï¿½sentant un fantï¿½me d'un type donnï¿½
+	 * @param ghostType Le type du fantï¿½me
+	 * @param ghostTypesNumber Le nombre de type de fantï¿½mes.
+	 * @return Le caractï¿½re reprï¿½sentant le fantï¿½me.
 	 */
 	private char hashGhostType (String ghostType, int ghostTypesNumber){
 		return (char)('a' + ghostType.hashCode() % ghostTypesNumber);
@@ -103,9 +103,9 @@ public class UnixTextBasedInterface extends Interface {
 		}else
 			colorCode = this.GREEN;
 		
-		//	X majuscule jaune : joueur caché
+		//	X majuscule jaune : joueur cachï¿½
 		if (player != null && !player.hasGhost(ghost)){
-			ghostType = " X ";
+			ghostType = "X";
 			colorCode = this.YELLOW;
 		}
 		
@@ -115,11 +115,11 @@ public class UnixTextBasedInterface extends Interface {
 				ghostType = "[" + ghostType + "]";
 			else
 				ghostType = "(" + ghostType + ")";
-		}
-		String str =  ghostType;
+		}else
+			ghostType = " " + ghostType + " ";
 		if (this.useColor)
-			str = colorCode + str + this.DEFAULT;
-		System.out.print(str);
+			ghostType = colorCode + ghostType+ this.DEFAULT;
+		System.out.print(ghostType);
 	}
 	@Override
 	public void printText(String message) {
@@ -164,14 +164,14 @@ public class UnixTextBasedInterface extends Interface {
 			System.out.println((i+1) + " : " + choice.get(i));
 		String msg = "";
 		if (min == max && min != 1)
-			msg = min + " réponses : ";
+			msg = min + " rÃ©ponses : ";
 		if (min != max){
 			if (max < min){
 				int tmp = max;
 				max = min;
 				min = tmp;
 			}
-			msg = "Entre " + min + " et " + max + " réponses : ";	
+			msg = "Entre " + min + " et " + max + " rÃ©ponses : ";	
 		}
 		String ans = this.readText(msg);
 		if (ans == null)

@@ -1,47 +1,47 @@
 package core;
 /**
-*	Classe correspondant à une règle.
+*	Classe correspondant ï¿½ une rï¿½gle.
 */
 public abstract class Rule implements Comparable<Rule>{
 	private int priority;
 	/**
-	*	@param	priority	Niveau de priorité de la règle.
+	*	@param	priority	Niveau de prioritï¿½ de la rï¿½gle.
 	*/
 	public Rule (int priority){
 		this.priority = priority;
 	}
 	/**
-	*	Récupère le niveau de priorité de cette règle.
-	*	@return	Le niveau de priorité de cette règle.
+	*	Rï¿½cupï¿½re le niveau de prioritï¿½ de cette rï¿½gle.
+	*	@return	Le niveau de prioritï¿½ de cette rï¿½gle.
 	*/
 	public int getPriority (){
 		return this.priority;
 	}
 	/**
-	*	Indique si cette règle annule une règle donnée.
-	*	@param	rule La règle à tester.
-	*	@return	<code>true</code> si cette règle est prioritaire par rapport à celle passée en argument.
+	*	Indique si cette rï¿½gle annule une rï¿½gle donnï¿½e.
+	*	@param	rule La rï¿½gle ï¿½ tester.
+	*	@return	<code>true</code> si cette rï¿½gle est prioritaire par rapport ï¿½ celle passï¿½e en argument.
 	*/
 	public boolean prevailsOver (Rule rule){
 		return this.compareTo(rule) >= 0;
 	}
 	/**
-	 * Récupère la diffÃ©rence de priorité entre ces règles.
-	 * @param rule La règle à comparer
+	 * Rï¿½cupï¿½re la diffÃ©rence de prioritï¿½ entre ces rï¿½gles.
+	 * @param rule La rï¿½gle ï¿½ comparer
 	 */
 	public int compareTo (Rule rule){
 		return this.priority - rule.priority;
 	}
 
-	public static class IncompatibleRulesException extends Exception{
-		private static final long serialVersionUID = 1L;
+	@SuppressWarnings("serial")
+	public static class IncompatibleRulesException extends RuntimeException{
 		/**
-		 * @param msg Précision sur l'incompatibilité.
-		 * @param r1 Règle incompatible avec <code>r2</code>.
-		 * @param r2 Règle incompatible avec <code>r1</code>.
+		 * @param msg Prï¿½cision sur l'incompatibilitï¿½.
+		 * @param r1 Rï¿½gle incompatible avec <code>r2</code>.
+		 * @param r2 Rï¿½gle incompatible avec <code>r1</code>.
 		 */
 		public IncompatibleRulesException (String msg, Rule r1, Rule r2){
-			super ("Règles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
+			super ("Rï¿½gles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
 		}
 	}
 }

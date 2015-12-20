@@ -7,7 +7,7 @@ import java.util.*;
 public class Board{
 	private int size;
 	private Map<String, Square> squares;
-	private Collection<String> exits0, exits1;
+	private List<Collection<String>> exits;
 	/**
 	 * @param size Taille d'un côté du plateau
 	 * @param exits0 Sortie pour le premier joueur.
@@ -15,13 +15,18 @@ public class Board{
 	 */
 	public Board (int size, Collection<String> exits0, Collection<String> exits1){
 		this.size = size;
-		this.exits0 = new ArrayList<String> ();
-			for (String s : exits0)
-				this.exits0.add(s.toUpperCase());
-		this.exits1 = new ArrayList<String> ();
-		for (String s : exits1)
-			this.exits1.add(s.toUpperCase());
+		this.exits = new ArrayList<Collection<String>> ();
 		this.squares = new HashMap <String, Square> ();
+		
+		//	Initialisation des sorties
+		for (int i = 0; i < 2; i++){
+			Collection<String> e = i == 0 ? exits0 : exits1;
+			Collection<String> c = new HashSet<String> ();
+			for (String s : e)
+				c.add(s.toUpperCase());		//	Mise en majuscules
+			this.exits.add(e);
+		}
+		//	Initialisation des cases
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){
 				String coordinates = toCoordinates (i, j);
@@ -88,39 +93,45 @@ public class Board{
 	 * @return <code>true</code> si cette position est celle d'une sortie, <code>false</code> sinon.
 	 */
 	public boolean canExit (String position, Ghost ghost){
+		Game g = Game.getCurrent();
 		if (!ghost.isGood())
 			return false;
-		return (Game.getCurrent().getPlayer(0).hasGhost(ghost) && this.exits0.contains(position))
-				|| (Game.getCurrent().getPlayer(1).hasGhost(ghost) && this.exits1.contains(position));
+		
+		//	Si un des joueurs possède ce fantôme ET si celui ci se trouve sur une case de sortie
+		for (int i = 0; i < 2; i++)
+			if (g.getPlayer(i).hasGhost(ghost) && this.exits.get(i).contains(position))
+				return true;
+		
+		return false;
 	}
 	/**
 	 * Fait sortir un fantôme
 	 * @param ghost Le fantôme à faire sortir
 	 */
 	public void exit(Ghost ghost){
-		for (int i = 0; i < 2; i++){
-			Player p = Game.getCurrent().getPlayer(i);
-			if (p.hasGhost(ghost)){
-				p.exitGhost(ghost);
-				String position = this.getPosition(ghost);
-				this.getSquare(position).removeGhost();
-				return;
-			}
-		}
+		Player p = ghost.getPlayer();
+		if (p == null)
+			throw new RuntimeException ("Le fantôme sortant en " + this.getPosition(ghost) + " n'appartient à aucun joueur.");
+		p.exitGhost(ghost);
+		this.removeGhost(ghost);
 	}
 	/**
 	 * Capture un fantôme
 	 * @param ghost Le fantôme à capturer
 	 */
 	public void capture(Ghost ghost){
-		for (int i = 0; i < 2; i++){
-			Player p = Game.getCurrent().getPlayer(i);
-			if (p.hasGhost(ghost)){
-				p.captureGhost(ghost);
-				String position = this.getPosition(ghost);
-				this.getSquare(position).removeGhost();
-				return;
-			}
-		}
+		Player p = ghost.getPlayer();
+		if (p == null)
+			throw new RuntimeException ("Le fantôme sortant en " + this.getPosition(ghost) + " n'appartient à aucun joueur.");
+		p.captureGhost(ghost);
+		this.removeGhost(ghost);
+	}
+	/**
+	 * Retire un fantôme du plateau
+	 * @param ghost Le fantôme à retirer
+	 */
+	private void removeGhost (Ghost ghost){
+		String position = this.getPosition(ghost);
+		this.getSquare(position).removeGhost();
 	}
 }

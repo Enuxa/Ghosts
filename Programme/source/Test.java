@@ -6,34 +6,25 @@ import base.*;
 
 public class Test {
 	public static void main(String[] args) {
-		Player p0 = new Player("Clara"), p1 = new Player("Pierre");
+		Player[] players = new Player[] {new Player("Clara"), new Player("Pierre")};
 
-		Game game = new Game(new WindowsTextBasedInterface(), true,
+		Game game = new Game(new WindowsTextBasedInterface(), false,
 				Arrays.asList(new Extension[] { new BaseExtension() }));
 
 		game.initialize_test();
 
-		for (int k = 0; k < 2; k++) {
-			for (int i = 0; i < 4; i++) {
-				Ghost g = new Ghost(k == 0);
-				g.move(Board.toCoordinates(1 + i, k));
+		for (int p = 0; p < 2; p++){
+			for (int k = 0; k < 2; k++) {
+				for (int i = 0; i < 4; i++) {
+					Ghost g = new Ghost(k == 0, players[p]);
+					String pos = Board.toCoordinates(1 + i, k + p * 4);
+					g.move(pos);
+					System.out.println(pos);
+					players[p].addGhost(g);
+				}
 			}
 		}
 		
-		for (int k = 0; k < 2; k++){
-			for (int i = 0; i < 4; i++){
-				Ghost g = new Ghost (k == 0);
-				if (i == 0 && k == 0){
-					g.move("A5");
-				}else
-					g.move(Board.toCoordinates(1 + i, k));
-				p0.addGhost(g);
-				g = new Ghost(k == 0);
-				g.move(Board.toCoordinates(1 + i, 4 + k));
-				p1.addGhost(g);
-			}
-		}
-		
-		game.run_test(p0, p1);
+		game.run_test(players[0], players[1]);
 	}
 }
