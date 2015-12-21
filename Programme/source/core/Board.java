@@ -122,7 +122,7 @@ public class Board{
 	public void capture(Ghost ghost){
 		Player p = ghost.getPlayer();
 		if (p == null)
-			throw new RuntimeException ("Le fantôme sortant en " + this.getPosition(ghost) + " n'appartient à aucun joueur.");
+			throw new RuntimeException ("Le fantôme supposé être capturé en " + this.getPosition(ghost) + " n'appartient à aucun joueur.");
 		p.captureGhost(ghost);
 		this.removeGhost(ghost);
 	}

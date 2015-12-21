@@ -14,7 +14,7 @@ public abstract class GameEndRule extends Rule {
 	public abstract boolean isGameOver ();
 	/**
 	 * Récupère le gagnant de la partie.
-	 * @return Intance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
+	 * @return Instance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie ou s'il y a match nul.
 	 */
 	public abstract Player getWinner ();
 }

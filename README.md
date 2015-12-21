@@ -2,6 +2,10 @@
 
 Projet de POO
 
+## A faire
+Supprimer `Interface` et ses sous-classes pour créer des sous-classes de `Game` pour l'interface textuelle, et une autre pour l'interface graphique.
+Déplacer (et adapter) les méthodes `turn`, `initialize` et `create` de `Player` dans la nouvelle classe de `Game`.
+
 **_Attention :_** Penser à générer la doc avec javadoc -d Documentation **-charset utf8** *.java
 
 ## Répartition

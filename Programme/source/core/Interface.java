@@ -3,6 +3,10 @@ import java.util.*;
 
 public abstract class Interface{
 	/**
+	 * Active l'interface si elle a besoin d'être activée (par exemple dans le cas d'une interface graphique, il faut lui demander de s'afficher)
+	 */
+	public void activate (){}
+	/**
 	 * Lit une chaîne de caractères
 	 * @param message Message adressé à l'utilisateur
 	 * @return La chaîne saisie par l'utilisateur

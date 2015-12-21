@@ -36,6 +36,8 @@ public class Main {
 				defaultInterface.printText("Incorrect");
 		}
 
+		inter.activate();
+		
 		return inter;
 	}
 
