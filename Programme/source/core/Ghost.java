@@ -1,4 +1,5 @@
 package core;
+
 public class Ghost {
 	private boolean isGood;
 	private Player player;
@@ -8,6 +9,7 @@ public class Ghost {
 	*/
 	public Ghost (boolean isGood, Player player){
 		this.isGood = isGood;
+		this.player = player;
 	}
 	/**
 	*	Indique si ce fantôme est gentil ou non

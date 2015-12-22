@@ -2,6 +2,7 @@ package core;
 
 import java.util.*;
 
+
 public abstract class MovementRule extends Rule {
 	/**
 	*	@param	priority	Niveau de priorité de la règle.

@@ -3,4 +3,4 @@
 *.autosave
 .project
 Documentation
-/bin/
+!/bin/icons

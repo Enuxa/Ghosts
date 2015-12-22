@@ -5,11 +5,11 @@ import java.util.regex.Pattern;
 
 import core.*;
 
-public class UnixTextBasedInterface extends Interface {
+public class CLI {
 	private boolean useColor;
 	private Scanner sc;
 	private String RED, BLUE, YELLOW, GREEN, PURPLE, BOLD, DEFAULT;
-	protected UnixTextBasedInterface (boolean useColor) {
+	public CLI (boolean useColor) {
 		this.sc = new Scanner (System.in);
 		this.RED = "\u001B[31m";
 		this.BLUE = "\u001B[36m";
@@ -19,17 +19,15 @@ public class UnixTextBasedInterface extends Interface {
 		this.DEFAULT = "\u001B[0m";
 		this.useColor = useColor;
 	}
-	public UnixTextBasedInterface (){
+	public CLI (){
 		this (true);
 	}
 	
-	@Override
 	public String readText(String message) {
 		System.out.print(message);
 		return this.readText();
 	}
 
-	@Override
 	public String readText() {
 		String s = this.sc.nextLine();
 		if (s == null || s.equals(""))
@@ -37,7 +35,6 @@ public class UnixTextBasedInterface extends Interface {
 		return s;
 	}
 
-	@Override
 	public void updateDisplay(Player player) {
 		Game game = Game.getCurrent();
 		Collection<String> ghostTypes = game.getFactory().getTypes();
@@ -121,12 +118,10 @@ public class UnixTextBasedInterface extends Interface {
 			ghostType = colorCode + ghostType+ this.DEFAULT;
 		System.out.print(ghostType);
 	}
-	@Override
 	public void printText(String message) {
 		System.out.println(message);
 	}
 
-	@Override
 	public void printText(String message1, String message2) {
 		this.printText(message1);
 		if (message2 == null)
@@ -135,13 +130,11 @@ public class UnixTextBasedInterface extends Interface {
 		this.sc.nextLine();
 	}
 
-	@Override
 	public String readPosition(String message) {
 		System.out.print(message);
 		return this.readPosition();
 	}
 
-	@Override
 	public String readPosition() {
 		String s = this.readText();
 		if (s == null)
@@ -151,13 +144,11 @@ public class UnixTextBasedInterface extends Interface {
 		return null;
 	}
 
-	@Override
 	public Collection<String> readSelection(Collection<String> choice, String message, int min, int max) {
 		this.printText(message);
 		return this.readSelection(choice, min, max);
 	}
 
-	@Override
 	public Collection<String> readSelection(Collection<String> c, int min, int max) {
 		List<String> choice = new ArrayList<String> (c);
 		for (int i = 0; i < choice.size(); i++)
@@ -191,13 +182,11 @@ public class UnixTextBasedInterface extends Interface {
 		return answers;
 	}
 
-	@Override
 	public String readSelection(Collection<String> choice, String message) {
 		this.printText(message);
 		return this.readSelection(choice);
 	}
 
-	@Override
 	public String readSelection(Collection<String> choice) {
 		Collection<String> c = this.readSelection(choice, 1, 1);
 

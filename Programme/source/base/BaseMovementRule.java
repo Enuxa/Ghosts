@@ -14,14 +14,14 @@ public class BaseMovementRule extends MovementRule {
 		Square b = board.getSquare(squareB);
 		if (a == null || b == null)		// Si l'une des cases n'existe pas
 			return false;
-		if (!player.hasGhost(a.getGhost()))		// Si le fantôme de départ est inexistant ou s'il n'appartient pas au joueur
+		if (!player.hasGhost(a.getGhost()))		// Si le fantï¿½me de dï¿½part est inexistant ou s'il n'appartient pas au joueur
 			return false;
-		if (player.hasGhost(b.getGhost()))		// Si le fantôme sur la case d'arrivée (s'il existe) appartient à player
+		if (player.hasGhost(b.getGhost()))		// Si le fantï¿½me sur la case d'arrivï¿½e (s'il existe) appartient ï¿½ player
 			return false;
-		if (!(Math.abs(a.getX() - b.getX()) == 1 && a.getY() == b.getY())	// Si le déplacement est bien d'une case horizontale ou verticale
+		if (!(Math.abs(a.getX() - b.getX()) == 1 && a.getY() == b.getY())	// Si le dï¿½placement est bien d'une case horizontale ou verticale
 				&& !(Math.abs(a.getY() - b.getY()) == 1 && a.getX() == b.getX()))
 			return false;
-		if (b.getGhost() != null)	// S'il y a un fantôme sur la case d'arrivée (nécessairement à l'adversaire) et si sa capture est autorisée
+		if (b.getGhost() != null)	// S'il y a un fantï¿½me sur la case d'arrivï¿½e (nï¿½cessairement ï¿½ l'adversaire) et si sa capture est autorisï¿½e
 			return this.checkCapture(player, squareB, a.getGhost());
 		
 		return true;

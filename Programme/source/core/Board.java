@@ -24,13 +24,17 @@ public class Board{
 			Collection<String> c = new HashSet<String> ();
 			for (String s : e)
 				c.add(s.toUpperCase());		//	Mise en majuscules
-			this.exits.add(e);
+			this.exits.add(c);
 		}
 		//	Initialisation des cases
 		for (int i = 0; i < this.size; i++){
 			for (int j = 0; j < this.size; j++){
 				String coordinates = toCoordinates (i, j);
-				this.squares.put (coordinates, new Square (coordinates));
+				Player p = null;
+				for (int k = 0; k < 2; k++)
+					if (this.exits.get(k).contains(coordinates))
+						p = Game.getCurrent().getPlayer(k);
+				this.squares.put (coordinates, new Square (coordinates, p));
 			}
 		}
 	}
@@ -93,16 +97,14 @@ public class Board{
 	 * @return <code>true</code> si cette position est celle d'une sortie, <code>false</code> sinon.
 	 */
 	public boolean canExit (String position, Ghost ghost){
-		Game g = Game.getCurrent();
 		if (!ghost.isGood())
 			return false;
 		
-		//	Si un des joueurs possède ce fantôme ET si celui ci se trouve sur une case de sortie
-		for (int i = 0; i < 2; i++)
-			if (g.getPlayer(i).hasGhost(ghost) && this.exits.get(i).contains(position))
-				return true;
+		String coordinates = this.getPosition(ghost);
+		Square square = this.getSquare(coordinates);
 		
-		return false;
+//		Si un des joueurs possède ce fantôme ET si celui ci se trouve sur une case de sortie
+		return ghost.getPlayer() != null && square.getPlayerExit() == ghost.getPlayer();
 	}
 	/**
 	 * Fait sortir un fantôme
