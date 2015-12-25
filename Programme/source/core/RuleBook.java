@@ -97,7 +97,7 @@ public class RuleBook{
 			GameEndRule ger = (GameEndRule)rule;
 			if (ger.isGameOver()){
 				Player p = ger.getWinner();
-				if (p != player)
+				if (p != null && player != null && p != player)
 					throw new Rule.IncompatibleRulesException("Deux gagnants différents.", r, ger);
 				player = p;
 				r = ger;

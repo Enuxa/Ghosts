@@ -1,6 +1,6 @@
 import java.util.*;
-
 import base.*;
+import base.GUIGame.*;
 import core.*;
 
 public class Main {
