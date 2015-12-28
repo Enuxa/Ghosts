@@ -9,7 +9,7 @@ public class Main {
 		Collection<Extension> extensions = new ArrayList <Extension>();
 		extensions.add(new BaseExtension ());
 		
-		Game game = new GUIGame (false, extensions);
+		Game game = new GUIGame (true, extensions);
 		
 		game.run();
 	}

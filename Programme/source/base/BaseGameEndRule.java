@@ -17,12 +17,12 @@ public class BaseGameEndRule extends GameEndRule {
 		Player p = g.getPlayer(id);
 
 		Collection<Ghost> gBad = p.getGhosts(false);
-		Collection<Ghost> gGood = p.getGhosts(true);
+		Collection<Ghost> opGood = op.getGhosts(true);
 		Collection<Ghost> gEx = p.getExited();
 		
-		boolean b1 = gBad.isEmpty();						//	Si tous ses mauvais fantômes ont été capturés
-		boolean b2 = !gGood.isEmpty() && op.getCaptured().containsAll(gGood);	//	Si tous les bons fantômes adverses ont été capturés
-		boolean b3 = gEx.size() == 1;						//	Si un des (bons) fantômes est sorti
+		boolean b1 = !gBad.isEmpty() && p.getCaptured().containsAll(gBad);		//	Si tous ses mauvais fantômes ont été capturés
+		boolean b2 = !opGood.isEmpty() && op.getCaptured().containsAll(opGood);	//	Si tous les bons fantômes adverses ont été capturés
+		boolean b3 = gEx.size() == 1;											//	Si un des (bons) fantômes est sorti
 		
 		return b1 || b2 || b3;
 	}
