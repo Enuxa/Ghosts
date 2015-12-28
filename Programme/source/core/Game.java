@@ -23,12 +23,20 @@ public abstract class Game{
 		this.extensions = extensions;
 		this.board = null;
 		this.ruleBook = new RuleBook();
-		this.players = new Player[]{new Player (), new Player ()};
+		this.players = new Player[]{new Player ("Joueur 1"), new Player ("Joueur 2")};
 		this.factory = new GhostFactory ();
 		this.onExits = new ArrayList<Ghost> ();
 		Game.current = this;
-		
-		this.load();
+	}
+	/**
+	 * Assigne un joueur
+	 * @param id L'indice du joueur
+	 * @param p Le joueur à ajouter
+	 */
+	public void setPlayer (int id, Player p){
+		if (0 <= id && id < 2 && this.players[id] != null)
+			throw new RuntimeException ("Le joueur " + id + " a déjà été assigné !");
+		this.players[id] = p;
 	}
 	/**
 	 * Indique si le mode triche est activé
@@ -110,8 +118,9 @@ public abstract class Game{
 	}
 	/**
 	*	Charge les extensions et récupère le plateau. Doit être appelé au début de <code>run</code>
+	*	<strong>Attention : Les joueurs doivent avoir déjà été assignés (méthode setPlayer)</strong>
 	*/
-	private void load (){
+	protected void load (){
 		//	Initialiser les positions des joueurs
 		for (Extension e : this.extensions)
 			e.load();

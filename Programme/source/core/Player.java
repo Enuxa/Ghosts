@@ -7,11 +7,13 @@ import java.util.*;
 public class Player{
 	private String name;
 	private Set<Ghost> ghosts, exited, captured;
-	public Player (){
-		this.name = "";
+	private AutoPlay autoPlay;
+	public Player (String name){
+		this.name = name;
 		this.ghosts = new HashSet<Ghost> ();
 		this.exited = new HashSet<Ghost> ();
 		this.captured= new HashSet<Ghost> ();
+		this.autoPlay = null;
 	}
 	/**
 	 * Assigne le nom du joueur
@@ -19,6 +21,27 @@ public class Player{
 	 */
 	public void setName (String name){
 		this.name = name;
+	}
+	/**
+	 * Assigne un mode de jeu automatique à
+	 * @param autoPlay Le mode de jeu automatique
+	 */
+	public void setAutoplay (AutoPlay autoPlay){
+		this.autoPlay = autoPlay;
+	}
+	/**
+	 * Récupère le mode de jeu automatique
+	 * @return Le mode de jeu automatique
+	 */
+	public AutoPlay getAutoPlay (){
+		return this.autoPlay;
+	}
+	/**
+	 * Indique si ce joueur est automatique
+	 * @return <code>true</code> si ce joueur peut jouer automatiquement
+	 */
+	public boolean isAuto (){
+		return this.autoPlay != null;
 	}
 	/**
 	*	Récupère l'ensemble des fantômes que le joueur a possédé au long de la partie

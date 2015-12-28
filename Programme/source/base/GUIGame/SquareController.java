@@ -2,7 +2,6 @@ package base.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Arrays;
 
 import javax.swing.*;
 import core.*;
@@ -18,7 +17,7 @@ public class SquareController implements ActionListener{
 	}
 	public void actionPerformed(ActionEvent arg) {
 		Component[] tabComp = this.interactionPanel.getComponents();
-		if (tabComp.length > 1 && tabComp[1] instanceof NewGhostPanel)
+		if (tabComp.length >= 1 && tabComp[0] instanceof NewGhostPanel)
 			this.interactionPanel.removeAll();
 		this.interactionPanel.repaint();
 		
@@ -26,7 +25,7 @@ public class SquareController implements ActionListener{
 		
 		String coordinates = originButton.getName();
 		Square square = this.game.getBoard().getSquare(coordinates);
-		if (this.game.getCurrentState()== GameState.playerInitialization){
+		if (this.game.getCurrentState() == GameState.playerInitialization){
 			if (this.game.getRuleBook().requestInitialization(this.game.getCurrentPlayer(), coordinates)){
 				if (square.getGhost() == null){
 					JPanel ngp = new NewGhostPanel (coordinates, this.game, this.window, this.interactionPanel);
@@ -35,7 +34,7 @@ public class SquareController implements ActionListener{
 				}
 			}else if (this.game.getRuleBook ().isReady(this.game.getCurrentPlayer ()))
 				this.window.nextPlayer ();
-		}else{
+		}else if (this.game.getCurrentState() == GameState.inTurn && !game.hasPlayed()){
 			JButton[][] buttons = window.getSquareButtons();
 			
 			ActionListener al = new ActionListener (){
@@ -50,7 +49,7 @@ public class SquareController implements ActionListener{
 						if (destSquare.getGhost() != null)
 							board.capture(destSquare.getGhost());
 						board.getSquare(coordinates).getGhost().move(destination);
-						originButton.setIcon(null);
+						game.setHasPlayed(true);
 						window.updateDisplay();
 						window.nextPlayer();
 					}

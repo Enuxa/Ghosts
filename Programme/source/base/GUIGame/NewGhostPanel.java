@@ -45,11 +45,8 @@ public class NewGhostPanel extends JPanel {
 					interactionPanel.removeAll();
 					interactionPanel.repaint();
 
-					if (game.getRuleBook().isReady(game.getCurrentPlayer ())){
-						interactionPanel.removeAll();
-						
-						interactionPanel.add(new NewPlayerPanel (game, window));
-					}
+					if (game.getRuleBook().isReady(game.getCurrentPlayer ()))
+						window.nextPlayer();
 				}
 			}
 		});

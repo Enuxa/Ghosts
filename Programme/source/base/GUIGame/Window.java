@@ -8,7 +8,6 @@ import javax.swing.*;
 import javax.swing.border.*;
 import core.*;
 
-@SuppressWarnings("serial")
 public class Window extends JFrame{
 	private JPanel boardPanel, interactionPanel;
 	private JButton[][] squareButtons;
@@ -33,8 +32,17 @@ public class Window extends JFrame{
 		//	Ajout des composants
 		pane.add(this.boardPanel, BorderLayout.WEST);
 		pane.add(this.interactionPanel, BorderLayout.EAST);
+		
 		this.pack();
 	}
+	
+	public static Color getExitColor (int id){
+		if (id == 0)
+			return new Color (255,200,200);
+		return new Color (200,255,200);
+		
+	}
+	
 	private void initBoardPanel (){
 		int size = this.game.getBoard().getSize();
 		this.boardPanel = new JPanel ();
@@ -58,10 +66,7 @@ public class Window extends JFrame{
 				if (square.getPlayerExit() == null)
 					button.setBackground(Color.lightGray);
 				else
-					if (square.getPlayerExit() == this.game.getPlayer(0))
-						button.setBackground(new Color (255, 200, 200));
-					else
-						button.setBackground(new Color (200, 255, 200));
+					button.setBackground(getExitColor (square.getPlayerExit() == this.game.getPlayer(0) ? 0 : 1));
 				
 				button.addActionListener(sc);
 				
@@ -70,21 +75,18 @@ public class Window extends JFrame{
 			}
 		}
 	}
-	public void initInteractionPanel (){
+	private void initInteractionPanel (){
 		this.interactionPanel = new JPanel ();
 		this.interactionPanel.setLayout(new GridLayout ());
+		this.interactionPanel.add(new PlayersCreationPanel (this.game.getPlayer(0), this.game.getPlayer(1), this.game, this.interactionPanel));
 	}
-	public void loadIcons (){
+	private void loadIcons (){
 		this.ghostIcons = new HashMap<String, Icon> ();
 		for (String typeName : this.game.getFactory ().getTypes()){
-			String[] bm = new String[]{"bon", "mauvais"};
-			for (int k = 0; k < 2; k++){
-				String typeNameBM = typeName + "_" + bm[k];
-				URL path = getClass().getResource("icons/" + typeNameBM);
-				if (path == null)
-					throw new RuntimeException ("L'icône pour " + typeName + " (" + bm[k] + ") n'existe pas.");
-				this.ghostIcons.put(typeNameBM , new ImageIcon(path));
-			}
+			URL path = getClass().getResource("icons/" + typeName);
+			if (path == null)
+				throw new RuntimeException ("L'icône pour " + typeName + " n'existe pas.");
+			this.ghostIcons.put(typeName , new ImageIcon(path));
 		}
 
 		URL path = getClass().getResource("icons/hidden");
@@ -104,11 +106,18 @@ public class Window extends JFrame{
 				Square square = board.getSquare(position);
 				Ghost ghost = square.getGhost();
 				if (ghost != null){
-					String typeName = this.game.getFactory ().getType(ghost) + "_" + (ghost.isGood() ? "bon" : "mauvais" );
-					if (ghost.getPlayer() != this.game.getCurrentPlayer() && !this.game.isCheatModeEnabled ())
+					String typeName = this.game.getFactory ().getType(ghost);
+					if (ghost.getPlayer() != this.game.getCurrentPlayer() && !this.game.isCheatModeEnabled ()){
 						button.setIcon(this.hiddenGhostIcon);
-					else
+						button.setBackground(Color.lightGray);
+					}
+					else{
 						button.setIcon(this.ghostIcons.get(typeName));
+						button.setBackground(ghost.isGood() ? Color.BLUE : Color.RED);
+					}
+				}else if (square.getPlayerExit() == null){
+					button.setBackground(Color.lightGray);
+					button.setIcon(null);
 				}
 			}
 		}
