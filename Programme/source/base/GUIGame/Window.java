@@ -32,6 +32,8 @@ public class Window extends JFrame{
 		this.initInteractionPanel();
 		this.initBoardPanel();
 		
+		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+		
 		//	Ajout des composants
 		pane.add(this.boardPanel, BorderLayout.WEST);
 		pane.add(this.interactionPanel, BorderLayout.EAST);
@@ -114,10 +116,11 @@ public class Window extends JFrame{
 		
 		//	Pour chaque type de fantôme existant
 		for (String typeName : this.game.getFactory ().getTypes()){
-			URL path = getClass().getResource("icons/" + typeName);	//	On récupère le chemin de l'icone de ce fantôme
+			String pathString = "./icons/" + typeName;
+			URL path = getClass().getResource(pathString);	//	On récupère le chemin de l'icone de ce fantôme
 			//	Si ce fichier n'existe pas
 			if (path == null)
-				throw new RuntimeException ("L'icône pour " + typeName + " n'existe pas.");
+				throw new RuntimeException ("L'icône pour " + typeName + " est introuvable à l'adresse \"" + pathString + "\" relativement à celle de la classe " + getClass().getName());
 			this.ghostIcons.put(typeName , new ImageIcon(path));
 		}
 

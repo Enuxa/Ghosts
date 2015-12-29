@@ -17,10 +17,10 @@ public class PlayersCreationPanel extends JPanel {
 	 * @param game L'instance du jeu en cours
 	 * @param interactionPanel Le panneau d'interaction
 	 */
-	public PlayersCreationPanel (Player p0, Player p1, GUIGame game, JPanel interactionPanel){
+	public PlayersCreationPanel (Player p0, Player p1, final GUIGame game, final JPanel interactionPanel){
 		JButton button = new JButton ("Confirmer");
-		PlayerCreationPanel panel0 = new PlayerCreationPanel (p0, "Joueur 1");
-		PlayerCreationPanel panel1 = new PlayerCreationPanel (p1, "Joueur 2");
+		final PlayerCreationPanel panel0 = new PlayerCreationPanel (p0, "Joueur 1");
+		final PlayerCreationPanel panel1 = new PlayerCreationPanel (p1, "Joueur 2");
 		
 		button.addActionListener(new ActionListener (){
 			public void actionPerformed(ActionEvent arg0) {

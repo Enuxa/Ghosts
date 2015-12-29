@@ -60,7 +60,7 @@ public class SquareController implements ActionListener{
 		}
 	}
 	
-	private ActionListener getMovementActionListener (String coordinates, JButton[][] buttons){
+	private ActionListener getMovementActionListener (final String coordinates, final JButton[][] buttons){
 		return new ActionListener (){
 			public void actionPerformed(ActionEvent arg0) {
 				Board board = game.getBoard();
