@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+
 import core.*;
 
 /**
@@ -17,7 +18,7 @@ public class PlayersCreationPanel extends JPanel {
 	 * @param game L'instance du jeu en cours
 	 * @param interactionPanel Le panneau d'interaction
 	 */
-	public PlayersCreationPanel (Player p0, Player p1, final GUIGame game, final JPanel interactionPanel){
+	public PlayersCreationPanel (Player p0, Player p1, final GUIGame game, final JPanel interactionPanel, Window window){
 		JButton button = new JButton ("Confirmer");
 		final PlayerCreationPanel panel0 = new PlayerCreationPanel (p0, "Joueur 1");
 		final PlayerCreationPanel panel1 = new PlayerCreationPanel (p1, "Joueur 2");
@@ -29,6 +30,8 @@ public class PlayersCreationPanel extends JPanel {
 				game.setCurrentState(GameState.playerInitialization);
 				interactionPanel.removeAll();
 				interactionPanel.repaint();
+				window.displayAvailableSquares();
+				window.setMessage("Au tour de " + game.getCurrentPlayer() + " de choisir ses fantômes");
 			}
 		});
 

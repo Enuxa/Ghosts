@@ -10,11 +10,13 @@ import core.*;
 
 @SuppressWarnings("serial")
 public class Window extends JFrame{
-	private JPanel boardPanel, interactionPanel;
+	private JPanel boardPanel, gamePanel, interactionPanel, outerInteractionPanel;
+	private JLabel interactionMessage;
 	private JButton[][] squareButtons;
 	private Map<String, Icon> ghostIcons;
 	private Icon hiddenGhostIcon;
 	private GUIGame game;
+	private Color defaultColor, goodColor, badColor, exit0Color, exit1Color;
 	
 	/**
 	 * @param game L'instance du jeu en cours
@@ -22,46 +24,81 @@ public class Window extends JFrame{
 	public Window (GUIGame game){
 		this.game = game;
 
+		//	Assignation des couleurs
+		this.defaultColor = Color.lightGray;
+		this.goodColor = Color.cyan;
+		this.badColor = new Color (180, 0, 0);
+		this.exit0Color = new Color (255, 200, 200);
+		this.exit1Color = new Color (200, 255, 200);
+		
 		JPanel pane = (JPanel)this.getContentPane();
 		pane.setLayout(new GridLayout ());
 		
 		this.setTitle("Ghosts" + (this.game.isCheatModeEnabled () ? "[mode triche]" : ""));
 		this.setPreferredSize(new Dimension (1000,500));
 		
+		this.outerInteractionPanel = new JPanel ();
+		this.interactionMessage = new JLabel ("", JLabel.CENTER);
+		this.interactionPanel = new JPanel ();
+		this.gamePanel = new JPanel ();
+		this.boardPanel = new JPanel ();
+		
+		this.outerInteractionPanel.setLayout(new BorderLayout ());
+		this.outerInteractionPanel.add(this.interactionMessage, BorderLayout.PAGE_START);
+		this.outerInteractionPanel.add(this.interactionPanel);
+		
 		this.loadIcons();
+		this.initGamePanel();
 		this.initInteractionPanel();
-		this.initBoardPanel();
 		
 		this.setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 		
 		//	Ajout des composants
-		pane.add(this.boardPanel, BorderLayout.WEST);
-		pane.add(this.interactionPanel, BorderLayout.EAST);
+		pane.add(this.gamePanel, BorderLayout.WEST);
+		pane.add(outerInteractionPanel, BorderLayout.EAST);
 		
 		this.pack();
-	}
-	
-	/**
-	 * Récupère la couleur de sortie pour un joueur donné
-	 * @param id L'indice du joueur
-	 * @return La couleur de sortie
-	 */
-	public static Color getExitColor (int id){
-		if (id == 0)
-			return new Color (255,200,200);
-		return new Color (200,255,200);
-		
 	}
 	
 	/*
 	 * Initialise le paneau contenant les cases
 	 */
-	private void initBoardPanel (){
+	private void initGamePanel (){
 		int size = this.game.getBoard().getSize();
 		this.boardPanel = new JPanel ();
+		
+		this.gamePanel.setLayout(new BorderLayout ());
+		
+		this.initBoardSquareButtons();
+		
+		this.addCoordinatesPanel(0, size);
+		this.gamePanel.add(this.boardPanel);
+		this.addCoordinatesPanel(1, size);
+		
 		this.boardPanel.setBorder(BorderFactory.createBevelBorder(BevelBorder.LOWERED));
 		this.boardPanel.setLayout(new GridLayout (size, size));
-		this.initBoardSquareButtons();
+	}
+	
+	/**
+	 * Crée un panneau de coordonnées (Nombres verticalement, lettres horizontalement) et l'ajoute au panneau de jeu
+	 * @param k <code>0</code> pour les nombres, <code>1</code> pour les lettres
+	 * @param size La taille du plateau
+	 */
+	private void addCoordinatesPanel (int k, int size){
+		//	Barre d'affichages des coordonées numériques
+		JPanel coordinatesPanel = new JPanel ();
+		if (k == 0){
+			coordinatesPanel.setMaximumSize(new Dimension (40, this.getMaximumSize().height));
+			coordinatesPanel.setLayout(new GridLayout (size, 1));
+		}else{
+			coordinatesPanel.setMaximumSize(new Dimension (this.getMaximumSize().width, 40));
+			coordinatesPanel.setLayout(new GridLayout (1, size));
+		}
+		
+		for (int i = 0; i < size; i++)
+			coordinatesPanel.add(new JLabel (k == 0 ? Integer.toString(size - i) : Character.toString((char)('A' + i)), JLabel.CENTER));
+		
+		this.gamePanel.add(coordinatesPanel, k == 0 ? BorderLayout.LINE_START : BorderLayout.SOUTH);
 	}
 	
 	/*
@@ -88,9 +125,9 @@ public class Window extends JFrame{
 
 				//	Si cette case est une sortie
 				if (square.getPlayerExit() != null)
-					button.setBackground(getExitColor (square.getPlayerExit() == this.game.getPlayer(0) ? 0 : 1));
+					button.setBackground(this.getColorExit(square.getPlayerExit()));
 				else
-					button.setBackground(Color.lightGray);
+					button.setBackground(this.defaultColor);
 				
 				button.addActionListener(sc);
 				
@@ -100,13 +137,21 @@ public class Window extends JFrame{
 		}
 	}
 	/**
+	 * Récupère la couleur de la sortie associée à un joueur
+	 * @param player Le joueur pouvant sortir
+	 * @return La couleur
+	 */
+	private Color getColorExit (Player player){
+		return player == this.game.getPlayer(0) ? this.exit0Color : this.exit1Color;
+	}
+	/**
 	 * Initialise le panneau d'interaction.
-	 * Il contient initialiement le panneau de création les joueurs
+	 * Il contient initialement le panneau de création des joueurs
 	 */
 	private void initInteractionPanel (){
-		this.interactionPanel = new JPanel ();
 		this.interactionPanel.setLayout(new GridLayout ());
-		this.interactionPanel.add(new PlayersCreationPanel (this.game.getPlayer(0), this.game.getPlayer(1), this.game, this.interactionPanel));
+		this.interactionPanel.add(new PlayersCreationPanel (this.game.getPlayer(0), this.game.getPlayer(1), this.game, this.interactionPanel, this));
+		this.interactionMessage.setText("Veuillez vous décrirer s'il vous plaît, Missa");
 	}
 	/**
 	 * Charge les icones se trouvant dans "./icons/" relativement au fichier Winodw.class
@@ -132,8 +177,20 @@ public class Window extends JFrame{
 			this.hiddenGhostIcon = new ImageIcon (path);
 	}
 
+	/**
+	 * Affiche en bleu les cases disponibles pour le joueur en cours
+	 */
+	public void displayAvailableSquares (){
+		for (JButton[] tab : this.squareButtons){
+			for (JButton b : tab){
+				if (this.game.getRuleBook().requestInitialization(this.game.getCurrentPlayer(), b.getName()))
+					b.setBackground(Color.BLUE);
+			}
+		}
+	}
+	
 	/*
-	 * Acyualise l'affichage du plateau
+	 * Actualise l'affichage du plateau
 	 */
 	public void updateDisplay (){
 		Board board = this.game.getBoard();
@@ -150,23 +207,38 @@ public class Window extends JFrame{
 				if (ghost != null){
 					String typeName = this.game.getFactory ().getType(ghost);
 					
-					//	Si ce fantôme n'apprtient pas au joueur courant ET si le mode triche est désactivé : on cache le fantôme
+					//	Si ce fantôme n'appartient pas au joueur courant ET si le mode triche est désactivé : on cache le fantôme
 					if (ghost.getPlayer() != this.game.getCurrentPlayer() && !this.game.isCheatModeEnabled ()){
 						button.setIcon(this.hiddenGhostIcon);
-						button.setBackground(Color.lightGray);
+						button.setBackground(this.defaultColor);
 					}
 					//	Sinon on affiche le fantôme
 					else{
 						button.setIcon(this.ghostIcons.get(typeName));
-						button.setBackground(ghost.isGood() ? Color.CYAN : new Color (180, 0, 0));
+						button.setBackground(ghost.isGood() ? this.goodColor : this.badColor);
 					}
 				//	Si cette case ne possède pas de fantôme
-				}else if (square.getPlayerExit() == null){
-					button.setBackground(Color.lightGray);
+				}else{
 					button.setIcon(null);
+					Player player = square.getPlayerExit();
+					if (player == null)
+						button.setBackground(this.defaultColor);
+					else
+						button.setBackground(this.getColorExit(player));
 				}
 			}
 		}
+
+		if (this.game.getCurrentState() == GameState.playerInitialization)
+			this.displayAvailableSquares();
+	}
+	
+	/**
+	 * Assigne le message d'interaction
+	 * @param msg Le message à afficher
+	 */
+	public void setMessage (String msg){
+		interactionMessage.setText(msg);
 	}
 	
 	/**
@@ -181,6 +253,13 @@ public class Window extends JFrame{
 		button.addActionListener(new ActionListener (){
 			public void actionPerformed(ActionEvent arg0) {
 				game.nextPlayer();
+				
+				if (game.getCurrentState() == GameState.playerInitialization)
+					interactionMessage.setText("Au tour de " + game.getCurrentPlayer() + " de choisir ses fantômes");
+				else if (game.getCurrentState() == GameState.inTurn)
+					interactionMessage.setText("Au tour de " + game.getCurrentPlayer() + " de déplacer un fantôme");
+				
+				
 				//	Si pendant l'initialisation, on est revenu au premier joueur, c'est que chacun a placé ses pions et on peut jouer !
 				if (game.getCurrentPlayer() == game.getPlayer(0) && game.getCurrentState() == GameState.playerInitialization)
 					game.setCurrentState(GameState.inTurn);

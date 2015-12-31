@@ -27,11 +27,11 @@ public class GUIGame extends Game {
 		
 		this.window = new Window (this);
 		
-		this.window.setVisible(true);
-
 		this.currentState = GameState.playersCreation;
 		this.currentPlayer = this.getPlayer(0);
 		this.hasPlayed = false;
+		
+		this.window.setVisible(true);
 	}
 	
 	/**
@@ -62,7 +62,7 @@ public class GUIGame extends Game {
 	 * Passe au joueur suivant
 	 */
 	public void nextPlayer (){
-		//	Si on est en train de jouer, on met a jour les sorties (c'est à dire faire sorti les fantômes qui sont resté un tour sur une sortie)
+		//	Si on est en train de jouer, on met à jour les sorties (c'est à dire faire sortir les fantômes qui sont restés un tour sur une sortie)
 		if (this.currentState == GameState.inTurn){
 			this.updateExits(this.currentPlayer);
 			this.window.updateDisplay();
@@ -70,7 +70,7 @@ public class GUIGame extends Game {
 			if (this.isGameOver()){
 				Player w = this.getRuleBook().getWinner();
 				if (w != null)
-					javax.swing.JOptionPane.showMessageDialog(this.window, w + " a gagné ! Bravo " + w);
+					javax.swing.JOptionPane.showMessageDialog(this.window, w + " a gagné ! Bravo " + w + " !");
 				else
 					javax.swing.JOptionPane.showMessageDialog(this.window, "Match nul !");
 				this.window.dispatchEvent(new WindowEvent (this.window, WindowEvent.WINDOW_CLOSING));
