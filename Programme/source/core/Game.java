@@ -86,27 +86,27 @@ public abstract class Game{
 	*/
 	public abstract void run ();
 	/**
-	 * Fait sortir les fantômes d'un joueur
-	 * @param p Le joueur
+	 * Fait sortir les fantômes
 	 */
-	private void makeGhostsExit (Player p){
+	private void makeGhostsExit (){
 		//	Sortie des fantômes
 		for (Ghost g : this.onExits){
-			if (g.getPlayer() == p)
-				p.exitGhost(g);
+			g.getPlayer().exitGhost(g);
 		}
 	}
 	/**
 	 * Fait sortir les fantômes positionnés sur une sortie et ayant survécu un tour et met en attente les nouveaux fantômes sur les sorties.
 	 */
-	protected void updateExits (Player p){
-		this.makeGhostsExit(p);
+	protected void updateExits (){
+		this.makeGhostsExit();
 		
 		//	Ajout des fantômes qui sont sur des sorties
-		for (Ghost g : p.getPlayingGhosts()){
-			String position = this.board.getPosition(g);
-			if (this.board.canExit(position, g))
-				this.onExits.add(g);
+		for (Player p : this.players){
+			for (Ghost g : p.getPlayingGhosts()){
+				String position = this.board.getPosition(g);
+				if (this.board.canExit(position, g))
+					this.onExits.add(g);
+			}
 		}
 	}
 	/**

@@ -151,7 +151,6 @@ public class Window extends JFrame{
 	private void initInteractionPanel (){
 		this.interactionPanel.setLayout(new GridLayout ());
 		this.interactionPanel.add(new PlayersCreationPanel (this.game.getPlayer(0), this.game.getPlayer(1), this.game, this.interactionPanel, this));
-		this.interactionMessage.setText("Veuillez vous décrirer s'il vous plaît, Missa");
 	}
 	/**
 	 * Charge les icones se trouvant dans "./icons/" relativement au fichier Winodw.class
@@ -242,7 +241,7 @@ public class Window extends JFrame{
 	}
 	
 	/**
-	 * Passer au joueur suivant
+	 * Ajoute le bouton pour passer au joueur suivant
 	 */
 	public void nextPlayer (){
 		this.interactionPanel.removeAll();
@@ -252,22 +251,10 @@ public class Window extends JFrame{
 		//	Action à effectuer lorsque l'on clique sur le bouton "Je suis prêt !"
 		button.addActionListener(new ActionListener (){
 			public void actionPerformed(ActionEvent arg0) {
-				game.nextPlayer();
-				
-				if (game.getCurrentState() == GameState.playerInitialization)
-					interactionMessage.setText("Au tour de " + game.getCurrentPlayer() + " de choisir ses fantômes");
-				else if (game.getCurrentState() == GameState.inTurn)
-					interactionMessage.setText("Au tour de " + game.getCurrentPlayer() + " de déplacer un fantôme");
-				
-				
-				//	Si pendant l'initialisation, on est revenu au premier joueur, c'est que chacun a placé ses pions et on peut jouer !
-				if (game.getCurrentPlayer() == game.getPlayer(0) && game.getCurrentState() == GameState.playerInitialization)
-					game.setCurrentState(GameState.inTurn);
-				
-				updateDisplay ();
-				
 				interactionPanel.removeAll();
 				interactionPanel.repaint();
+				game.nextState();
+				updateDisplay ();
 			}
 		});
 		

@@ -2,6 +2,7 @@ package base.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
 import core.*;
 
@@ -12,6 +13,7 @@ public class SquareController implements ActionListener{
 	public GUIGame game;
 	public JPanel interactionPanel; 
 	public Window window;
+	public static JButton deleteGhostButton;
 	/**
 	 * @param guiGame Instance du jeu en cours
 	 * @param interactionPanel Panneau d'interaction
@@ -43,26 +45,19 @@ public class SquareController implements ActionListener{
 				JPanel ngp = new NewGhostPanel (coordinates, this.game, this.window, this.interactionPanel);
 
 				//	Mais avant, si on avait déjà un panneau de création de fantôme, on vide le panneau d'interaction !
-				if (tabComp.length >= 1 && tabComp[0] instanceof NewGhostPanel)
+				if (tabComp.length >= 1 && (tabComp[0] instanceof NewGhostPanel || tabComp[0] instanceof GhostRemoveButton))
 					this.interactionPanel.removeAll();
 
 				this.interactionPanel.add(ngp);
 				this.window.validate();
-			// Si la case a déjà un fantôme
-			}else if (currentPlayer.hasGhost(ghost)) {
-				// Alors on ajoute un bouton de suppression de fantôme !
-				JButton button = new JButton ("Supprimer ce fantôme");
-				ActionListener al = new ActionListener (){
-					public void actionPerformed(ActionEvent arg0) {
-						board.removeGhost(ghost);
-						currentPlayer.removeGhost(ghost);
-						window.updateDisplay();
-						interactionPanel.removeAll();
-						window.repaint();
-					}
-				};
-				button.addActionListener(al);
-				this.interactionPanel.add(button);
+			// Si la case a déjà un fantôme et que le joueur n'est pas automatique
+			}else if (currentPlayer.hasGhost(ghost) && !currentPlayer.isAuto()) {
+				//	On supprime les eventuels boutons de suppression de fantômes ou panneaux d'ajout de fantôme
+				for (Component comp : interactionPanel.getComponents()){
+					if (comp instanceof GhostRemoveButton || comp instanceof NewGhostPanel)
+						interactionPanel.remove(comp);
+				}
+				this.interactionPanel.add(new GhostRemoveButton (ghost, board, currentPlayer));
 				this.window.validate();
 			}
 		//	Si on est en plein tour et que le joueur n'a pas encore joué, on lui offre la possibilité de déplacer le pion qu'il a cliqué (s'il existe)
@@ -82,6 +77,21 @@ public class SquareController implements ActionListener{
 					}
 				}
 			}
+		}
+	}
+	@SuppressWarnings("serial")
+	private class GhostRemoveButton extends JButton {
+		public GhostRemoveButton (Ghost ghost, Board board, Player currentPlayer){
+			super ("Supprimer ce fantôme");
+			this.addActionListener(new ActionListener (){
+				public void actionPerformed(ActionEvent arg0) {
+					board.removeGhost(ghost);
+					currentPlayer.removeGhost(ghost);
+					window.updateDisplay();
+					interactionPanel.removeAll();
+					window.repaint();
+				}
+			});
 		}
 	}
 	/**

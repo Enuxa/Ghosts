@@ -12,7 +12,7 @@ public class GUIGame extends Game {
 	private Player currentPlayer;
 	private Window window;
 	private GameState currentState;
-	private boolean hasPlayed;
+	private boolean hasPlayed, firstPlayerInitialized;
 	
 	/**
 	 * @param cheatMode <code>true</code> si on joue cette partie en mode triche
@@ -25,12 +25,11 @@ public class GUIGame extends Game {
 	public void run() {
 		this.load();
 		
-		this.window = new Window (this);
-		
 		this.currentState = GameState.playersCreation;
-		this.currentPlayer = this.getPlayer(0);
-		this.hasPlayed = false;
+		this.currentPlayer = null;
+		this.firstPlayerInitialized = false;
 		
+		this.window = new Window (this);
 		this.window.setVisible(true);
 	}
 	
@@ -61,10 +60,24 @@ public class GUIGame extends Game {
 	/**
 	 * Passe au joueur suivant
 	 */
-	public void nextPlayer (){
-		//	Si on est en train de jouer, on met à jour les sorties (c'est à dire faire sortir les fantômes qui sont restés un tour sur une sortie)
-		if (this.currentState == GameState.inTurn){
-			this.updateExits(this.currentPlayer);
+	public void nextState (){
+		//	On passe au joueur suivant
+		if (this.currentPlayer == null)
+			this.currentPlayer = this.getPlayer(0);
+		else{
+			this.currentPlayer = this.otherPlayer();
+			if (this.currentState == GameState.playerInitialization && this.currentPlayer == this.getPlayer(0)){
+				if (this.firstPlayerInitialized)
+					this.firstPlayerInitialized = true;
+				else
+					this.currentState = GameState.inTurn;
+			}
+		}
+		
+		if (this.currentState == GameState.playersCreation)
+			this.currentState = GameState.playerInitialization;
+		else if (this.currentState == GameState.inTurn){
+			this.updateExits();
 			this.window.updateDisplay();
 			//	Si le jeu est fini
 			if (this.isGameOver()){
@@ -73,18 +86,40 @@ public class GUIGame extends Game {
 					javax.swing.JOptionPane.showMessageDialog(this.window, w + " a gagné ! Bravo " + w + " !");
 				else
 					javax.swing.JOptionPane.showMessageDialog(this.window, "Match nul !");
-				this.window.dispatchEvent(new WindowEvent (this.window, WindowEvent.WINDOW_CLOSING));
+				System.exit(0);
 			}
 		}
-		//	On passe au joueur suivant
-		this.currentPlayer = this.currentPlayer == this.getPlayer(0) ? this.getPlayer(1) : this.getPlayer(0);
 		
-		//	Si le nouveau joueur est automatique, on le fait jouer puis on passe au prochain joueur
 		if (this.currentPlayer.isAuto()){
-			this.currentPlayer.getAutoPlay().turn();
+			AutoPlay ap = this.currentPlayer.getAutoPlay();
+			if (this.currentState == GameState.playerInitialization)
+				ap.initialize();
+			else if (this.currentState == GameState.inTurn){
+				ap.turn();
+				this.hasPlayed = true;
+			}
 			this.window.updateDisplay();
-			this.nextPlayer();
+			this.window.nextPlayer();
+			return;
+		}else{
+			if (this.currentState == GameState.playerInitialization)
+				this.window.displayAvailableSquares();
 		}
+		
+		//	Mise a jour du message d'interaction
+		String msg = "";
+		switch (this.currentState){
+			case playerInitialization :
+				msg = "A " + this.currentPlayer + " de jouer !";
+				break;
+			case playersCreation :
+				msg = "Veuillez vous identifier";
+				break;
+			case inTurn :
+				msg = "A " + this.currentPlayer + " de placer ses pions.";
+				break;
+		}
+		this.window.setMessage(msg);
 		
 		//	Le nouveau joueur actuel n'a pas joué
 		this.hasPlayed = false;
@@ -102,5 +137,13 @@ public class GUIGame extends Game {
 	 */
 	public boolean hasPlayed (){
 		return this.hasPlayed;
+	}
+	
+	/**
+	 * Récupère le joueur qui n'est pas en trai de jouer
+	 * @return Le joueur
+	 */
+	private Player otherPlayer (){
+		return this.currentPlayer == this.getPlayer(0) ? this.getPlayer(1) : this.getPlayer(0);
 	}
 }

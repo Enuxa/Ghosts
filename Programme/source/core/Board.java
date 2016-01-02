@@ -103,7 +103,7 @@ public class Board{
 		String coordinates = this.getPosition(ghost);
 		Square square = this.getSquare(coordinates);
 		
-//		Si un des joueurs possède ce fantôme ET si celui ci se trouve sur une case de sortie
+		//	Si un des joueurs possède ce fantôme ET si celui ci se trouve sur une case de sortie
 		return ghost.getPlayer() != null && square.getPlayerExit() == ghost.getPlayer();
 	}
 	/**

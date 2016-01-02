@@ -25,13 +25,21 @@ public class PlayersCreationPanel extends JPanel {
 		
 		button.addActionListener(new ActionListener (){
 			public void actionPerformed(ActionEvent arg0) {
-				panel0.setPlayer();
-				panel1.setPlayer();
-				game.setCurrentState(GameState.playerInitialization);
+				try {
+					panel0.setPlayer();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(window, "Impossible d'utiliser le fichier " + panel0.file + " :\n" + e.getMessage());
+					return;
+				}
+				try {
+					panel1.setPlayer();
+				} catch (Exception e) {
+					JOptionPane.showMessageDialog(window, "Impossible d'utiliser le fichier " + panel1.file + " :\n" + e.getMessage());
+					return;
+				}
 				interactionPanel.removeAll();
 				interactionPanel.repaint();
-				window.displayAvailableSquares();
-				window.setMessage("Au tour de " + game.getCurrentPlayer() + " de choisir ses fantômes");
+				game.nextState();
 			}
 		});
 
@@ -95,10 +103,11 @@ public class PlayersCreationPanel extends JPanel {
 		/*
 		 * Assigne les informations recueillies au joueur
 		 */
-		public void setPlayer (){
+		public void setPlayer () throws Exception{
 			this.player.setName(this.nameField.getText());
 			if (this.autoCB.isSelected()){
-				this.player.setAutoplay(new AutoPlay (this.file, this.player));
+				AutoPlay ap = new AutoPlay (this.file.getAbsolutePath(), this.player);
+				this.player.setAutoplay(ap);
 			}
 		}
 	}
