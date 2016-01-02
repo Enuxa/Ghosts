@@ -132,8 +132,10 @@ public class Board{
 	 * Retire un fantôme du plateau
 	 * @param ghost Le fantôme à retirer
 	 */
-	private void removeGhost (Ghost ghost){
+	public void removeGhost (Ghost ghost){
 		String position = this.getPosition(ghost);
+		if (position == null)
+			throw new RuntimeException ("Le fantôme " + ghost + " n'est sur aucune case !");
 		this.getSquare(position).removeGhost();
 	}
 }

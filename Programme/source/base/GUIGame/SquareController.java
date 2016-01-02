@@ -25,40 +25,58 @@ public class SquareController implements ActionListener{
 	
 	public void actionPerformed(ActionEvent arg) {
 		Component[] tabComp = this.interactionPanel.getComponents();
-		//	Si on a cliqué sur une case et qu'on avait deja un panneau de création de fantôme, on vide la panneau d'interaction
-		if (tabComp.length >= 1 && tabComp[0] instanceof NewGhostPanel){
-			this.interactionPanel.removeAll();
-			this.interactionPanel.repaint();
-		}
 		
 		JButton originButton = (JButton)arg.getSource();
 		String coordinates = originButton.getName();
 		Square square = this.game.getBoard().getSquare(coordinates);
+		Board board = this.game.getBoard();
+		RuleBook ruleBook = this.game.getRuleBook();
+		Player currentPlayer = this.game.getCurrentPlayer();
+		GameState currentState = this.game.getCurrentState();
 		
 		//	Si on est cours d'initialisation d'un joueur
-		if (this.game.getCurrentState() == GameState.playerInitialization){
-			//	Si le joueur actuel est autorisé à éventuellement placer un fantôme sur cette case...
-			if (this.game.getRuleBook().requestInitialization(this.game.getCurrentPlayer(), coordinates)){
-				//	... et s'il n'y a pas déjà de fantôme sur cette case
-				if (square.getGhost() == null){
-					//	Alors on ajoute un panneau de création de fantôme !
-					JPanel ngp = new NewGhostPanel (coordinates, this.game, this.window, this.interactionPanel);
-					this.interactionPanel.add(ngp);
-					this.window.validate();
-				}
+		if (currentState == GameState.playerInitialization){
+			Ghost ghost = board.getSquare(coordinates).getGhost();
+			//	Si le joueur actuel est autorisé à éventuellement placer un fantôme sur cette case
+			if (ruleBook.requestInitialization(currentPlayer, coordinates)){
+				//	Alors on ajoute un panneau de création de fantôme !
+				JPanel ngp = new NewGhostPanel (coordinates, this.game, this.window, this.interactionPanel);
+
+				//	Mais avant, si on avait déjà un panneau de création de fantôme, on vide le panneau d'interaction !
+				if (tabComp.length >= 1 && tabComp[0] instanceof NewGhostPanel)
+					this.interactionPanel.removeAll();
+
+				this.interactionPanel.add(ngp);
+				this.window.validate();
+			// Si la case a déjà un fantôme
+			}else if (currentPlayer.hasGhost(ghost)) {
+				// Alors on ajoute un bouton de suppression de fantôme !
+				JButton button = new JButton ("Supprimer ce fantôme");
+				ActionListener al = new ActionListener (){
+					public void actionPerformed(ActionEvent arg0) {
+						board.removeGhost(ghost);
+						currentPlayer.removeGhost(ghost);
+						window.updateDisplay();
+						interactionPanel.removeAll();
+						window.repaint();
+					}
+				};
+				button.addActionListener(al);
+				this.interactionPanel.add(button);
+				this.window.validate();
 			}
 		//	Si on est en plein tour et que le joueur n'a pas encore joué, on lui offre la possibilité de déplacer le pion qu'il a cliqué (s'il existe)
-		}else if (this.game.getCurrentState() == GameState.inTurn && !game.hasPlayed() && square.getGhost() != null){
+		}else if (currentState == GameState.inTurn && !game.hasPlayed() && square.getGhost() != null){
 			JButton[][] buttons = window.getSquareButtons();
 			
 			ActionListener al = new MovementController(coordinates, buttons);
 
 			this.removePreviousMovementController();
 
-			//	On ajoute a toutes les cases l'ActionListener permettant de réagir à la demande de déplacement
+			//	On ajoute à toutes les cases l'ActionListener permettant de réagir à la demande de déplacement
 			for (JButton[] tab : buttons){
 				for (JButton b: tab){
-					if (this.game.getRuleBook().requestMovement(this.game.getCurrentPlayer(), coordinates, b.getName())){
+					if (ruleBook.requestMovement(currentPlayer, coordinates, b.getName())){
 						b.addActionListener(al);
 						b.setBackground(Color.BLUE);
 					}

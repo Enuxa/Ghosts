@@ -82,6 +82,7 @@ public class GUIGame extends Game {
 		//	Si le nouveau joueur est automatique, on le fait jouer puis on passe au prochain joueur
 		if (this.currentPlayer.isAuto()){
 			this.currentPlayer.getAutoPlay().turn();
+			this.window.updateDisplay();
 			this.nextPlayer();
 		}
 		

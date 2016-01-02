@@ -138,4 +138,11 @@ public class Player{
 	public String toString (){
 		return this.name;
 	}
+	/**
+	 * Supprime un fantôme de la liste de fantôme du joueur
+	 * @param ghost Le fantôme à supprimer
+	 */
+	public void removeGhost (Ghost ghost) {
+		this.ghosts.remove(ghost);
+	}
 }
