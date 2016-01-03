@@ -1,0 +1,372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="155cm" height="69cm" viewBox="-2097 69 3094 1378" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="68.6398" y="1036.6" width="318" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="68.6398" y="1036.6" width="318" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="227.64" y="1055.6">AutoPlay</text>
+    <rect style="fill: #ffffff" x="68.6398" y="1064.6" width="318" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="68.6398" y="1064.6" width="318" height="8"/>
+    <rect style="fill: #ffffff" x="68.6398" y="1072.6" width="318" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="68.6398" y="1072.6" width="318" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="71.6398" y="1086.6">+AutoPlay(filePath:String,player:Player)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="71.6398" y="1102.6">+turn()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="71.6398" y="1118.6">+initialize()</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="601.138" y="582.392" width="395" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="601.138" y="582.392" width="395" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="798.638" y="601.392">Board</text>
+    <rect style="fill: #ffffff" x="601.138" y="610.392" width="395" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="601.138" y="610.392" width="395" height="8"/>
+    <rect style="fill: #ffffff" x="601.138" y="618.392" width="395" height="164"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="601.138" y="618.392" width="395" height="164"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="632.392">+Board(size:int,String[*]:exits0,String[*]:exits1)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="648.392">+&lt;&lt;static&gt;&gt; toCoordinates(i:int,j:int): String</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="664.392">+&lt;&lt;static&gt;&gt; toX(position:String): char</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="680.392">+&lt;&lt;static&gt;&gt; toY(position:String): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="696.392">+getSquare(coordinates:String): Square</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="712.392">+getSize(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="728.392">+canExit(position:String,ghost:Ghost): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="744.392">+capture(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="760.392">+exit(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="604.138" y="776.392">+removeGhost(ghost:Ghost)</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-2095.64" y="1329.42" width="333.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-2095.64" y="1329.42" width="333.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1928.94" y="1348.42">CaptureRule</text>
+    <rect style="fill: #ffffff" x="-2095.64" y="1357.42" width="333.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-2095.64" y="1357.42" width="333.4" height="8"/>
+    <rect style="fill: #ffffff" x="-2095.64" y="1365.42" width="333.4" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-2095.64" y="1365.42" width="333.4" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-2092.64" y="1379.42">+requestCapture(square:String,ghost:Ghost,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-2092.64" y="1395.42">                player:Player): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1903.23" y="1099.32" width="187.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1903.23" y="1099.32" width="187.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1809.68" y="1118.32">Extension</text>
+    <rect style="fill: #ffffff" x="-1903.23" y="1127.32" width="187.1" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1903.23" y="1127.32" width="187.1" height="8"/>
+    <rect style="fill: #ffffff" x="-1903.23" y="1135.32" width="187.1" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1903.23" y="1135.32" width="187.1" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1900.23" y="1149.32">+Extension(name:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1900.23" y="1165.32">+load()</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-164.187" y="198.556" width="379.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-164.187" y="198.556" width="379.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="25.613" y="217.556">Game</text>
+    <rect style="fill: #ffffff" x="-164.187" y="226.556" width="379.6" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-164.187" y="226.556" width="379.6" height="8"/>
+    <rect style="fill: #ffffff" x="-164.187" y="234.556" width="379.6" height="164"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-164.187" y="234.556" width="379.6" height="164"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="248.556">+Game(cheatMode:boolean,extensions:Extension[*])</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="264.556">+isCheatModeEnabled(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="280.556">+getFactory(): GhostFactory</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="296.556">+getPlayer(id:int): Player</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="312.556">+getRuleBook(): RuleBook</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="328.556">+&lt;&lt;static&gt;&gt; getCurrent(): Game</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="344.556">+run()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="360.556">#updateExits()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="376.556">#isGameOver(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-161.187" y="392.556">#load()</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1185.89" y="1325.75" width="179.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1185.89" y="1325.75" width="179.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1096.19" y="1344.75">GameEndRule</text>
+    <rect style="fill: #ffffff" x="-1185.89" y="1353.75" width="179.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1185.89" y="1353.75" width="179.4" height="8"/>
+    <rect style="fill: #ffffff" x="-1185.89" y="1361.75" width="179.4" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1185.89" y="1361.75" width="179.4" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1182.89" y="1375.75">+isGameOver(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1182.89" y="1391.75">+getWinner(): Player</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-391.266" y="984.958" width="379.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-391.266" y="984.958" width="379.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-201.466" y="1003.96">Ghost</text>
+    <rect style="fill: #ffffff" x="-391.266" y="1012.96" width="379.6" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-391.266" y="1012.96" width="379.6" height="8"/>
+    <rect style="fill: #ffffff" x="-391.266" y="1020.96" width="379.6" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-391.266" y="1020.96" width="379.6" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-388.266" y="1034.96">+Ghost(isGood:boolean,type:String,player:Player)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-388.266" y="1050.96">+move(coordinates:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-388.266" y="1066.96">+getPlayer(): Player</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-388.266" y="1082.96">+getType(): String</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-781.35" y="521.088" width="472" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-781.35" y="521.088" width="472" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-545.35" y="540.088">GhostFactory</text>
+    <rect style="fill: #ffffff" x="-781.35" y="549.088" width="472" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-781.35" y="549.088" width="472" height="8"/>
+    <rect style="fill: #ffffff" x="-781.35" y="557.088" width="472" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-781.35" y="557.088" width="472" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-778.35" y="571.088">+&lt;&lt;static&gt;&gt; createghost(ghostType:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-778.35" y="587.088">                        isGood:boolean,player:Player): Ghost</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-778.35" y="603.088">+&lt;&lt;static&gt;&gt; addghostType(ghostType:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-778.35" y="619.088">+&lt;&lt;static&gt;&gt; getTypes(): String[*]</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-932.856" y="1326.51" width="487.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-932.856" y="1326.51" width="487.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-689.156" y="1345.51">InitializationRule</text>
+    <rect style="fill: #ffffff" x="-932.856" y="1354.51" width="487.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-932.856" y="1354.51" width="487.4" height="8"/>
+    <rect style="fill: #ffffff" x="-932.856" y="1362.51" width="487.4" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-932.856" y="1362.51" width="487.4" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-929.856" y="1376.51">+requestInitialization(player:Player,ghost:Ghost,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-929.856" y="1392.51">                       position:String): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-929.856" y="1408.51">+requestInitialization(player:Player,position:String): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-929.856" y="1424.51">+getBoard(): Board</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-929.856" y="1440.51">+isReady(player:Player): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1633.15" y="1329.04" width="364.2" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1633.15" y="1329.04" width="364.2" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1451.05" y="1348.04">MovementRule</text>
+    <rect style="fill: #ffffff" x="-1633.15" y="1357.04" width="364.2" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1633.15" y="1357.04" width="364.2" height="8"/>
+    <rect style="fill: #ffffff" x="-1633.15" y="1365.04" width="364.2" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1633.15" y="1365.04" width="364.2" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1630.15" y="1379.04">+requestmovement(player:Player,squareA:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1630.15" y="1395.04">                 squareB:String): booolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-117.801" y="553.706" width="302.6" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-117.801" y="553.706" width="302.6" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="33.4994" y="572.706">Player</text>
+    <rect style="fill: #ffffff" x="-117.801" y="581.706" width="302.6" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-117.801" y="581.706" width="302.6" height="8"/>
+    <rect style="fill: #ffffff" x="-117.801" y="589.706" width="302.6" height="260"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-117.801" y="589.706" width="302.6" height="260"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="603.706">+Player(name:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="619.706">+setName(name:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="635.706">+setAutoplay(autoPlay:Autoplay)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="651.706">+isAuto(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="667.706">+getAutoplay(): AutoPlay</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="683.706">+getGhosts(): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="699.706">+getGhosts(isGood:boolean): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="715.706">+getExited(): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="731.706">+getGhosts(ghostType:String): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="747.706">+getCaptured(): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="763.706">+getPlayingGhosts(): Ghost[*]</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="779.706">+addGhost(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="795.706">+removeGhost(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="811.706">+hasGhost(ghost:Ghost): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="827.706">+captureGhost(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-114.801" y="843.706">+exitGhost(ghost:ghost)</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1338.85" y="1088.55" width="264.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1338.85" y="1088.55" width="264.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1206.8" y="1107.55">Rule</text>
+    <rect style="fill: #ffffff" x="-1338.85" y="1116.55" width="264.1" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1338.85" y="1116.55" width="264.1" height="8"/>
+    <rect style="fill: #ffffff" x="-1338.85" y="1124.55" width="264.1" height="68"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1338.85" y="1124.55" width="264.1" height="68"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1335.85" y="1138.55">+Rule(priority:int)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1335.85" y="1154.55">+getPriority(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1335.85" y="1170.55">+prevailsOver(rule:Rule): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1335.85" y="1186.55">+samePriority(rule:Rule): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1451.07" y="486.028" width="487.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1451.07" y="486.028" width="487.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-1207.37" y="505.028">RuleBook</text>
+    <rect style="fill: #ffffff" x="-1451.07" y="514.028" width="487.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1451.07" y="514.028" width="487.4" height="8"/>
+    <rect style="fill: #ffffff" x="-1451.07" y="522.028" width="487.4" height="196"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1451.07" y="522.028" width="487.4" height="196"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="536.028">+addRule(rule:Rule)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="552.028">+requestInitialization(player:Player,ghost:Ghost,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="568.028">                       position:String): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="584.028">+requestInitialization(player:Player,position:String): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="600.028">+requestMovement(player:Player,squareA:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="616.028">                 squareB:String): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="632.028">+isGameOver(): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="648.028">+getWinner(): Player</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="664.028">+getBoard(): Board</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="680.028">+isRead(player:Player): boolean</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="696.028">+requestCapture(player:Player,square:String,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1448.07" y="712.028">                ghost:Ghost): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-1288.12" y="861.084" width="164" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1288.12" y="861.084" width="164" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="-1206.12" y="880.084">RuleSet</text>
+    <rect style="fill: #ffffff" x="-1288.12" y="889.084" width="164" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1288.12" y="889.084" width="164" height="8"/>
+    <rect style="fill: #ffffff" x="-1288.12" y="897.084" width="164" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-1288.12" y="897.084" width="164" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1285.12" y="911.084">+add(rule:T)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1285.12" y="927.084">+getTopRules(): T[*]</text>
+    <rect style="fill: #ffffff" x="-1170.12" y="847.084" width="115.8" height="20"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke-dasharray: 6; stroke: #000000" x="-1170.12" y="847.084" width="115.8" height="20"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1164.12" y="861.084">T:extends Rule</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="621.112" y="907.202" width="356.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="621.112" y="907.202" width="356.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="799.362" y="926.202">Square</text>
+    <rect style="fill: #ffffff" x="621.112" y="935.202" width="356.5" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="621.112" y="935.202" width="356.5" height="8"/>
+    <rect style="fill: #ffffff" x="621.112" y="943.202" width="356.5" height="116"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="621.112" y="943.202" width="356.5" height="116"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="957.202">+Square(coordinates:String,playerExit:Player)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="973.202">+getGhost(): Ghost</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="989.202">+putGost(ghost:Ghost)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="1005.2">+removeGhost()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="1021.2">+getX(): char</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="1037.2">+getY(): int</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="624.112" y="1053.2">+getPlayerExit(): Player</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,424.734 25.613,497.474 798.638,497.474 798.638,581.386 "/>
+    <polygon style="fill: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="412.125" y="494.474"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="36.613" y="411.562">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="802.638" y="577.386">1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,424.734 25.613,483.129 33.4994,483.129 33.4994,552.697 "/>
+    <polygon style="fill: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="29.5562" y="480.129"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="36.613" y="411.562">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="37.4994" y="548.697">1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,424.734 25.613,466.822 -545.35,466.822 -545.35,520.082 "/>
+    <polygon style="fill: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="-259.868" y="463.822"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="36.613" y="411.562">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-541.35" y="516.082">1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,424.734 25.613,449.291 -1207.37,449.291 -1207.37,485.021 "/>
+    <polygon style="fill: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="25.613,399.562 30.413,413.562 25.613,427.562 20.813,413.562 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="-590.88" y="446.291"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="36.613" y="411.562">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1203.37" y="481.021">1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1207.37,744.207 -1207.37,789.556 -1206.12,789.556 -1206.12,846.078 "/>
+    <polygon style="fill: #000000" points="-1207.37,719.035 -1202.57,733.035 -1207.37,747.035 -1212.17,733.035 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1207.37,719.035 -1202.57,733.035 -1207.37,747.035 -1212.17,733.035 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="-1206.74" y="786.556"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1196.37" y="731.035">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1202.12" y="842.078">4</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.12,959.265 -1206.12,1017.82 -1206.8,1017.82 -1206.8,1087.54 "/>
+    <polygon style="fill: #000000" points="-1206.12,934.093 -1201.32,948.093 -1206.12,962.093 -1210.92,948.093 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.12,934.093 -1201.32,948.093 -1206.12,962.093 -1210.92,948.093 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="-1206.46" y="1014.82"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1195.12" y="946.093">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1202.8" y="1083.54">*</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.8,1211.79 -1206.8,1268.79 -1451.05,1268.79 -1451.05,1328.03 "/>
+    <polygon style="fill: #ffffff" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.8,1211.79 -1206.8,1267.15 -1096.19,1267.15 -1096.19,1324.74 "/>
+    <polygon style="fill: #ffffff" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.8,1211.79 -1206.8,1267.53 -689.156,1267.53 -689.156,1325.51 "/>
+    <polygon style="fill: #ffffff" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1206.8,1211.79 -1206.8,1268.98 -1928.94,1268.98 -1928.94,1328.41 "/>
+    <polygon style="fill: #ffffff" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1198.8,1211.79 -1206.8,1195.79 -1214.8,1211.79 "/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="33.4994,875.887 33.4994,950.156 227.64,950.156 227.64,1035.6 "/>
+    <polygon style="fill: #000000" points="33.4994,850.715 38.2994,864.715 33.4994,878.715 28.6994,864.715 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="33.4994,850.715 38.2994,864.715 33.4994,878.715 28.6994,864.715 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="130.57" y="947.156"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="44.4994" y="862.715">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="231.64" y="1031.6">0..1</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="33.4994,875.887 33.4994,924.333 -201.466,924.333 -201.466,983.952 "/>
+    <polygon style="fill: #000000" points="33.4994,850.715 38.2994,864.715 33.4994,878.715 28.6994,864.715 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="33.4994,850.715 38.2994,864.715 33.4994,878.715 28.6994,864.715 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="-83.9833" y="921.333"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="44.4994" y="862.715"> 1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="44.4994" y="878.715"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-197.466" y="963.952"> 6..*</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-197.466" y="979.952"></text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="798.638,808.57 798.638,851.795 799.362,851.795 799.362,906.193 "/>
+    <polygon style="fill: #000000" points="798.638,783.398 803.438,797.398 798.638,811.398 793.838,797.398 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="798.638,783.398 803.438,797.398 798.638,811.398 793.838,797.398 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="799" y="848.795"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="809.638" y="795.398"> 1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="809.638" y="811.398"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="803.362" y="886.193"> 36..*</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="803.362" y="902.193"></text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1689.95,1135.32 -1520.49,1135.32 -1520.49,1140.55 -1339.86,1140.55 "/>
+    <polygon style="fill: #000000" points="-1715.12,1135.32 -1701.12,1130.52 -1687.12,1135.32 -1701.12,1140.12 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1715.12,1135.32 -1701.12,1130.52 -1687.12,1135.32 -1701.12,1140.12 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1518.49" y="1134.94"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-1683.12" y="1132.32">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:end;font-family:monospace;font-style:normal;font-weight:normal" x="-1343.86" y="1137.55">*</text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -165.184 286.06 C -599.659,257.604 -1315.67,228.424 -1243.96,475.811"/>
+    <polygon style="fill: #000000" points="-1241.87,483.014 -1249.46,474.801 -1243.96,475.811 -1239.86,472.017 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1241.87,483.014 -1249.46,474.801 -1243.96,475.811 -1239.86,472.017 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-845.216" y="252.82">
+    <tspan x="-845.216" y="252.82">Demande une autorisation</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -963.674 596.028 C -841.95,820.514 -993.161,1140.55 -1064.14,1140.55"/>
+    <polygon style="fill: #000000" points="-1071.64,1140.55 -1061.64,1135.55 -1064.14,1140.55 -1061.64,1145.55 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1071.64,1140.55 -1061.64,1135.55 -1064.14,1140.55 -1061.64,1145.55 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-915.008" y="881.578">
+    <tspan x="-915.008" y="881.578">Transmet la demande d'autorisation</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -545.917 625.528 C -548.099,827.156 -506.411,1036.96 -401.977,1036.96"/>
+    <polygon style="fill: #000000" points="-394.477,1036.96 -404.477,1041.96 -401.977,1036.96 -404.477,1031.96 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-394.477,1036.96 -404.477,1041.96 -401.977,1036.96 -404.477,1031.96 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-525.724" y="817.242">
+    <tspan x="-525.724" y="817.242">Instancie</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M -136.487,197.565 A 1150.96,1150.96 0 0 0 -1805.21,1088.65"/>
+    <polygon style="fill: #000000" points="-1806.06,1096.1 -1809.96,1085.62 -1805.26,1088.64 -1800.02,1086.69 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="-1806.06,1096.1 -1809.96,1085.62 -1805.26,1088.64 -1800.02,1086.69 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="-1708.33" y="348.792">
+    <tspan x="-1708.33" y="348.792">Charge les règles et les types de fantômes</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 216.403 295.594 C 420.086,292.432 357.415,892.65 264.243,1027.59"/>
+    <polygon style="fill: #000000" points="259.982,1033.76 261.549,1022.69 264.243,1027.59 269.778,1028.37 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="259.982,1033.76 261.549,1022.69 264.243,1027.59 269.778,1028.37 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="355.784" y="637.506">
+    <tspan x="355.784" y="637.506">Demande de jouer/placer les pions</tspan>
+    <tspan x="355.784" y="653.506">du joueur automatique</tspan>
+  </text>
+</svg>

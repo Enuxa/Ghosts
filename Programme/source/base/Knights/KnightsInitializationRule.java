@@ -2,6 +2,9 @@ package base.Knights;
 
 import core.*;
 
+/**
+ * Règle d'initialisation pour les cavaliers
+ */
 public class KnightsInitializationRule extends InitializationRule {
 	
 	public KnightsInitializationRule(int priority) {

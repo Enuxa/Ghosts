@@ -2,7 +2,7 @@ package core;
 import java.util.*;
 
 /**
-*	Classe correspondant au joueur <strong>humain</strong>
+*	Classe correspondant au joueur
 */
 public class Player{
 	private String name;

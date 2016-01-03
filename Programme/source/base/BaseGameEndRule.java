@@ -3,6 +3,9 @@ package base;
 import core.*;
 import java.util.*;
 
+/**
+ * Règle de fin de jeu de base
+ */
 public class BaseGameEndRule extends GameEndRule {
 	public BaseGameEndRule (int priority){
 		super (priority);

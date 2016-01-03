@@ -45,10 +45,10 @@ public class RuleBook{
 	}
 
 	/**
-	*	Indique si le placement initial d'un fant�me donn� est l�gal ou non selon les r�gles choisies pour cette partie.
-	*	@param	player	Le joueur pla�ant ses fant�mes.
-	*	@param	position	La position � laquelle le joueur souhaite placer son fant�me.
-	*	@return	<code>true</code> si ce placement est autoris�, <code>false</code> sinon.
+	*	Indique si le placement initial d'un fantôme donné est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	position	La position à laquelle le joueur souhaite placer son fantôme.
+	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestInitialization (Player player, String position){
 		Collection<InitializationRule> top = this.initializationRules.getTopRules();
@@ -58,11 +58,11 @@ public class RuleBook{
 		return true;
 	}
 	/**
-	*	Indique si un d�placement est l�gal ou non selon les r�gles choisies pour cette partie.
-	*	@param	player	Le joueur pla�ant ses fant�mes.
-	*	@param	squareA	La position du fant�me a d�placer.
-	*	@param	squareB	La position � laquelle placer le fant�me.
-	*	@return	<code>true</code> si ce d�placement est autoris�, <code>false</code> sinon.
+	*	Indique si un déplacement est légal ou non selon les règles choisies pour cette partie.
+	*	@param	player	Le joueur plaçant ses fantômes.
+	*	@param	squareA	La position du fantôme a déplacer.
+	*	@param	squareB	La position à laquelle placer le fantôme.
+	*	@return	<code>true</code> si ce déplacement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestMovement (Player player, String squareA, String squareB){
 		Collection<MovementRule> top = this.movementRules.getTopRules();
@@ -73,7 +73,7 @@ public class RuleBook{
 		return true;
 	}
 	/**
-	*	Indique si la partie est termin�e ou non.
+	*	Indique si la partie est terminée ou non.
 	*	@return	<code>true</code> si la partie est finie, <code>false</code> sinon.
 	*/
 	public boolean isGameOver (){
@@ -85,7 +85,7 @@ public class RuleBook{
 		return true;
 	}
 	/**
-	 * R�cup�re le gagnant de la partie.
+	 * Récupère le gagnant de la partie.
 	 * @return Instance de <code>Player</code> correspondant au gagnant de la partie, <code>null</code> si la partie n'est pas finie.
 	 * @throws Rule.IncompatibleRulesException Si on a deux gagnants différents
 	 */
@@ -126,7 +126,7 @@ public class RuleBook{
 	}
 
 	/**
-	 * Indique si un joueur est pr�t � jouer
+	 * Indique si un joueur est prêt à jouer
 	 * @param player Le joueur
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 */

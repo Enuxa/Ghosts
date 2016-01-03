@@ -2,6 +2,9 @@ package base;
 
 import java.util.*;
 
+/**
+ *	Interface console
+ */
 public class CLI {
 	private Scanner sc;
 	

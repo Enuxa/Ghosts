@@ -1,4 +1,4 @@
-package base.GUIGame;
+package core.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -8,6 +8,9 @@ import javax.swing.*;
 import javax.swing.border.*;
 import core.*;
 
+/**
+ * Fenêtre de jeu
+ */
 @SuppressWarnings("serial")
 public class Window extends JFrame{
 	private JPanel boardPanel, gamePanel, interactionPanel, outerInteractionPanel;
@@ -188,7 +191,7 @@ public class Window extends JFrame{
 		}
 	}
 	
-	/*
+	/**
 	 * Actualise l'affichage du plateau
 	 */
 	public void updateDisplay (){
@@ -215,10 +218,14 @@ public class Window extends JFrame{
 					else{
 						button.setIcon(this.ghostIcons.get(typeName));
 						button.setBackground(ghost.isGood() ? this.goodColor : this.badColor);
+						//	Affichage du nom du joueur pour le mode triche
+						if (this.game.isCheatModeEnabled())
+							button.setToolTipText(ghost.getPlayer().toString());
 					}
 				//	Si cette case ne possède pas de fantôme
 				}else{
 					button.setIcon(null);
+					button.setToolTipText("");
 					Player player = square.getPlayerExit();
 					if (player == null)
 						button.setBackground(this.defaultColor);
@@ -253,7 +260,7 @@ public class Window extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				interactionPanel.removeAll();
 				interactionPanel.repaint();
-				game.nextState();
+				game.nextStep();
 				updateDisplay ();
 			}
 		});

@@ -2,6 +2,9 @@ package base;
 
 import core.*;
 
+/**
+ * Extension de base
+ */
 public class BaseExtension extends Extension {
 	public BaseExtension (){
 		super ("Extension de base");

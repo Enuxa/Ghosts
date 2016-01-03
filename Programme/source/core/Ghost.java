@@ -1,5 +1,9 @@
 package core;
 
+/**
+ * Classe corrrespondant à un fantôme
+ */
+
 public class Ghost {
 	private String type;
 	private boolean isGood;
@@ -45,8 +49,7 @@ public class Ghost {
 	 */
 	public Player getPlayer (){
 		return this.player;
-	}
-	
+	}	
 	/**
 	 * Récupère le type du fantôme
 	 * @return Le type du fantôme

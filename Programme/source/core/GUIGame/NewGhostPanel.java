@@ -1,4 +1,4 @@
-package base.GUIGame;
+package core.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;

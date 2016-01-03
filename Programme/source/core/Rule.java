@@ -1,26 +1,26 @@
 package core;
 /**
-*	Classe correspondant � une r�gle.
+*	Classe correspondant à une règle.
 */
 public abstract class Rule {
 	private int priority;
 	/**
-	*	@param	priority	Niveau de priorit� de la r�gle.
+	*	@param	priority	Niveau de priorité de la règle.
 	*/
 	public Rule (int priority){
 		this.priority = priority;
 	}
 	/**
-	*	R�cup�re le niveau de priorit� de cette r�gle.
-	*	@return	Le niveau de priorit� de cette r�gle.
+	*	Récupère le niveau de priorité de cette règle.
+	*	@return	Le niveau de priorité de cette règle.
 	*/
 	public int getPriority (){
 		return this.priority;
 	}
 	/**
-	*	Indique si cette r�gle annule une r�gle donn�e.
-	*	@param	rule La r�gle � tester.
-	*	@return	<code>true</code> si cette r�gle est prioritaire par rapport � celle pass�e en argument.
+	*	Indique si cette règle annule une règle donnée.
+	*	@param	rule La règle à tester.
+	*	@return	<code>true</code> si cette règle est prioritaire par rapport à celle passée en argument.
 	*/
 	public boolean prevailsOver (Rule rule){
 		return this.priority - rule.priority > 0;
@@ -33,12 +33,12 @@ public abstract class Rule {
 	@SuppressWarnings("serial")
 	public static class IncompatibleRulesException extends RuntimeException{
 		/**
-		 * @param msg Pr�cision sur l'incompatibilit�.
-		 * @param r1 R�gle incompatible avec <code>r2</code>.
-		 * @param r2 R�gle incompatible avec <code>r1</code>.
+		 * @param msg Précision sur l'incompatibilité.
+		 * @param r1 Règle incompatible avec <code>r2</code>.
+		 * @param r2 Règle incompatible avec <code>r1</code>.
 		 */
 		public IncompatibleRulesException (String msg, Rule r1, Rule r2){
-			super ("R�gles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
+			super ("Règles incompatibles : " + msg + "\n" + r1 + " en conflit avec " + r2);
 		}
 	}
 }

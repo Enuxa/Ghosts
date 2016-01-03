@@ -2,6 +2,9 @@ package base;
 
 import core.*;
 
+/**
+ * Règle de capture de base
+ */
 public class BaseMovementRule extends MovementRule {
 	public BaseMovementRule (int priority){
 		super (priority);

@@ -1,4 +1,8 @@
 package core;
+
+/**
+ * Extensions contenant des règles et/ou des types de fantômes
+ */
 public abstract class Extension{
 	private String name;
 	/**

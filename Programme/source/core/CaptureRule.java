@@ -1,5 +1,8 @@
 package core;
 
+/**
+ * Règle de capture
+ */
 public abstract class CaptureRule extends Rule {
 	/**
 	*	@param	priority	Niveau de priorité de la règle.

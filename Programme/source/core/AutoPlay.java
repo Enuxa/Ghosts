@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.*;
 import java.util.regex.Pattern;
 
+/**
+ * Guide de jeu pour un joueur automatique, il s'agit de l'objet contrôlant le joueur.
+ */
 public class AutoPlay {
 	private Map<String, Boolean> initializationPattern;
 	private Iterator<String[]> movements;
@@ -107,6 +110,9 @@ public class AutoPlay {
 		this.movements = movementList.iterator();
 	}
 	
+	/**
+	 * Joue un tour
+	 */
 	public void turn (){
 		Game game = Game.getCurrent();
 		Board board = game.getBoard();
@@ -124,6 +130,9 @@ public class AutoPlay {
 		}
 	}
 	
+	/**
+	 * Initialise le joueur
+	 */
 	public void initialize (){
 		Game game = Game.getCurrent();
 		RuleBook book = game.getRuleBook();

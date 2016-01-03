@@ -14,8 +14,8 @@ public class BaseInitializationRule extends InitializationRule {
 		this (priority, 6);
 	}
 	/**
-	 * @param priority
-	 * @param size
+	 * @param priority La priorité de cette règle
+	 * @param size Le nombre cases sur un coté du plateau
 	 */
 	public BaseInitializationRule (int priority, int size){
 		super(priority);

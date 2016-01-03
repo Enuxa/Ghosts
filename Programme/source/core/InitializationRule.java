@@ -1,4 +1,8 @@
 package core;
+
+/**
+ *	Règle d'initialisation
+ */
 public abstract class InitializationRule extends Rule {
 	/**
 	*	@param	priority	Niveau de priorité de la règle.

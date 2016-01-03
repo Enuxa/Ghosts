@@ -1,6 +1,10 @@
 package core;
 import java.util.*;
 
+/**
+ *	Fabrique de fantôme
+ */
+
 public class GhostFactory {
 	/**
 	*	L'ensemble des types de fantômes autorisés dans cette partie

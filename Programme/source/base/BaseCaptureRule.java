@@ -1,6 +1,10 @@
 package base;
 import core.*;
 
+/**
+ * Règle de capture de base
+ */
+
 public class BaseCaptureRule extends CaptureRule {
 	public BaseCaptureRule (int priority){
 		super (priority);

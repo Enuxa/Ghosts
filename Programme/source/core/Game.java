@@ -3,7 +3,7 @@ package core;
 import java.util.*;
 
 /**
-*	Classe principale
+*	Classe correspondant à une partie, il ne peut y avoir qu'une seule partie par instance du programme.
 */
 public abstract class Game{
 	private boolean cheatMode;
@@ -27,16 +27,6 @@ public abstract class Game{
 		this.factory = new GhostFactory ();
 		this.onExits = new ArrayList<Ghost> ();
 		Game.current = this;
-	}
-	/**
-	 * Assigne un joueur
-	 * @param id L'indice du joueur
-	 * @param p Le joueur à ajouter
-	 */
-	public void setPlayer (int id, Player p){
-		if (0 <= id && id < 2 && this.players[id] != null)
-			throw new RuntimeException ("Le joueur " + id + " a déjà été assigné !");
-		this.players[id] = p;
 	}
 	/**
 	 * Indique si le mode triche est activé

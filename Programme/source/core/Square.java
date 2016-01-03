@@ -1,13 +1,13 @@
 package core;
 /**
- *	Classe correspondant � une case.
+ *	Classe correspondant à une case.
  */
 public class Square{
 	private String coordinates;
 	private Ghost ghost;
 	private Player playerExit;
 	/**
-	 * @param coordinates Coordonn�es de cette case.
+	 * @param coordinates Coordonnées de cette case.
 	 */
 	public Square (String coordinates){
 		this.coordinates = coordinates;
@@ -23,44 +23,43 @@ public class Square{
 		this.playerExit = playerExit;
 	}
 	/**
-	 * R�cup�re le fant�me pr�sent sur cette case
-	 * @return Le fant�me sur cette case, ou <code>null</code> s'il n'y a aucun fant�me sur cette case.
+	 * Récupère le fantôme présent sur cette case
+	 * @return Le fantôme sur cette case, ou <code>null</code> s'il n'y a aucun.
 	 */
 	public Ghost getGhost (){
 		return this.ghost;
 	}
 	/**
-	 * Place un fant�me sur cette case.
-	 * @param ghost Le fant�me � placer.
-	 * @throws RuntimeException si un fant�me se trouve d�j� sur cette case.
+	 * Place un fantôme sur cette case.
+	 * @param ghost Le fantôme à placer.
 	 */
-	public void putGhost (Ghost ghost) throws RuntimeException{
+	public void putGhost (Ghost ghost){
 		if (this.ghost != null)
-			throw new RuntimeException ("Un fant�me se trouve d�j�� la position " + this);
+			throw new RuntimeException ("Un fantôme se trouve déjà à la position " + this);
 		this.ghost = ghost;
 	}
 	/**
-	 * Retire le fant�me pr�sent sur cette case.
+	 * Retire le fantôme présent sur cette case.
 	 */
 	public void removeGhost (){
 		this.ghost = null;
 	}
 	/**
-	 * R�cup�re les coordonn�es de cette case.
+	 * Récupère les coordonnées de cette case.
 	 */
 	public String toString (){
 		return this.coordinates;
 	}
 	/**
-	 * R�cup�re la coordonn�e alphab�tique de la position
-	 * @return La coordonn�e alphab�tique
+	 * Récupère la coordonnée alphabétique de la position
+	 * @return La coordonnée alphabétique
 	 */
 	public char getX () {
 		return Board.toX(this.coordinates);
 	}
 	/**
-	 * R�cup�re la coordonn�e num�rique de la position
-	 * @return La coordonn�e num�rique
+	 * Récupère la coordonnée numérique de la position
+	 * @return La coordonnée numérique
 	 */
 	public int getY () {
 		return Board.toY(this.coordinates);

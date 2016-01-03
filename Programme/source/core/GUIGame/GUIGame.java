@@ -1,4 +1,4 @@
-package base.GUIGame;
+package core.GUIGame;
 
 import core.*;
 
@@ -11,7 +11,7 @@ public class GUIGame extends Game {
 	private Player currentPlayer;
 	private Window window;
 	private GameState currentState;
-	private boolean hasPlayed, firstPlayerInitialized;
+	private boolean hasPlayed;
 	
 	/**
 	 * @param cheatMode <code>true</code> si on joue cette partie en mode triche
@@ -26,7 +26,6 @@ public class GUIGame extends Game {
 		
 		this.currentState = GameState.playersCreation;
 		this.currentPlayer = null;
-		this.firstPlayerInitialized = false;
 		
 		this.window = new Window (this);
 		this.window.setVisible(true);
@@ -49,35 +48,51 @@ public class GUIGame extends Game {
 	}
 	
 	/**
-	 * Assigne l'étape de jeu actuelle
-	 * @param s L'étape de jeu
+	 * Passe au joueur suivant
 	 */
-	public void setCurrentState (GameState s){
-		this.currentState = s;
+	private void nextPlayer (){
+		//	Si on n'a aucun joueur actuel
+		if (this.currentPlayer == null){
+			this.currentPlayer = this.getPlayer(0);
+		}else{
+			this.currentPlayer = this.otherPlayer();//	On passe au joueur suivant
+			//	Si on est en cours d'initialisation et que c'est au tour du premier joueur, c'est que tout le monde est prêt à jouer !
+			if (this.currentState == GameState.playerInitialization && this.currentPlayer == this.getPlayer(0))
+				this.currentState = GameState.inTurn;
+		}
 	}
 	
 	/**
-	 * Passe au joueur suivant
+	 * Récupère le message à afficher dans le panneau d'interaction
+	 * @return Le message à afficher
 	 */
-	public void nextState (){
-		//	On passe au joueur suivant
-		if (this.currentPlayer == null)
-			this.currentPlayer = this.getPlayer(0);
-		else{
-			this.currentPlayer = this.otherPlayer();
-			if (this.currentState == GameState.playerInitialization && this.currentPlayer == this.getPlayer(0)){
-				if (this.firstPlayerInitialized)
-					this.firstPlayerInitialized = true;
-				else
-					this.currentState = GameState.inTurn;
-			}
+	private String getMessage (){
+		switch (this.currentState){
+			case inTurn :
+				return "A " + this.currentPlayer + " de jouer !";
+			case playersCreation :
+				return "Veuillez vous identifier";
+			case playerInitialization :
+				return "A " + this.currentPlayer + " de placer ses pions.";
+			default :
+				return "";
 		}
+	}
+	
+	/**
+	 * Passe à l'étape de jeu suivante
+	 */
+	public void nextStep (){
+		//	On passe au joueur suivant
+		this.nextPlayer();
 		
+		//	Si on était en cours de création des joueurs, on passe à leur initialisation
 		if (this.currentState == GameState.playersCreation)
 			this.currentState = GameState.playerInitialization;
+		//	Si on est cours de partie
 		else if (this.currentState == GameState.inTurn){
-			this.updateExits();
-			this.window.updateDisplay();
+			this.updateExits();				//	On met à jour les sorties
+			this.window.updateDisplay();	//	On met à jour l'affichage
 			//	Si le jeu est fini
 			if (this.isGameOver()){
 				Player w = this.getRuleBook().getWinner();
@@ -89,36 +104,28 @@ public class GUIGame extends Game {
 			}
 		}
 		
+		//	Si le joueur actuel est automatique
 		if (this.currentPlayer.isAuto()){
 			AutoPlay ap = this.currentPlayer.getAutoPlay();
+			
 			if (this.currentState == GameState.playerInitialization)
 				ap.initialize();
 			else if (this.currentState == GameState.inTurn){
 				ap.turn();
 				this.hasPlayed = true;
 			}
+			
 			this.window.updateDisplay();
 			this.window.nextPlayer();
+			
 			return;
 		}else{
 			if (this.currentState == GameState.playerInitialization)
 				this.window.displayAvailableSquares();
 		}
 		
-		//	Mise a jour du message d'interaction
-		String msg = "";
-		switch (this.currentState){
-			case playerInitialization :
-				msg = "A " + this.currentPlayer + " de jouer !";
-				break;
-			case playersCreation :
-				msg = "Veuillez vous identifier";
-				break;
-			case inTurn :
-				msg = "A " + this.currentPlayer + " de placer ses pions.";
-				break;
-		}
-		this.window.setMessage(msg);
+		//	Mise a jour du message d'interaction		
+		this.window.setMessage(this.getMessage());
 		
 		//	Le nouveau joueur actuel n'a pas joué
 		this.hasPlayed = false;

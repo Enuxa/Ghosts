@@ -3,6 +3,9 @@ package base.Knights;
 import core.Extension;
 import core.Game;
 
+/**
+ *	Extension pour les cavaliers
+ */
 public class KnightsExtension extends Extension {
 
 	public KnightsExtension() {

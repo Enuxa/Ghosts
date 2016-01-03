@@ -1,5 +1,9 @@
 package core;
 
+/**
+ * Règle de fin de jeu
+ */
+
 public abstract class GameEndRule extends Rule {
 	/**
 	*	@param	priority	Niveau de priorité de la règle.

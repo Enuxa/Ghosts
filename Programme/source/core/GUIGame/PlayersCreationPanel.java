@@ -1,9 +1,10 @@
-package base.GUIGame;
+package core.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 import core.*;
 
@@ -17,6 +18,7 @@ public class PlayersCreationPanel extends JPanel {
 	 * @param p1 Joueur 2
 	 * @param game L'instance du jeu en cours
 	 * @param interactionPanel Le panneau d'interaction
+	 * @param window La fenêtre de jeu
 	 */
 	public PlayersCreationPanel (Player p0, Player p1, final GUIGame game, final JPanel interactionPanel, Window window){
 		JButton button = new JButton ("Confirmer");
@@ -39,7 +41,7 @@ public class PlayersCreationPanel extends JPanel {
 				}
 				interactionPanel.removeAll();
 				interactionPanel.repaint();
-				game.nextState();
+				game.nextStep();
 			}
 		});
 
@@ -85,6 +87,7 @@ public class PlayersCreationPanel extends JPanel {
 			this.selectFileButton.addActionListener(new ActionListener (){
 				public void actionPerformed(ActionEvent arg0) {
 					JFileChooser fc = new JFileChooser ();
+					fc.setFileFilter(new FileNameExtensionFilter ("Fichier de configuration Ghosts", "gf"));
 					fc.showOpenDialog(null);
 					file = fc.getSelectedFile();
 					if (file != null)

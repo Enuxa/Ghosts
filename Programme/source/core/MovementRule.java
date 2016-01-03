@@ -1,5 +1,9 @@
 package core;
 
+/**
+ *	Règle de mouvement
+ */
+
 public abstract class MovementRule extends Rule {
 	/**
 	*	@param	priority	Niveau de priorité de la règle.

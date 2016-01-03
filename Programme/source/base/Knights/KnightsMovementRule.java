@@ -2,6 +2,9 @@ package base.Knights;
 
 import core.*;
 
+/**
+ * Règle de mouvement pour les cavaliers
+ */
 public class KnightsMovementRule extends MovementRule {
 	public KnightsMovementRule(int priority) {
 		super(priority);

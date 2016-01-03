@@ -76,7 +76,7 @@ public class Board{
 	}
 	/**
 	 * Récupère la coordonnée alphabétique d'une position
-	 * @param position
+	 * @param position La position
 	 * @return La coordonnée alphabétique
 	 */
 	public static char toX (String position) {
@@ -84,7 +84,7 @@ public class Board{
 	}
 	/**
 	 * Récupère la coordonnée numérique d'une position
-	 * @param position
+	 * @param position La position
 	 * @return La coordonnée numérique
 	 */
 	public static int toY (String position) {

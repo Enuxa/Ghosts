@@ -1,4 +1,4 @@
-package base.GUIGame;
+package core.GUIGame;
 
 import java.awt.*;
 import java.awt.event.*;
@@ -10,10 +10,9 @@ import core.*;
  *	Contrôleur de case
  */
 public class SquareController implements ActionListener{
-	public GUIGame game;
-	public JPanel interactionPanel; 
-	public Window window;
-	public static JButton deleteGhostButton;
+	private GUIGame game;
+	private JPanel interactionPanel; 
+	private Window window;
 	/**
 	 * @param guiGame Instance du jeu en cours
 	 * @param interactionPanel Panneau d'interaction

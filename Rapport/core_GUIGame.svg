@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.0//EN" "http://www.w3.org/TR/2001/PR-SVG-20010719/DTD/svg10.dtd">
+<svg width="88cm" height="45cm" viewBox="-32 109 1756 895" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <g>
+    <rect style="fill: #ffffff" x="804.17" y="218.096" width="256.4" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="804.17" y="218.096" width="256.4" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="932.37" y="237.096">GUIGame</text>
+    <rect style="fill: #ffffff" x="804.17" y="246.096" width="256.4" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="804.17" y="246.096" width="256.4" height="8"/>
+    <rect style="fill: #ffffff" x="804.17" y="254.096" width="256.4" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="804.17" y="254.096" width="256.4" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="807.17" y="268.096">+getCurrentPlayer(): Player</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="807.17" y="284.096">+getCurrentState(): GameState</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="807.17" y="300.096">+nextStep()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="807.17" y="316.096">+setHasPlayed(hasPlayed:boolean)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="807.17" y="332.096">+hasPlayed(): boolean</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="902.16" y="110.33" width="57.65" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="902.16" y="110.33" width="57.65" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="930.985" y="129.33">Game</text>
+    <rect style="fill: #ffffff" x="902.16" y="138.33" width="57.65" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="902.16" y="138.33" width="57.65" height="8"/>
+    <rect style="fill: #ffffff" x="902.16" y="146.33" width="57.65" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="902.16" y="146.33" width="57.65" height="8"/>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="930.985,173.572 930.985,194.212 932.37,194.212 932.37,217.088 "/>
+    <polygon style="fill: #ffffff" points="938.985,173.572 930.985,157.572 922.985,173.572 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="938.985,173.572 930.985,157.572 922.985,173.572 "/>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="1304.1" y="849.256" width="418.1" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1304.1" y="849.256" width="418.1" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1513.15" y="868.256">NewGhostPanel</text>
+    <rect style="fill: #ffffff" x="1304.1" y="877.256" width="418.1" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1304.1" y="877.256" width="418.1" height="8"/>
+    <rect style="fill: #ffffff" x="1304.1" y="885.256" width="418.1" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="1304.1" y="885.256" width="418.1" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1307.1" y="899.256">+NewghostPanel(coordinates:String,game:GUIGame,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1307.1" y="915.256">               window:Window,interactionPanel:JPanel)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1307.1" y="931.256">+getGhost(): Ghost</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="-30.9278" y="808.768" width="464.3" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-30.9278" y="808.768" width="464.3" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="201.222" y="827.768">PlayersCreationPanel</text>
+    <rect style="fill: #ffffff" x="-30.9278" y="836.768" width="464.3" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-30.9278" y="836.768" width="464.3" height="8"/>
+    <rect style="fill: #ffffff" x="-30.9278" y="844.768" width="464.3" height="52"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="-30.9278" y="844.768" width="464.3" height="52"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-27.9278" y="858.768">+PlayersCreationPanel(p0:Player,p1:Player,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-27.9278" y="874.768">                      game:GUIGame,interactionPanel:JPanel,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="-27.9278" y="890.768">                      window:Window)</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="830.166" y="794.842" width="433.5" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="830.166" y="794.842" width="433.5" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="1046.92" y="813.842">SquareController</text>
+    <rect style="fill: #ffffff" x="830.166" y="822.842" width="433.5" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="830.166" y="822.842" width="433.5" height="8"/>
+    <rect style="fill: #ffffff" x="830.166" y="830.842" width="433.5" height="36"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="830.166" y="830.842" width="433.5" height="36"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="833.166" y="844.842">+SquareController(game:GUIGame,interactionPanel:JPanel,</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="833.166" y="860.842">                  window:Window)</text>
+  </g>
+  <g>
+    <rect style="fill: #ffffff" x="571.97" y="577.694" width="217.9" height="28"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="571.97" y="577.694" width="217.9" height="28"/>
+    <text font-size="16" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:700" x="680.92" y="596.694">Window</text>
+    <rect style="fill: #ffffff" x="571.97" y="605.694" width="217.9" height="8"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="571.97" y="605.694" width="217.9" height="8"/>
+    <rect style="fill: #ffffff" x="571.97" y="613.694" width="217.9" height="84"/>
+    <rect style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" x="571.97" y="613.694" width="217.9" height="84"/>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="574.97" y="627.694">+Window(game:GUIGame)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="574.97" y="643.694">+displayAvailableSquares()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="574.97" y="659.694">+updateDisplay()</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="574.97" y="675.694">+setMessage(message:String)</text>
+    <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="574.97" y="691.694">+nextPlayer()</text>
+  </g>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="932.37,364.267 932.37,548.138 680.92,548.138 680.92,576.714 "/>
+    <polygon style="fill: #000000" points="932.37,339.096 937.17,353.096 932.37,367.096 927.57,353.096 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="932.37,339.096 937.17,353.096 932.37,367.096 927.57,353.096 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="806.645" y="545.138"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="943.37" y="351.096">1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="684.92" y="572.714">1</text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 570.973 648.951 C 462.071,660.101 208.888,707.519 204.11,798.043"/>
+    <polygon style="fill: #000000" points="203.715,805.532 199.249,795.283 204.11,798.043 209.235,795.81 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="203.715,805.532 199.249,795.283 204.11,798.043 209.235,795.81 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="417.336" y="654.462">
+    <tspan x="417.336" y="654.462">Affiche</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 203.933 807.768 C 227.825,411.138 592.38,278.096 793.434,278.096"/>
+    <polygon style="fill: #000000" points="800.934,278.096 790.934,283.096 793.434,278.096 790.934,273.096 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="800.934,278.096 790.934,283.096 793.434,278.096 790.934,273.096 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="355.155" y="369.571">
+    <tspan x="355.155" y="369.571">Modifie les joueurs</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1050.29 867.848 C 1062.14,997.882 1498.98,1014.37 1506.75,947.931"/>
+    <polygon style="fill: #000000" points="1507.63,940.482 1511.43,950.996 1506.75,947.931 1501.5,949.833 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1507.63,940.482 1511.43,950.996 1506.75,947.931 1501.5,949.833 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1219.99" y="1000.47">
+    <tspan x="1219.99" y="1000.47">Affiche</tspan>
+  </text>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1513.77 848.253 C 1521.83,261.095 1225.78,278.096 1071.31,278.096"/>
+    <polygon style="fill: #000000" points="1063.81,278.096 1073.81,273.096 1071.31,278.096 1073.81,283.096 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="1063.81,278.096 1073.81,273.096 1071.31,278.096 1073.81,283.096 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:middle;font-family:sans-serif;font-style:normal;font-weight:normal" x="1415.07" y="341.649">
+    <tspan x="1415.07" y="341.649">Ajoute un fantôme</tspan>
+  </text>
+  <g>
+    <polyline style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="680.92,723.855 680.92,754.402 1046.92,754.402 1046.92,793.844 "/>
+    <polygon style="fill: #000000" points="680.92,698.684 685.72,712.684 680.92,726.684 676.12,712.684 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="680.92,698.684 685.72,712.684 680.92,726.684 676.12,712.684 "/>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:middle;font-family:monospace;font-style:normal;font-weight:normal" x="863.918" y="751.402"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="691.92" y="710.684"> 1</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="691.92" y="726.684"></text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1050.92" y="773.844"> 36..*</text>
+    <text font-size="12.7998" style="fill: #000000;text-anchor:start;font-family:monospace;font-style:normal;font-weight:normal" x="1050.92" y="789.844"></text>
+  </g>
+  <g>
+    <path style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" d="M 1054.6 793.852 C 1088.79,629.148 1110.97,473.134 994.8,346.273"/>
+    <polygon style="fill: #000000" points="989.735,340.741 1000.18,344.74 994.8,346.273 992.801,351.493 "/>
+    <polygon style="fill: none; fill-opacity:0; stroke-width: 2; stroke: #000000" points="989.735,340.741 1000.18,344.74 994.8,346.273 992.801,351.493 "/>
+  </g>
+  <text font-size="12.8" style="fill: #000000;text-anchor:start;font-family:sans-serif;font-style:normal;font-weight:normal" x="1020.31" y="564.951">
+    <tspan x="1020.31" y="564.951">Déplace les fantômes</tspan>
+  </text>
+</svg>
