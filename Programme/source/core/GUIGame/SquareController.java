@@ -80,7 +80,7 @@ public class SquareController implements ActionListener{
 	}
 	@SuppressWarnings("serial")
 	private class GhostRemoveButton extends JButton {
-		public GhostRemoveButton (Ghost ghost, Board board, Player currentPlayer){
+		public GhostRemoveButton (final Ghost ghost, final Board board, final Player currentPlayer){
 			super ("Supprimer ce fantôme");
 			this.addActionListener(new ActionListener (){
 				public void actionPerformed(ActionEvent arg0) {
