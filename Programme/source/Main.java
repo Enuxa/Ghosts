@@ -11,7 +11,11 @@ public class Main {
 		CLI cli = new CLI ();
 		boolean cheatMode = false;
 		String cheatModeString = null;
-				
+		
+		//	Ajout des extensions existantes
+		extensions.add(new Board12Per12Extension ());
+		extensions.add(new base.Knights.KnightsExtension ());
+		
 		//	Récupération du choix de mode de jeu
 		while (cheatModeString == null){
 			cheatModeString = cli.readSelection(Arrays.asList(new String[]{"Oui", "Non"}), "Souhaitez vous jouer en mode triche ?");
@@ -43,7 +47,7 @@ public class Main {
 			map.put(e.toString(), e);
 		
 		while (answer == null)
-			answer = cli.readSelection(map.keySet(), 0, extensions.size());
+			answer = cli.readSelection(map.keySet(), "Avec quelles extensions souhaitez-vous jouer ?", 0, extensions.size());
 		
 		selectedExtensions.add(new BaseExtension ());
 		for (String k : answer)

@@ -109,13 +109,17 @@ public class AutoPlay {
 	
 	public void turn (){
 		Game game = Game.getCurrent();
+		Board board = game.getBoard();
 		if (!this.movements.hasNext())
 			throw new RuntimeException ("Le joueur automatique " + this.player + " ne possède pas de prochain mouvement.");
 		else{
 			String[] m = this.movements.next();
-			if (game.getRuleBook().requestMovement(this.player, m[0], m[1]))
-				game.getBoard().getSquare(m[0]).getGhost().move(m[1]);
-			else
+			if (game.getRuleBook().requestMovement(this.player, m[0], m[1])){
+				Square squareB = board.getSquare(m[1]);
+				if (squareB.getGhost() != null)
+					board.capture(squareB.getGhost());
+				board.getSquare(m[0]).getGhost().move(m[1]);
+			}else
 				throw new RuntimeException ("Le joueur automatique " + this.player + " ne peut pas déplacer son fanôme de " + m[0] + " en " + m[1]);
 		}
 	}
@@ -134,5 +138,8 @@ public class AutoPlay {
 				throw new RuntimeException ("Le joueur automatique " + this.player + " n'a pas pu poser son fantôme à la position " + position + " car le livre de règles ne l'y autorise pas.");
 			}
 		}
+		
+		if (!book.isReady(this.player))
+			throw new RuntimeException ("Le joueur auto " + this.player + " n'a pas pu être initialisé entièrement.");
 	}
 }

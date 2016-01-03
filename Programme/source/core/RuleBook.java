@@ -5,15 +5,15 @@ import java.util.*;
 *	Classe correspondant au livre de règles.
 */
 public class RuleBook{
-	private SortedSet<Rule> initializationRules;
-	private SortedSet<Rule> movementRules;
-	private SortedSet<Rule> gameEndRules;
-	private SortedSet<Rule> captureRules;
+	private RuleSet<InitializationRule> initializationRules;
+	private RuleSet<MovementRule> movementRules;
+	private RuleSet<GameEndRule> gameEndRules;
+	private RuleSet<CaptureRule> captureRules;
 	public RuleBook (){
-		this.movementRules = new TreeSet<Rule> ();
-		this.gameEndRules = new TreeSet<Rule> ();
-		this.initializationRules = new TreeSet<Rule> ();
-		this.captureRules = new TreeSet<Rule> ();
+		this.movementRules = new RuleSet<MovementRule> ();
+		this.gameEndRules = new RuleSet<GameEndRule> ();
+		this.initializationRules = new RuleSet<InitializationRule> ();
+		this.captureRules = new RuleSet<CaptureRule> ();
 	}
 	/**
 	*	Ajoute une règle au livre de règles.
@@ -37,9 +37,9 @@ public class RuleBook{
 	*	@return	<code>true</code> si ce placement est autorisé, <code>false</code> sinon.
 	*/
 	public boolean requestInitialization (Player player, Ghost ghost, String position){
-		SortedSet<Rule> top = getTopRules (this.initializationRules);
-		for (Rule rule : top)
-			if (!((InitializationRule)rule).requestInitialization(player, ghost, position))
+		Collection<InitializationRule> top = this.initializationRules.getTopRules();
+		for (InitializationRule rule : top)
+			if (!rule.requestInitialization(player, ghost, position))
 				return false;
 		return true;
 	}
@@ -51,9 +51,9 @@ public class RuleBook{
 	*	@return	<code>true</code> si ce placement est autoris�, <code>false</code> sinon.
 	*/
 	public boolean requestInitialization (Player player, String position){
-		SortedSet<Rule> top = getTopRules (this.initializationRules);
-		for (Rule rule : top)
-			if (!((InitializationRule)rule).requestInitialization(player, position))
+		Collection<InitializationRule> top = this.initializationRules.getTopRules();
+		for (InitializationRule rule : top)
+			if (!rule.requestInitialization(player, position))
 				return false;
 		return true;
 	}
@@ -65,9 +65,9 @@ public class RuleBook{
 	*	@return	<code>true</code> si ce d�placement est autoris�, <code>false</code> sinon.
 	*/
 	public boolean requestMovement (Player player, String squareA, String squareB){
-		SortedSet<Rule> top = getTopRules (this.movementRules);
-		for (Rule rule : top)
-			if (!((MovementRule)rule).requestMovement(player, squareA, squareB))
+		Collection<MovementRule> top = this.movementRules.getTopRules();
+		for (MovementRule rule : top)
+			if (!rule.requestMovement(player, squareA, squareB))
 				return false;
 		
 		return true;
@@ -77,9 +77,9 @@ public class RuleBook{
 	*	@return	<code>true</code> si la partie est finie, <code>false</code> sinon.
 	*/
 	public boolean isGameOver (){
-		SortedSet<Rule> top = getTopRules (this.gameEndRules);
-		for (Rule rule : top)
-			if (!((GameEndRule)rule).isGameOver())
+		Collection<GameEndRule> top = this.gameEndRules.getTopRules();
+		for (GameEndRule rule : top)
+			if (!rule.isGameOver())
 				return false;
 		
 		return true;
@@ -92,54 +92,17 @@ public class RuleBook{
 	public Player getWinner (){
 		Player player = null;
 		GameEndRule r = null;
-		SortedSet<Rule> top = getTopRules (this.gameEndRules);
-		for (Rule rule : top){
-			GameEndRule ger = (GameEndRule)rule;
-			if (ger.isGameOver()){
-				Player p = ger.getWinner();
+		Collection<GameEndRule> top = this.gameEndRules.getTopRules();
+		for (GameEndRule rule : top){
+			if (rule.isGameOver()){
+				Player p = rule.getWinner();
 				if (p != null && player != null && p != player)
-					throw new Rule.IncompatibleRulesException("Deux gagnants différents.", r, ger);
+					throw new Rule.IncompatibleRulesException("Deux gagnants différents.", r, rule);
 				player = p;
-				r = ger;
+				r = rule;
 			}
 		}
 		return player;
-	}
-	/**
-	 * Récupère les règles de priorité maximale d'une famille de règles
-	 * @param rules L'ensemble de règles de départ
-	 * @return L'ensemble des règles de priorité maximale
-	 */
-	private SortedSet<Rule> getTopRules (SortedSet<Rule> rules){
-		return rules.tailSet(rules.last());
-	}
-	/**
-	 * Récupère les règles d'initialisation de priorité maximale
-	 * @return L'ensemble des règles d'initialisation de priorité maximale
-	 */
-	public SortedSet<Rule> getTopInitializationRules () {
-		return this.getTopRules (this.initializationRules);
-	}
-	/**
-	 * Récupère les règles de mouvement de priorité maximale
-	 * @return L'ensemble des règles de mouvement de priorité maximale
-	 */
-	public SortedSet<Rule> getTopMovementRules () {
-		return this.getTopRules (this.movementRules);
-	}
-	/**
-	 * Récupère les règles de capture de priorité maximale
-	 * @return L'ensemble des règles d'initialisation de priorité maximale
-	 */
-	public SortedSet<Rule> getTopCaptureRules () {
-		return this.getTopRules (this.captureRules);
-	}
-	/**
-	 * Récupère les règles de fin de jeu de priorité maximale
-	 * @return L'ensemble des règles de fin de jeu de priorité maximale
-	 */
-	public SortedSet<Rule> getTopGameEndRules () {
-		return this.getTopRules (this.gameEndRules);
 	}
 	/**
 	* Renvoie un plateau
@@ -149,15 +112,14 @@ public class RuleBook{
 	public Board getBoard () {
 		Board board = null;
 		InitializationRule r = null;
-		SortedSet<Rule> top = getTopInitializationRules ();
-		for (Rule rule : top){
-			InitializationRule ir = (InitializationRule)rule;
-			Board b = ir.getBoard();
+		Collection<InitializationRule> top = this.initializationRules.getTopRules();
+		for (InitializationRule rule : top){
+			Board b = rule.getBoard();
 			if (b != null) {
 				if (board != null)
-					throw new Rule.IncompatibleRulesException ("Deux plateaux créés.", r, ir);
+					throw new Rule.IncompatibleRulesException ("Deux plateaux créés.", r, rule);
 				board = b;
-				r = ir;
+				r = rule;
 			}
 		}
 		return board;
@@ -169,10 +131,27 @@ public class RuleBook{
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 */
 	public boolean isReady (Player player){
-		SortedSet<Rule> rules = this.getTopInitializationRules();
-		for (Rule r : rules)
-			if (!((InitializationRule)r).isReady(player))
+		Collection<InitializationRule> rules = this.initializationRules.getTopRules();
+		for (InitializationRule r : rules)
+			if (!r.isReady(player))
 				return false;
+		return true;
+	}
+
+	/**
+	 * Indique si une capture est autorisée
+	 * @param player Le joueur qui souhaite capturer
+	 * @param square La case où a lieu la capture
+	 * @param ghost Le fantôme qui va capturer
+	 * @return <code>true</code> si cette capture est autorisée, <code>false</code> sinon.
+	 */
+	public boolean requestCapture (Player player, String square, Ghost ghost) {
+		Collection<CaptureRule> rules = this.captureRules.getTopRules();
+		for (CaptureRule r : rules){
+			if (!r.requestCapture(square, ghost, player))
+				return false;
+		}
+		
 		return true;
 	}
 }

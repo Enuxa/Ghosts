@@ -1,15 +1,19 @@
 package core;
 
 public class Ghost {
+	private String type;
 	private boolean isGood;
 	private Player player;
 	/**
+	*	Contructeur <i>package-protected</i>
 	*	@param	isGood	<code>true</code> si ce fantôme est gentil, <code>false</code> sinon.
+	*	@param type Le type de ce fantôme
 	*	@param player Le joueur auquel appartient le fantôme.
 	*/
-	public Ghost (boolean isGood, Player player){
+	Ghost (boolean isGood, String type, Player player){
 		this.isGood = isGood;
 		this.player = player;
+		this.type = type;
 	}
 	/**
 	*	Indique si ce fantôme est gentil ou non
@@ -36,19 +40,18 @@ public class Ghost {
 			throw new RuntimeException ("La position " + coordinates + " n'est pas sur le plateau.");
 	}
 	/**
-	*	Clone le fantôme (prévu pour cloner les modèles)
-	* @param isGood <code>true</code> si le fantôme est gentil, <code>false</code> sinon.
-	*	@param player Le joueur auquel appartient le fantôme.
-	*	@return	Copie du fantôme
-	*/
-	public Ghost clone (boolean isGood, Player player){
-		return new Ghost (isGood, player);
-	}
-	/**
 	 * Récupère le joueur auquel appartient ce fantôme.
 	 * @return Le joueur possédant le fantôme, <code>null</code> s'il nappartient à personne (s'il s'agit d'un modèlde de fantôme par exemple).
 	 */
 	public Player getPlayer (){
 		return this.player;
+	}
+	
+	/**
+	 * Récupère le type du fantôme
+	 * @return Le type du fantôme
+	 */
+	public String getType (){
+		return this.type;
 	}
 }

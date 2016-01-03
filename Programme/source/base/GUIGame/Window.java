@@ -204,7 +204,7 @@ public class Window extends JFrame{
 				
 				//	Si cette case possède un fantôme
 				if (ghost != null){
-					String typeName = this.game.getFactory ().getType(ghost);
+					String typeName = ghost.getType();
 					
 					//	Si ce fantôme n'appartient pas au joueur courant ET si le mode triche est désactivé : on cache le fantôme
 					if (ghost.getPlayer() != this.game.getCurrentPlayer() && !this.game.isCheatModeEnabled ()){

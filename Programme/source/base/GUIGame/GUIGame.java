@@ -2,7 +2,6 @@ package base.GUIGame;
 
 import core.*;
 
-import java.awt.event.WindowEvent;
 import java.util.*;
 
 /**

@@ -70,6 +70,21 @@ public class Player{
 		}
 		return g;
 	}
+	
+	/**
+	*	Récupère seulement les fantômes du joueur correspondant à un certain type qu'il avait au début de la partie
+	*	@param	type Le type des fantômes désirés
+	*	@return	L'ensemble des fantômes de ce type
+	*/
+	public Collection<Ghost> getGhosts (String type){
+		Collection<Ghost> g = new ArrayList<Ghost> ();
+		for (Ghost x : this.ghosts) {
+			if (x.getType().equals(type))
+				g.add (x);
+		}
+		return g;
+	}
+	
 	/**
 	 * Récupère les fantômes encore en jeu
 	 * @return Les fantômes encore en jeu

@@ -2,7 +2,7 @@ package core;
 /**
 *	Classe correspondant � une r�gle.
 */
-public abstract class Rule implements Comparable<Rule>{
+public abstract class Rule {
 	private int priority;
 	/**
 	*	@param	priority	Niveau de priorit� de la r�gle.
@@ -23,16 +23,13 @@ public abstract class Rule implements Comparable<Rule>{
 	*	@return	<code>true</code> si cette r�gle est prioritaire par rapport � celle pass�e en argument.
 	*/
 	public boolean prevailsOver (Rule rule){
-		return this.compareTo(rule) >= 0;
-	}
-	/**
-	 * R�cup�re la différence de priorit� entre ces r�gles.
-	 * @param rule La r�gle � comparer
-	 */
-	public int compareTo (Rule rule){
-		return this.priority - rule.priority;
+		return this.priority - rule.priority > 0;
 	}
 
+	public boolean samePriority (Rule rule){
+		return rule.priority == this.priority;
+	}
+	
 	@SuppressWarnings("serial")
 	public static class IncompatibleRulesException extends RuntimeException{
 		/**
