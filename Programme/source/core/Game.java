@@ -81,7 +81,11 @@ public abstract class Game{
 	private void makeGhostsExit (){
 		//	Sortie des fantômes
 		for (Ghost g : this.onExits){
-			g.getPlayer().exitGhost(g);
+			Player p = g.getPlayer();
+			if (p.getPlayingGhosts().contains(g)){
+				g.getPlayer().exitGhost(g);
+				this.board.removeGhost(g);
+			}
 		}
 	}
 	/**

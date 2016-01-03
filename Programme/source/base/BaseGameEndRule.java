@@ -25,7 +25,7 @@ public class BaseGameEndRule extends GameEndRule {
 		
 		boolean b1 = !gBad.isEmpty() && p.getCaptured().containsAll(gBad);		//	Si tous ses mauvais fantômes ont été capturés
 		boolean b2 = !opGood.isEmpty() && op.getCaptured().containsAll(opGood);	//	Si tous les bons fantômes adverses ont été capturés
-		boolean b3 = gEx.size() == 1;											//	Si un des (bons) fantômes est sorti
+		boolean b3 = gEx.size() >= 1;											//	Si un des (bons) fantômes est sorti
 		
 		return b1 || b2 || b3;
 	}

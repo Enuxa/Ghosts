@@ -15,6 +15,9 @@ public class Main {
 		//	Ajout des extensions existantes
 		extensions.add(new Board12Per12Extension ());
 		extensions.add(new base.Knights.KnightsExtension ());
+		extensions.add(new base.Checkers.CheckersExtension());
+		extensions.add(new base.SpecialBoardExtension());
+		extensions.add(new base.HardcoreExtension());
 		
 		//	Récupération du choix de mode de jeu
 		while (cheatModeString == null){

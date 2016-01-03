@@ -5,30 +5,32 @@ import core.*;
 
 /**
  * Règle pour un plateau classique de m x n cases.
- * Chaque joueur doit avoir (n-2) bons fantômes et autant de mauvais fantômes. Il les dispose sur les 
+ * Chaque joueur doit avoir (n-2) bons fantômes et autant de mauvais fantômes. Il les dispose sur deuc lignes
  * Les sorties d'un joueur sont les deux coins du côté opposé.
  */
 public class BaseInitializationRule extends InitializationRule {
-	private int boardSize;
+	private int boardSize, offsetV;
 	public BaseInitializationRule (int priority){
-		this (priority, 6);
+		this (priority, 6, 0);
 	}
 	/**
 	 * @param priority La priorité de cette règle
 	 * @param size Le nombre cases sur un coté du plateau
+	 * @param offsetV Le décalage vertical entre la ligne de fantômes la plus proche du bord et le le bord
 	 */
-	public BaseInitializationRule (int priority, int size){
+	public BaseInitializationRule (int priority, int size, int offsetV){
 		super(priority);
 		this.boardSize = size;
+		this.offsetV = offsetV;
 	}
 	@Override
 	public boolean requestInitialization(Player player, String position) {
 		if (this.isReady(player))	// Le joueur est déjà prêt à jouer, il ne doit pas placer plus de pions
 			return false;
 		
-		int l = 1;	// Ligne la plus en bas autorisée pour ce joueur
+		int l = 1 + this.offsetV;	// Ligne la plus en bas autorisée pour ce joueur
 		if (player != Game.getCurrent().getPlayer(0))
-			l = this.boardSize - 1;
+			l = this.boardSize - 1 - this.offsetV;
 		
 		Square s = Game.getCurrent().getBoard().getSquare(position);
 		

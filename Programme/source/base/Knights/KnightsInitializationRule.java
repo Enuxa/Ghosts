@@ -14,6 +14,13 @@ public class KnightsInitializationRule extends InitializationRule {
 	public boolean requestInitialization(Player player, Ghost ghost, String position) {
 		if (!ghost.getType().equals("Cavalier"))
 			return true;
-		return player.getGhosts("Cavalier").size() < Game.getCurrent().getBoard().getSize()/ 2 - 1;
+		
+		if (!super.requestInitialization(player, position))
+			return false;
+		
+		int size = Game.getCurrent().getBoard().getSize();
+		
+		return player.getGhosts("Cavalier").size() < size/ 2 - 1
+				&& player.getGhosts(ghost.isGood()).size() < size - 2;
 	}
 }
