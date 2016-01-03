@@ -9,11 +9,13 @@ public class RuleBook{
 	private RuleSet<MovementRule> movementRules;
 	private RuleSet<GameEndRule> gameEndRules;
 	private RuleSet<CaptureRule> captureRules;
+	private RuleSet<BoardCreationRule> boardCreationRules;
 	public RuleBook (){
 		this.movementRules = new RuleSet<MovementRule> ();
 		this.gameEndRules = new RuleSet<GameEndRule> ();
 		this.initializationRules = new RuleSet<InitializationRule> ();
 		this.captureRules = new RuleSet<CaptureRule> ();
+		this.boardCreationRules = new RuleSet<BoardCreationRule> ();
 	}
 	/**
 	*	Ajoute une règle au livre de règles.
@@ -28,6 +30,8 @@ public class RuleBook{
 			this.gameEndRules.add((GameEndRule)rule);
 		else if (rule instanceof CaptureRule)
 			this.captureRules.add((CaptureRule)rule);
+		else if (rule instanceof BoardCreationRule)
+			this.boardCreationRules.add((BoardCreationRule)rule);
 	}
 	/**
 	*	Indique si le placement initial d'un fantôme donné est légal ou non selon les règles choisies pour cette partie.
@@ -111,9 +115,9 @@ public class RuleBook{
 	*/
 	public Board getBoard () {
 		Board board = null;
-		InitializationRule r = null;
-		Collection<InitializationRule> top = this.initializationRules.getTopRules();
-		for (InitializationRule rule : top){
+		BoardCreationRule r = null;
+		Collection<BoardCreationRule> top = this.boardCreationRules.getTopRules();
+		for (BoardCreationRule rule : top){
 			Board b = rule.getBoard();
 			if (b != null) {
 				if (board != null)

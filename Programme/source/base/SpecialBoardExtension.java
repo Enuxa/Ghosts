@@ -12,6 +12,6 @@ public class SpecialBoardExtension extends Extension {
 	}
 
 	public void load() {
-		Game.getCurrent().getRuleBook().addRule(new SpecialBoardInitializationRule (1));
+		Game.getCurrent().getRuleBook().addRule(new SpecialBoardCreationRule (1));
 	}
 }

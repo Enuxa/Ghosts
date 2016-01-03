@@ -1,6 +1,5 @@
 package base;
 
-import java.util.*;
 import core.*;
 
 /**
@@ -9,28 +8,19 @@ import core.*;
  * Les sorties d'un joueur sont les deux coins du côté opposé.
  */
 public class BaseInitializationRule extends InitializationRule {
-	private int boardSize, offsetV;
 	public BaseInitializationRule (int priority){
-		this (priority, 6, 0);
-	}
-	/**
-	 * @param priority La priorité de cette règle
-	 * @param size Le nombre cases sur un coté du plateau
-	 * @param offsetV Le décalage vertical entre la ligne de fantômes la plus proche du bord et le le bord
-	 */
-	public BaseInitializationRule (int priority, int size, int offsetV){
 		super(priority);
-		this.boardSize = size;
-		this.offsetV = offsetV;
 	}
 	@Override
 	public boolean requestInitialization(Player player, String position) {
 		if (this.isReady(player))	// Le joueur est déjà prêt à jouer, il ne doit pas placer plus de pions
 			return false;
 		
-		int l = 1 + this.offsetV;	// Ligne la plus en bas autorisée pour ce joueur
+		int boardSize = Game.getCurrent().getBoard().getSize();
+		
+		int l = 1;	// Ligne la plus en bas autorisée pour ce joueur
 		if (player != Game.getCurrent().getPlayer(0))
-			l = this.boardSize - 1 - this.offsetV;
+			l = boardSize - 1;
 		
 		Square s = Game.getCurrent().getBoard().getSquare(position);
 		
@@ -41,7 +31,7 @@ public class BaseInitializationRule extends InitializationRule {
 		char c = Board.toX(position);
 		int i = Board.toY(position);
 		
-		return (c > 'A' && c < (char)('A' + this.boardSize - 1) && (i == l || i == l + 1));
+		return (c > 'A' && c < (char)('A' + boardSize - 1) && (i == l || i == l + 1));
 	}
 
 	@Override
@@ -50,19 +40,17 @@ public class BaseInitializationRule extends InitializationRule {
 			return false;
 		if (!ghost.getType().equals("Basique"))
 			return true;
-		return player.getGhosts(ghost.isGood()).size() < this.boardSize - 2;
-	}
+		
 
-	@Override
-	public Board getBoard() {
-		String maxRow = Integer.toString(this.boardSize);
-		String maxCol = Character.toString((char)('A' + this.boardSize - 1));
-		return new Board (this.boardSize, Arrays.asList(new String[]{"A" + maxRow, maxCol + maxRow}),
-				Arrays.asList(new String[]{"A1", maxCol + "1"}));
+		int boardSize = Game.getCurrent().getBoard().getSize();
+		
+		return player.getGhosts(ghost.isGood()).size() < boardSize - 2;
 	}
 
 	@Override
 	public boolean isReady(Player player) {
-		return player.getGhosts().size() == (this.boardSize - 2) * 2;
+		int boardSize = Game.getCurrent().getBoard().getSize();
+		
+		return player.getGhosts().size() == (boardSize - 2) * 2;
 	}
 }

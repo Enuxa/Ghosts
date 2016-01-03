@@ -17,5 +17,4 @@ public class KnightsExtension extends Extension {
 		Game.getCurrent().getRuleBook().addRule(new KnightsMovementRule (0));
 		Game.getCurrent().getFactory().addGhostType("Cavalier");
 	}
-
 }

@@ -30,13 +30,6 @@ public abstract class InitializationRule extends Rule {
 		return true;
 	}
 	/**
-	* Peut renvoyer un plateau
-	* @return Un plateau si elle est la règle de priorité maximale supposée générer le plateau, <code>null</code> sinon
-	*/
-	public Board getBoard (){
-		return null;
-	}
-	/**
 	 * Indique si un joueur est prêt à jouer
 	 * @return <code>true</code> si le joueur a une configuration correcte, <code>false</code> sinon.
 	 * @param player Le joueur

@@ -1,7 +1,6 @@
 package base;
 
-import core.Extension;
-import core.Game;
+import core.*;
 
 /**
  * Extension pour un plateau de 12 x 12 cases
@@ -12,7 +11,7 @@ public class Board12Per12Extension extends Extension {
 	}
 
 	public void load() {
-		Game.getCurrent().getRuleBook().addRule(new Board12Per12InitializationRule (1));
+		Game.getCurrent().getRuleBook().addRule(new base.BaseInitializationRule(0));
+		Game.getCurrent().getRuleBook().addRule(new base.BaseBoardCreationRule(1, 12));
 	}
-
 }
