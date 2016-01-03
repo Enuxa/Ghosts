@@ -4,7 +4,7 @@ import core.Extension;
 import core.Game;
 
 /**
- *	Extension pour les cavaliers
+ *	Extension pour les dames
  */
 public class CheckersExtension extends Extension {
 
@@ -17,5 +17,4 @@ public class CheckersExtension extends Extension {
 		Game.getCurrent().getRuleBook().addRule(new CheckersMovementRule (0));
 		Game.getCurrent().getFactory().addGhostType("Dame");
 	}
-
 }

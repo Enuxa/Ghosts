@@ -4,7 +4,7 @@ import core.*;
 
 /**
  * Règle pour un plateau classique de m x n cases.
- * Chaque joueur doit avoir (n-2) bons fantômes et autant de mauvais fantômes. Il les dispose sur deuc lignes
+ * Chaque joueur doit avoir (n-2) bons fantômes et autant de mauvais fantômes. Il les dispose sur deux lignes.
  * Les sorties d'un joueur sont les deux coins du côté opposé.
  */
 public class BaseInitializationRule extends InitializationRule {
