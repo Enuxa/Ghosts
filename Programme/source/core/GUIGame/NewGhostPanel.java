@@ -15,7 +15,8 @@ import core.*;
 public class NewGhostPanel extends JPanel {
 	private JPanel interactionPanel;
 	private JRadioButton good, bad;
-	private JComboBox<String> ghostTypesBox;
+	@SuppressWarnings("rawtypes")	//	JComboBox devrait être paramétrée, or les ordinateurs du SCRIPT utilisent la version 1.6.0_32 de javac qui n'acceptent pas qu'elle soit paramétrée
+	private JComboBox ghostTypesBox;
 	private String coordinates;
 	private GUIGame game;
 	private Window window;
@@ -26,6 +27,7 @@ public class NewGhostPanel extends JPanel {
 	 * @param window La fenêtre de jeu
 	 * @param interactionPanel Le panneau d'interaction de la fenêtre
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })	//	JComboBox devrait être paramétrée, or les ordinateurs du SCRIPT utilisent la version 1.6.0_32 de javac qui n'acceptent pas qu'elle soit paramétrée
 	public NewGhostPanel (String coordinates, GUIGame game, Window window, JPanel interactionPanel){
 		this.interactionPanel = interactionPanel;
 		this.window = window;
@@ -36,7 +38,7 @@ public class NewGhostPanel extends JPanel {
 		
 		// ComboBox proposant les différents types de fantomes disponible
 		Collection<String> ghostTypes = this.game.getFactory().getTypes();
-		ghostTypesBox = new JComboBox<String> (ghostTypes.toArray(new String[ghostTypes.size()]));
+		ghostTypesBox = new JComboBox (ghostTypes.toArray(new String[ghostTypes.size()]));
 		
 		//	Boutons radio pour définir si le fantôme est bon ou mauvais
 		ButtonGroup group = new ButtonGroup ();
