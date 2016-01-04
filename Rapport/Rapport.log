@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2015.8.14)  4 JAN 2016 22:20
+=======
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (MiKTeX 2.9) (preloaded format=pdflatex 2015.3.20)  4 JAN 2016 23:30
+>>>>>>> e0b16773d11a298926ccbc2c790e49192a803cf1
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -241,6 +245,7 @@ Now handling font encoding U ...
    defining Unicode char U+2122 (decimal 8482)
    defining Unicode char U+2423 (decimal 9251)
 ))
+<<<<<<< HEAD
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
 
@@ -249,6 +254,16 @@ Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
 \KV@toks@=\toks16
 )
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+=======
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphicx.sty"
+Package: graphicx 1999/02/16 v1.0f Enhanced LaTeX Graphics (DPC,SPQR)
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\keyval.sty"
+Package: keyval 1999/03/16 v1.13 key=value parser (DPC)
+\KV@toks@=\toks16
+)
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\graphics\graphics.sty"
+>>>>>>> e0b16773d11a298926ccbc2c790e49192a803cf1
 Package: graphics 2009/02/05 v1.0o Standard LaTeX Graphics (DPC,SPQR)
 
 (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
@@ -273,9 +288,14 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \Gin@req@height=\dimen103
 \Gin@req@width=\dimen104
 )
+<<<<<<< HEAD
 (./Rapport.aux)
 \openout1 = `Rapport.aux'.
 
+=======
+("C:\Users\bringer\Documents\Clara\Fac - Maths-Info\L2\Semestre 3\Programmation
+\Ghosts v2\Ghosts\Rapport\Rapport.aux")
+>>>>>>> e0b16773d11a298926ccbc2c790e49192a803cf1
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 9.
@@ -288,7 +308,12 @@ LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 9.
 LaTeX Font Info:    ... okay on input line 9.
+<<<<<<< HEAD
  (/usr/share/texlive/texmf-dist/tex/context/base/supp-pdf.mkii
+=======
+
+("C:\Program Files (x86)\MiKTeX 2.9\tex\context\base\supp-pdf.mkii"
+>>>>>>> e0b16773d11a298926ccbc2c790e49192a803cf1
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count89
 \scratchdimen=\dimen105
@@ -352,6 +377,7 @@ e
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <12> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
+<<<<<<< HEAD
 (Font)              <8> on input line 10.
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 10.
@@ -427,6 +453,110 @@ Output written on Rapport.pdf (4 pages, 295899 bytes).
 PDF statistics:
  63 PDF objects out of 1000 (max. 8388607)
  43 compressed objects within 1 object stream
+=======
+(Font)              <12> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <8> on input line 10.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <6> on input line 10.
+ [1
+
+{C:/ProgramData/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (13.29768pt too wide) in paragraph at lines 18--20
+\OT1/cmr/m/n/10 fichier en \OT1/cmr/m/it/10 .gf \OT1/cmr/m/n/10 decrivant la d
+is-po-si-tion ini-tiale des fant^omes ainsi que les deplacements
+ []
+
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 25.
+("C:\Program Files (x86)\MiKTeX 2.9\tex\latex\base\omscmr.fd"
+File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 25.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 42.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 42.
+ [1]
+Overfull \hbox (8.34023pt too wide) in paragraph at lines 45--46
+ \OT1/cmr/bx/n/10 Ex-ten-sion dames : \OT1/cmr/bx/it/10 Check-er-sEx-ten-sion \
+OT1/cmr/bx/n/10 dans \OT1/cmr/bx/it/10 base.checkers[] \OT1/cmr/m/n/10 Les dame
+s
+ []
+
+
+Overfull \hbox (3.4027pt too wide) in paragraph at lines 54--56
+ \OT1/cmr/bx/n/10 Ex-ten-sion plateau special : \OT1/cmr/bx/it/10 Spe-cial-Boa
+rd-Ex-ten-sion \OT1/cmr/bx/n/10 dans \OT1/cmr/bx/it/10 base[] \OT1/cmr/m/n/10 C
+ette
+ []
+
+
+LaTeX Warning: File `core.png' not found on input line 61.
+
+
+! Package pdftex.def Error: File `core.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.61 	\includegraphics[width=\textwidth]{core.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: File `core_GUIGame.png' not found on input line 66.
+
+
+! Package pdftex.def Error: File `core_GUIGame.png' not found.
+
+See the pdftex.def package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.66 ...aphics[width=\textwidth]{core_GUIGame.png}
+                                                  
+Using draft setting for this image.
+Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[2] [3] [4]
+("C:\Users\bringer\Documents\Clara\Fac - Maths-Info\L2\Semestre 3\Programmation
+\Ghosts v2\Ghosts\Rapport\Rapport.aux") ) 
+Here is how much of TeX's memory you used:
+ 1385 strings out of 493921
+ 17933 string characters out of 3144870
+ 69911 words of memory out of 3000000
+ 4697 multiletter control sequences out of 15000+200000
+ 8768 words of font info for 31 fonts, out of 3000000 for 9000
+ 841 hyphenation exceptions out of 8191
+ 27i,6n,19p,321b,225s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files (x86)/MiKTeX 2.9/fon
+ts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts
+/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmbxti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/t
+ype1/public/amsfonts/cm/cmmi10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmmi7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/
+public/amsfonts/cm/cmr10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmr12.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmr17.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/am
+sfonts/cm/cmr7.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfon
+ts/cm/cmsy10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts
+/cm/cmti10.pfb><C:/Program Files (x86)/MiKTeX 2.9/fonts/type1/public/amsfonts/c
+m/cmtt10.pfb>
+Output written on Rapport.pdf (5 pages, 144878 bytes).
+PDF statistics:
+ 66 PDF objects out of 1000 (max. 8388607)
+>>>>>>> e0b16773d11a298926ccbc2c790e49192a803cf1
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
