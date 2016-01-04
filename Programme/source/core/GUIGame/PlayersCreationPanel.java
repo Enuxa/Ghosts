@@ -3,6 +3,8 @@ package core.GUIGame;
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
+import java.nio.file.Paths;
+
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
@@ -88,10 +90,13 @@ public class PlayersCreationPanel extends JPanel {
 				public void actionPerformed(ActionEvent arg0) {
 					JFileChooser fc = new JFileChooser ();
 					fc.setFileFilter(new FileNameExtensionFilter ("Fichier de configuration Ghosts", "gf"));
+					fc.setCurrentDirectory(Paths.get(".").toAbsolutePath().toFile());
 					fc.showOpenDialog(null);
-					file = fc.getSelectedFile();
-					if (file != null)
+					File f = fc.getSelectedFile();
+					if (f != null){
+						file = f;
 						selectFileButton.setText(file.getPath());
+					}
 				}
 			});
 			

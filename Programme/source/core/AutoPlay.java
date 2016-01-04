@@ -99,11 +99,14 @@ public class AutoPlay {
 			throw new RuntimeException ("Le fichier " + this.file + " ne contient pas la ligne " + startLine);
 		
 		String[] tab = this.scanner.nextLine().split(" ");
-		String pattern = "[A-Z]\\d";
+		String pattern = "[A-Z]\\d{1,}";
 		for (String s : tab){
 			String t[] = s.split(",");
-			if (t.length != 2 || !Pattern.matches(pattern, t[0])  || !Pattern.matches(pattern, t[1]))
-				throw new RuntimeException ("Un déplacement non-conforme a été rencontré : " + t);
+			if (t.length != 2)
+				throw new RuntimeException ("Un déplacement non-conforme a été rencontré pour " + this.player + " : " + s);
+			else if (!Pattern.matches(pattern, t[0])  || !Pattern.matches(pattern, t[1]))
+				throw new RuntimeException ("Un déplacement non-conforme a été rencontré pour " + this.player + " : " + t[0] + "->" + t[1]);
+				
 			movementList.add(t);
 		}
 		

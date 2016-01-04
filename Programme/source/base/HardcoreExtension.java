@@ -3,7 +3,7 @@ package base;
 import core.*;
 
 /**
- * Extension vous forçcant à faire sortir deux bons fantômes pour gagner
+ * Extension vous forçant à faire sortir deux bons fantômes ou à capturer tous les fantômes adverses pour gagner
  */
 public class HardcoreExtension extends Extension {
 	public HardcoreExtension() {
@@ -19,10 +19,15 @@ public class HardcoreExtension extends Extension {
 			super(priority);
 		}
 		public boolean isGameOver() {
-			int ex0 = Game.getCurrent().getPlayer(0).getExited().size();
-			int ex1 = Game.getCurrent().getPlayer(1).getExited().size();
+			Player p0 = Game.getCurrent().getPlayer(0);
+			Player p1 = Game.getCurrent().getPlayer(1);
+			int ex0 = p0.getExited().size();
+			int ex1 = p1.getExited().size();
 			
-			return (ex0 == 2 || ex1 == 2) && super.isGameOver();
+			int n0 = p0.getPlayingGhosts().size();
+			int n1 = p1.getPlayingGhosts().size();
+			
+			return (ex0 == 2 || ex1 == 2) || (n0 == 0 || n1 == 0);
 		}
 
 		@Override
@@ -30,12 +35,11 @@ public class HardcoreExtension extends Extension {
 			Player p0 = Game.getCurrent().getPlayer(0);
 			Player p1 = Game.getCurrent().getPlayer(1);
 			
-			if (p0.getExited().size() == 2)
+			if (p0.getExited().size() == 2 || p1.getPlayingGhosts().size() == 0)
 				return p0;
-			else if (p1.getExited().size() == 2)
+			else if (p1.getExited().size() == 2 || p0.getPlayingGhosts().size() == 0)
 				return p1;
 			return null;
 		}
-		
 	}
 }
